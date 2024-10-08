@@ -1,24 +1,4 @@
 Todos os direitos reservados a https://baasic.com.br
-123
-# No Backend
-1. > Entrar na pasta:
-2. > cd backend
-3. > cp .env.example .env
-3. > npm install
-4. > npm run build
-
-
-# Voltar para  o diretorio zapcomm
-1. > cd ..
-
-# No Frontend
-1. > Entrar na pasta:
-2. > cd frontend
-3. > cp .env.exemple .env
-
-
-# Voltar para  o diretorio zapcomm
-1. > cd ..
 
 # Fazendo o building do Docker
 1. > docker-compose up --build
