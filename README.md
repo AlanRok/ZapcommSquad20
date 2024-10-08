@@ -1,5 +1,19 @@
 Todos os direitos reservados a https://baasic.com.br
 
+# Pré Requisitos
+1. > Armazenamento não deve estar cheio
+2. > Deve possuir no mínimo 8gb de ram para a virtualizalção do Docker ocorrer corretamente. Abaixo disso talvez não dê certo.
+
+# No Backend
+1. > Entrar na pasta:
+2. > cd backend
+3. > cp .env.example .env
+3. > npm install
+4. > npm run build
+
+# Sair da pasta
+1. > cd ..
+
 # Fazendo o building do Docker
 1. > docker-compose up --build
 
