@@ -14,6 +14,14 @@ Todos os direitos reservados a https://baasic.com.br
 # Sair da pasta
 1. > cd ..
 
+# No Frontend
+    > Entrar na pasta:
+    > cd frontend
+    > npm install
+
+# Sair da pasta
+1. > cd ..
+
 # Fazendo o building do Docker
 1. > docker-compose up --build
 
@@ -32,4 +40,4 @@ Todos os direitos reservados a https://baasic.com.br
 
 
 3. Para rodar o docker-composer novamente digite o novo comando abixo
-> docker-compose up --no-build
+> docker-compose up
