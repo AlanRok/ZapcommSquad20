@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-15px",
     marginBottom: "-10px",
   },
+  background: {
+    backgroundColor: '#192F64', //cor do fundo aplicar aqui
+  },
 }));
 
 
@@ -283,87 +286,87 @@ const MainListItems = (props) => {
   };
 
   return (
-    <div onClick={drawerClose}>
+    <div onClick={drawerClose} className={classes.background}>
       <Can
         role={user.profile}
         perform="dashboard:view"
         yes={() => (
-          <ListItemLink
+          <ListItemLink className={classes.background}
             to="/"
             primary="Dashboard"
-            icon={<DashboardOutlinedIcon />}
+            icon={<DashboardOutlinedIcon style={{ color: 'white' }}/>}
           />
         )}
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/tickets"
         primary={i18n.t("mainDrawer.listItems.tickets")}
-        icon={<WhatsAppIcon />}
+        icon={<WhatsAppIcon style={{ color: 'white' }}/>}
       />
 	  
 	{showKanban && (  
-	  <ListItemLink
+	  <ListItemLink className={classes.background}
         to="/kanban"
         primary={i18n.t("Kanban")}
-        icon={<TableChartIcon />}
+        icon={<TableChartIcon style={{ color: 'white' }}/>}
       />
 	  )}
 
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/quick-messages"
         primary={i18n.t("mainDrawer.listItems.quickMessages")}
-        icon={<FlashOnIcon />}
+        icon={<FlashOnIcon style={{ color: 'white' }}/>}
       />
 	  
-	  <ListItemLink
+	  <ListItemLink className={classes.background}
         to="/todolist"
         primary={i18n.t("Tarefas")}
-        icon={<BorderColorIcon />}
+        icon={<BorderColorIcon style={{ color: 'white' }}/>}
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/contacts"
         primary={i18n.t("mainDrawer.listItems.contacts")}
-        icon={<ContactPhoneOutlinedIcon />}
+        icon={<ContactPhoneOutlinedIcon style={{ color: 'white' }}/>}
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/schedules"
         primary={i18n.t("mainDrawer.listItems.schedules")}
-        icon={<EventIcon />}
+        icon={<EventIcon style={{ color: 'white' }}/>}
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/tags"
         primary={i18n.t("mainDrawer.listItems.tags")}
-        icon={<LocalOfferIcon />}
+        icon={<LocalOfferIcon style={{ color: 'white' }}/>}
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/chats"
         primary={i18n.t("mainDrawer.listItems.chats")}
         icon={
           <Badge color="secondary" variant="dot" invisible={invisible}>
-            <ForumIcon />
+            <ForumIcon style={{ color: 'white' }}/>
           </Badge>
         }
       />
 
-      <ListItemLink
+      <ListItemLink className={classes.background}
         to="/helps"
         primary={i18n.t("mainDrawer.listItems.helps")}
-        icon={<HelpOutlineIcon />}
+        icon={<HelpOutlineIcon style={{ color: 'white' }}/>}
       />
 
-      <Can
+      <Can 
         role={user.profile}
         perform="drawer-admin-items:view"
         yes={() => (
           <>
-            <Divider />
-            <ListSubheader
+            <Divider className={classes.background} />
+            <ListSubheader className={classes.background}
               hidden={collapsed}
               style={{
                 position: "relative",
@@ -378,32 +381,32 @@ const MainListItems = (props) => {
 			
             {showCampaigns && (
               <>
-                <ListItem
+                <ListItem className={classes.background}
                   button
                   onClick={() => setOpenCampaignSubmenu((prev) => !prev)}
                 >
-                  <ListItemIcon>
-                    <EventAvailableIcon />
+                  <ListItemIcon >
+                    <EventAvailableIcon style={{ color: 'white' }}/>
                   </ListItemIcon>
                   <ListItemText
                     primary={i18n.t("mainDrawer.listItems.campaigns")}
                   />
                   {openCampaignSubmenu ? (
-                    <ExpandLessIcon />
+                    <ExpandLessIcon className={classes.background} style={{ color: 'white' }}/>
                   ) : (
                     <ExpandMoreIcon />
                   )}
                 </ListItem>
-                <Collapse
+                <Collapse className={classes.background}
                   style={{ paddingLeft: 15 }}
                   in={openCampaignSubmenu}
                   timeout="auto"
                   unmountOnExit
                 >
-                  <List component="div" disablePadding>
-                    <ListItem onClick={() => history.push("/campaigns")} button>
-                      <ListItemIcon>
-                        <ListIcon />
+                  <List className={classes.background} component="div" disablePadding>
+                    <ListItem className={classes.background} onClick={() => history.push("/campaigns")} button>
+                      <ListItemIcon className={classes.background}>
+                        <ListIcon style={{ color: 'white' }}/>
                       </ListItemIcon>
                       <ListItemText primary="Listagem" />
                     </ListItem>
@@ -411,17 +414,17 @@ const MainListItems = (props) => {
                       onClick={() => history.push("/contact-lists")}
                       button
                     >
-                      <ListItemIcon>
-                        <PeopleIcon />
+                      <ListItemIcon >
+                        <PeopleIcon style={{ color: 'white' }}/>
                       </ListItemIcon>
                       <ListItemText primary="Listas de Contatos" />
                     </ListItem>
-                    <ListItem
+                    <ListItem className={classes.background}
                       onClick={() => history.push("/campaigns-config")}
                       button
                     >
-                      <ListItemIcon>
-                        <SettingsOutlinedIcon />
+                      <ListItemIcon >
+                        <SettingsOutlinedIcon style={{ color: 'white' }}/>
                       </ListItemIcon>
                       <ListItemText primary="Configurações" />
                     </ListItem>
@@ -430,70 +433,70 @@ const MainListItems = (props) => {
               </>
             )}
             {user.super && (
-              <ListItemLink
+              <ListItemLink className={classes.background}
                 to="/announcements"
                 primary={i18n.t("mainDrawer.listItems.annoucements")}
-                icon={<AnnouncementIcon />}
+                icon={<AnnouncementIcon style={{ color: 'white' }}/>}
               />
             )}
             {showOpenAi && (
-              <ListItemLink
+              <ListItemLink className={classes.background}
                 to="/prompts"
                 primary={i18n.t("mainDrawer.listItems.prompts")}
-                icon={<AllInclusive />}
+                icon={<AllInclusive style={{ color: 'white' }}/>}
               />
             )}
 
             {showIntegrations && (
-              <ListItemLink
+              <ListItemLink className={classes.background}
                 to="/queue-integration"
                 primary={i18n.t("mainDrawer.listItems.queueIntegration")}
-                icon={<DeviceHubOutlined />}
+                icon={<DeviceHubOutlined style={{ color: 'white' }}/>}
               />
             )}
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/connections"
               primary={i18n.t("mainDrawer.listItems.connections")}
               icon={
                 <Badge badgeContent={connectionWarning ? "!" : 0} color="error">
-                  <SyncAltIcon />
+                  <SyncAltIcon style={{ color: 'white' }}/>
                 </Badge>
               }
             />
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/files"
               primary={i18n.t("mainDrawer.listItems.files")}
-              icon={<AttachFile />}
+              icon={<AttachFile style={{ color: 'white' }}/>}
             />
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/queues"
               primary={i18n.t("mainDrawer.listItems.queues")}
-              icon={<AccountTreeOutlinedIcon />}
+              icon={<AccountTreeOutlinedIcon style={{ color: 'white' }}/>}
             />
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/users"
               primary={i18n.t("mainDrawer.listItems.users")}
-              icon={<PeopleAltOutlinedIcon />}
+              icon={<PeopleAltOutlinedIcon style={{ color: 'white' }}/>}
             />
             {showExternalApi && (
               <>
-                <ListItemLink
+                <ListItemLink className={classes.background}
                   to="/messages-api"
                   primary={i18n.t("mainDrawer.listItems.messagesAPI")}
-                  icon={<CodeRoundedIcon />}
+                  icon={<CodeRoundedIcon style={{ color: 'white' }}/>}
                 />
               </>
             )}
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/financeiro"
               primary={i18n.t("mainDrawer.listItems.financeiro")}
-              icon={<LocalAtmIcon />}
+              icon={<LocalAtmIcon style={{ color: 'white' }}/>}
             />
 
-            <ListItemLink
+            <ListItemLink className={classes.background}
               to="/settings"
               primary={i18n.t("mainDrawer.listItems.settings")}
-              icon={<SettingsOutlinedIcon />}
+              icon={<SettingsOutlinedIcon style={{ color: 'white' }}/>}
             />
 			
 			
