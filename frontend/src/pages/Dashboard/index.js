@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card 
   },
   card2: {
     padding: theme.spacing(2),
@@ -145,7 +145,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card3: {
     padding: theme.spacing(2),
@@ -154,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
   //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card4: {
     padding: theme.spacing(2),
@@ -163,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card5: {
     padding: theme.spacing(2),
@@ -172,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card6: {
     padding: theme.spacing(2),
@@ -181,7 +181,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card7: {
     padding: theme.spacing(2),
@@ -190,7 +190,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card8: {
     padding: theme.spacing(2),
@@ -199,7 +199,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card9: {
     padding: theme.spacing(2),
@@ -208,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   fixedHeightPaper2: {
     padding: theme.spacing(2),

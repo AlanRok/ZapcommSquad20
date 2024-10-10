@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "-10px",
   },
   background: {
-    backgroundColor: '#192F64', //cor do fundo aplicar aqui
+    backgroundColor: '#192F64', //cor de fundo das letras aplicar aqui
   },
 }));
 
