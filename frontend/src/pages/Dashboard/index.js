@@ -28,6 +28,9 @@ import SendIcon from '@material-ui/icons/Send';
 import MessageIcon from '@material-ui/icons/Message';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import TimerIcon from '@material-ui/icons/Timer';
+import AddIcCallIcon from '@material-ui/icons/AddIcCall';
+import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
+import SettingsPhoneIcon from '@material-ui/icons/SettingsPhone';
 
 import { makeStyles } from "@material-ui/core/styles";
 import { grey, blue } from "@material-ui/core/colors";
@@ -132,8 +135,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card 
   },
   card2: {
     padding: theme.spacing(2),
@@ -143,8 +145,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card3: {
     padding: theme.spacing(2),
@@ -153,8 +154,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
   //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card4: {
     padding: theme.spacing(2),
@@ -163,8 +163,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card5: {
     padding: theme.spacing(2),
@@ -173,8 +172,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card6: {
     padding: theme.spacing(2),
@@ -183,8 +181,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card7: {
     padding: theme.spacing(2),
@@ -193,8 +190,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card8: {
     padding: theme.spacing(2),
@@ -203,8 +199,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   card9: {
     padding: theme.spacing(2),
@@ -213,8 +208,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: '#ffffff', //cor de fundo do card
   },
   fixedHeightPaper2: {
     padding: theme.spacing(2),
@@ -408,7 +402,7 @@ const Dashboard = () => {
         <Grid container spacing={3} justifyContent="flex-end">
 		
 
-          {/* EM ATENDIMENTO */}
+          {/* PENDENTES*/}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
               className={classes.card1}
@@ -422,7 +416,7 @@ const Dashboard = () => {
                     variant="h6"
                     paragraph
                   >
-                    Em Conversa
+                    Pendentes
                   </Typography>
                   <Grid item>
                     <Typography
@@ -434,10 +428,10 @@ const Dashboard = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={2}>
-                  <CallIcon
+                  <SettingsPhoneIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -445,7 +439,7 @@ const Dashboard = () => {
             </Paper>
           </Grid>
 
-          {/* AGUARDANDO */}
+          {/* EM ANDAMENTO */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
               className={classes.card2}
@@ -459,7 +453,7 @@ const Dashboard = () => {
                     variant="h6"
                     paragraph
                   >
-                    Aguardando
+                    Em Andamento
                   </Typography>
                   <Grid item>
                     <Typography
@@ -471,10 +465,10 @@ const Dashboard = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={4}>
-                  <HourglassEmptyIcon
+                  <PhoneCallbackIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -550,10 +544,10 @@ const Dashboard = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={4}>
-                  <CheckCircleIcon
+                  <CallIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -561,7 +555,7 @@ const Dashboard = () => {
             </Paper>
           </Grid>
 
-          {/* NOVOS CONTATOS */}
+          {/* NOVOS CHAMADOS */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
               className={classes.card4}
@@ -575,7 +569,7 @@ const Dashboard = () => {
                     variant="h6"
                     paragraph
                   >
-                    Novos Contatos
+                    Novos
                   </Typography>
                   <Grid item>
                     <Typography
@@ -587,10 +581,10 @@ const Dashboard = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={4}>
-                  <GroupAddIcon
+                  <AddIcCallIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -613,7 +607,7 @@ const Dashboard = () => {
                     variant="h6"
                     paragraph
                   >
-                    T.M. de Conversa
+                    T.M. de Atendimento
                   </Typography>
                   <Grid item>
                     <Typography
@@ -628,7 +622,7 @@ const Dashboard = () => {
                   <AccessAlarmIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -665,7 +659,7 @@ const Dashboard = () => {
                   <TimerIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#000",
                     }}
                   />
                 </Grid>
@@ -697,7 +691,7 @@ const Dashboard = () => {
               loading={loading}
               onClick={() => fetchData()}
               variant="contained"
-              color="primary"
+              color= "primary"
             >
               Filtrar
             </ButtonWithSpinner>

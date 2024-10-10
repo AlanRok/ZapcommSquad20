@@ -91,7 +91,7 @@ const Filters = ({
                         <Button
                             fullWidth
                             variant="contained"
-                            color="primary"
+                            color="#20587C"
                             onClick={() => {
                                 setQueueTicket(queues);
                                 setDateStartTicket(dateStart);

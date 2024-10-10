@@ -16,6 +16,8 @@ import { nomeEmpresa } from "../../../package.json";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
 
+import imageLogin from "../../assets/imageLogin.png";
+
 
 const Copyright = () => {
 	return (
@@ -36,15 +38,16 @@ const useStyles = makeStyles(theme => ({
 		height: "100vh",
 		//background: "linear-gradient(to right, #682EE3 , #682EE3 , #682EE3)",
 		//backgroundImage: "url(https://i.imgur.com/CGby9tN.png)",
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: "#fff",
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "100% 100%",
 		backgroundPosition: "center",
 		display: "flex",
-		flexDirection: "column",
+		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
 		textAlign: "center",
+		position: "relative",
 	},
 	paper: {
 		backgroundColor: theme.palette.login,
@@ -140,6 +143,7 @@ const Login = () => {
 						variant="contained"
 						color="primary"
 						className={classes.submit}
+						style={{backgroundColor: "#0C2454"}} 
 					>
 						{i18n.t("login.buttons.submit")}
 					</Button>
