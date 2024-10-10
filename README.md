@@ -40,4 +40,4 @@ Todos os direitos reservados a https://baasic.com.br
 
 
 3. Para rodar o docker-composer novamente digite o novo comando abixo
-> docker-compose up --no-build
+> docker-compose up
