@@ -41,8 +41,6 @@ services:
 
     command: >
       sh -c "
-      npm run db:migrate &&
-      npm run db:seed &&
       npm run dev:server"
 
     
@@ -52,15 +50,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-<<<<<<< HEAD
     volumes:
       - ./frontend:/app
-=======
-
-    volumes:
-      - ./frontend:/app
-
->>>>>>> 1d1cfb02e87298b0dfbefd170a8f45e60e6d5506
     environment:
       - NODE_ENV=development
       - REACT_APP_API_URL=http://localhost:8080
