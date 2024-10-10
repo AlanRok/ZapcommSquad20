@@ -33,6 +33,7 @@ import toastError from "../errors/toastError";
 import AnnouncementsPopover from "../components/AnnouncementsPopover";
 
 import logo from "../assets/logo.png";
+import logobranca from "../assets/logobranca.png";
 import { SocketContext } from "../context/Socket/SocketContext";
 import ChatPopover from "../pages/Chat/ChatPopover";
 
@@ -76,9 +77,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     padding: "0 8px",
     minHeight: "48px",
+    backgroundColor: '#192F64',
     [theme.breakpoints.down("sm")]: {
       height: "48px"
     }
+    
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -86,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    borderBottom: "1px solid #0C2C54", 
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -110,6 +114,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   drawerPaper: {
+    backgroundColor: '#192F64', //Cor do fundo da Barra Lateral
+    color: '#FFFFFF', //Cor do Texto da Barra Lateral
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -149,7 +155,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(2),
+    //padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column"
@@ -345,7 +351,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
         open={drawerOpen}
       >
         <div className={classes.toolbarIcon}>
-          <img src={logo} className={classes.logo} alt="logo" />
+          <img src={logobranca} className={classes.logo} alt="logo" />
           <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
             <ChevronLeftIcon />
           </IconButton>
@@ -367,7 +373,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
         color="primary"
       >
         <Toolbar variant="dense" className={classes.toolbar}>
-          <IconButton
+          <IconButton 
             edge="start"
             variant="contained"
             aria-label="open drawer"
@@ -386,6 +392,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             color="inherit"
             noWrap
             className={classes.title}
+            style={{color:'black'}} //cor do texto da barra superior
           >
             {/* {greaterThenSm && user?.profile === "admin" && getDateAndDifDays(user?.company?.dueDate).difData < 7 ? ( */}
             {greaterThenSm && user?.profile === "admin" && user?.company?.dueDate ? (
@@ -399,28 +406,28 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             )}
           </Typography>
 
-          <IconButton edge="start" onClick={toggleColorMode}>
+          {/*<IconButton edge="start" onClick={toggleColorMode}>
             {theme.mode === 'dark' ? <Brightness7Icon style={{ color: "white" }} /> : <Brightness4Icon style={{ color: "white" }} />}
-          </IconButton>
+          </IconButton>*/}
 
-          <NotificationsVolume
+          {/*<NotificationsVolume
             setVolume={setVolume}
             volume={volume}
-          />
+          />*/}
 
-          <IconButton
+          {/*<IconButton
             onClick={handleRefreshPage}
             aria-label={i18n.t("mainDrawer.appBar.refresh")}
             color="inherit"
           >
             <CachedIcon style={{ color: "white" }} />
-          </IconButton>
+          </IconButton>*/}
 
-          {user.id && <NotificationsPopOver volume={volume} />}
+          {/*d{user.id && <NotificationsPopOver volume={volume} />}*/}
 
-          <AnnouncementsPopover />
+          {/*<AnnouncementsPopover />*/}
 
-          <ChatPopover />
+          {/*<ChatPopover />*/}
 
           <div>
             <IconButton
@@ -429,7 +436,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
               aria-haspopup="true"
               onClick={handleMenu}
               variant="contained"
-              style={{ color: "white" }}
+              style={{ color: "black" }}
             >
               <AccountCircle />
             </IconButton>
