@@ -207,31 +207,14 @@ const SignUp = () => {
 										required
 									/>
 								</Grid>
-								<Grid item xs={12}>
-									<InputLabel htmlFor="plan-selection">Plano</InputLabel>
-									<Field
-										as={Select}
-										variant="outlined"
-										fullWidth
-										id="plan-selection"
-										label="Plano"
-										name="planId"
-										required
-									>
-										{plans.map((plan, key) => (
-											<MenuItem key={key} value={plan.id}>
-												{plan.name} - Atendentes: {plan.users} - WhatsApp: {plan.connections} - Filas: {plan.queues} - R$ {plan.value}
-											</MenuItem>
-										))}
-									</Field>
-								</Grid>
 							</Grid>
 							<Button
 								type="submit"
 								fullWidth
 								variant="contained"
-								color="primary"
 								className={classes.submit}
+								color="primary"
+								style={{backgroundColor: "#0C2454"}}
 							>
 								{i18n.t("signup.buttons.submit")}
 							</Button>
