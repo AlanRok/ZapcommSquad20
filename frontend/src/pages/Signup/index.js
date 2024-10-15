@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 	form: {
 		width: "100%",
 		marginTop: theme.spacing(3),
+		
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
@@ -215,6 +216,7 @@ const SignUp = () => {
 								className={classes.submit}
 								color="primary"
 								style={{backgroundColor: "#0C2454"}}
+								// coloca a cor no botao  
 							>
 								{i18n.t("signup.buttons.submit")}
 							</Button>

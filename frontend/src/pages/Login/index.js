@@ -65,6 +65,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
+
 	},
 	powered: {
 		color: "white"
@@ -74,7 +75,7 @@ const useStyles = makeStyles(theme => ({
 		position: "right", 
 		right: "0", 
 		bottom: "0",
-		height: "100%",
+		height: "120%",
 		display: "block",
 		'@media (max-width: 1070px)': { // deixa responsivo  
 			display: "none",
@@ -113,7 +114,7 @@ const Login = () => {
 				{/*<Typography component="h1" variant="h5">
 					{i18n.t("login.title")}
 				</Typography>*/}
-				<form className={classes.form} noValidate onSubmit={handlSubmit}>
+				<form className={classes.form} noValidate onSubmit={handlSubmit} id="formpramudar">
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -140,7 +141,7 @@ const Login = () => {
 						onChange={handleChangeInput}
 						autoComplete="current-password"
 					/>
-					
+					{/* Texto onde leva para tela de esqueci senha */}
 					<Grid container justify="flex-end">
 					  <Grid item xs={6} style={{ textAlign: "right" }}>
 						<Link component={RouterLink} to="/forgetpsw" variant="body2">
