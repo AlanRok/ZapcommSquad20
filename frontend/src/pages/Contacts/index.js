@@ -268,19 +268,6 @@ const Contacts = () => {
       <MainHeader>
         <Title>{i18n.t("contacts.title")}</Title>
         <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
           <Button
             variant="contained"
             color="primary"
@@ -304,6 +291,25 @@ const Contacts = () => {
 
         </MainHeaderButtonsWrapper>
       </MainHeader>
+          {/* BARRA DE PESQUISA DE CONTATO */}
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("contacts.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "5px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                margin: "10px"
+              }
+            }}
+          />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
