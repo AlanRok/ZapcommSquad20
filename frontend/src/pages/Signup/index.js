@@ -47,7 +47,7 @@ const Copyright = () => {
 const useStyles = makeStyles(theme => ({
 	root: {
 		minHeight: '100vh', 
-		backgroundImage: `url(${require("../../assets/fundo.jpg")})`, 
+		backgroundImage: `url(${require("../../assets/fundo.png")})`, 
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover', 
 		backgroundPosition: 'center',	
