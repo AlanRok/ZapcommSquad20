@@ -147,6 +147,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "12px", 
     },
   },
+  headerTitle: {
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    fontSize: "24px",
+    fontWeight: "400",
+    margin: "0 0 8.4px 0",
+  },
 }));
 
 // Lista de contatos fictícia
@@ -245,9 +251,9 @@ const TicketsCustom = () => {
                     alignItems: "flex-start",
                   }}
                 >
-                  <h2 style={{ fontFamily: "Arial, Helvetica, sans-serif", marginTop: 0 }}>
+                  <h5 className={classes.headerTitle}>
                     Chamados
-                  </h2>
+                  </h5>
                 </header>
 
                 {/* Barra de Pesquisa */}
