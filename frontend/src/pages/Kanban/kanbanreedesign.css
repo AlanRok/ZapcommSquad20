@@ -1,0 +1,2344 @@
+.telakanbanatvd-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .telakanbanatvdtelakanbanatvd1 { 
+    width: 100%;
+    height: 1624px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .telakanbanatvdtelakanbanatvd2 {
+    top: 0px;
+    left: 0px;
+    width: 1728px;
+    height: 1930.771728515625px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background-color: rgba(235, 239, 255, 1);
+  }
+  .telakanbanatvd-rectangle842 {
+    top: 151px;
+    left: 158px;
+    width: 348px;
+    height: 864px;
+    position: absolute;
+    border-radius: 14px;
+  }
+  .telakanbanatvd-text100 {
+    top: 171px;
+    left: 179px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Semi Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle8431 {
+    top: 214px;
+    left: 173px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-rectangle8441 {
+    top: 231px;
+    left: 221px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text102 {
+    top: 282px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse251 {
+    top: 345px;
+    left: 420px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text104 {
+    top: 346px;
+    left: 424px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse261 {
+    top: 345px;
+    left: 464px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text105 {
+    top: 346px;
+    left: 468px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle8471 {
+    top: 802px;
+    left: 173px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text109 {
+    top: 819px;
+    left: 392px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle8451 {
+    top: 819px;
+    left: 221px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text111 {
+    top: 869px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse271 {
+    top: 933px;
+    left: 420px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-text113 {
+    top: 934px;
+    left: 424px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse281 {
+    top: 933px;
+    left: 464px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-text114 {
+    top: 934px;
+    left: 468px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc10 {
+    top: 812px;
+    left: 227px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group10 {
+    top: 4.4169921875px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle8461 {
+    top: 819px;
+    left: 269px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image10 {
+    top: 916px;
+    left: 187px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image11 {
+    top: 916px;
+    left: 211px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip10 {
+    top: 922px;
+    left: 393px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline10 {
+    top: 926px;
+    left: 436px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle850 {
+    top: 151px;
+    left: 531px;
+    width: 348px;
+    height: 665px;
+    position: absolute;
+    border-radius: 14px;
+  }
+  .telakanbanatvd-text118 {
+    top: 171px;
+    left: 557px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Semi Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle863 {
+    top: 151px;
+    left: 902px;
+    width: 348px;
+    height: 472px;
+    position: absolute;
+    border-radius: 14px;
+  }
+  .telakanbanatvd-text120 {
+    top: 171px;
+    left: 929px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Semi Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle876 {
+    top: 151px;
+    left: 1278px;
+    width: 348px;
+    height: 848px;
+    position: absolute;
+    border-radius: 14px;
+  }
+  .telakanbanatvd-text122 {
+    top: 171px;
+    left: 1299px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Semi Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-vector10 {
+    top: 599.50244140625px;
+    left: 472px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc11 {
+    top: 224px;
+    left: 227px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group11 {
+    top: 4.41650390625px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle8442 {
+    top: 231px;
+    left: 269px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image12 {
+    top: 328px;
+    left: 187px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image13 {
+    top: 328px;
+    left: 211px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image14 {
+    top: 328px;
+    left: 239px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip11 {
+    top: 334px;
+    left: 393px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline11 {
+    top: 338px;
+    left: 436px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle8432 {
+    top: 410px;
+    left: 173px;
+    width: 319px;
+    height: 174px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text124 {
+    top: 426px;
+    left: 399px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle8452 {
+    top: 426px;
+    left: 221px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text126 {
+    top: 477px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse252 {
+    top: 540px;
+    left: 420px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text128 {
+    top: 541px;
+    left: 424px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse262 {
+    top: 540px;
+    left: 464px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text129 {
+    top: 541px;
+    left: 468px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc12 {
+    top: 420px;
+    left: 227px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group12 {
+    top: 4.33349609375px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 23.33333396911621px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle8462 {
+    top: 426px;
+    left: 269px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image15 {
+    top: 523px;
+    left: 187px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image16 {
+    top: 523px;
+    left: 211px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip12 {
+    top: 529px;
+    left: 393px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline12 {
+    top: 533px;
+    left: 436px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle8472 {
+    top: 606px;
+    left: 173px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text133 {
+    top: 623px;
+    left: 399px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle848 {
+    top: 623px;
+    left: 221px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text135 {
+    top: 673px;
+    left: 187px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse272 {
+    top: 736px;
+    left: 420px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text137 {
+    top: 738px;
+    left: 424px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse282 {
+    top: 736px;
+    left: 464px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text138 {
+    top: 738px;
+    left: 468px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc13 {
+    top: 616px;
+    left: 227px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group13 {
+    top: 4.41650390625px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle849 {
+    top: 623px;
+    left: 269px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image17 {
+    top: 720px;
+    left: 187px;
+    width: 38px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image18 {
+    top: 720px;
+    left: 211px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image19 {
+    top: 720px;
+    left: 239px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip13 {
+    top: 726px;
+    left: 393px;
+    width: 27px;
+    height: 28px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline13 {
+    top: 729px;
+    left: 436px;
+    width: 25px;
+    height: 27px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle877 {
+    top: 215px;
+    left: 545px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-rectangle878 {
+    top: 232px;
+    left: 593px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text142 {
+    top: 283px;
+    left: 559px;
+    color: rgba(0, 0, 0, 1);
+    width: 103px;
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse51 {
+    top: 346px;
+    left: 792px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text144 {
+    top: 347px;
+    left: 796px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse52 {
+    top: 346px;
+    left: 836px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text145 {
+    top: 347px;
+    left: 840px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-vector11 {
+    top: 600.93994140625px;
+    left: 844px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc14 {
+    top: 225px;
+    left: 599px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group14 {
+    top: 4.41650390625px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle882 {
+    top: 232px;
+    left: 641px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image20 {
+    top: 329px;
+    left: 559px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image21 {
+    top: 329px;
+    left: 583px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image22 {
+    top: 329px;
+    left: 611px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip14 {
+    top: 335px;
+    left: 765px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline14 {
+    top: 339px;
+    left: 808px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle883 {
+    top: 411px;
+    left: 545px;
+    width: 319px;
+    height: 174px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text149 {
+    top: 427px;
+    left: 771px;
+    color: rgba(0, 0, 0, 1);
+    width: 106px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle884 {
+    top: 427px;
+    left: 593px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text151 {
+    top: 478px;
+    left: 559px;
+    color: rgba(0, 0, 0, 1);
+    width: 110px;
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse55 {
+    top: 541px;
+    left: 792px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text153 {
+    top: 542px;
+    left: 796px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse56 {
+    top: 541px;
+    left: 836px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text154 {
+    top: 542px;
+    left: 840px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc15 {
+    top: 421px;
+    left: 599px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group15 {
+    top: 4.33349609375px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 23.33333396911621px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle885 {
+    top: 427px;
+    left: 641px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image23 {
+    top: 524px;
+    left: 559px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image24 {
+    top: 524px;
+    left: 583px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip15 {
+    top: 530px;
+    left: 765px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline15 {
+    top: 534px;
+    left: 808px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle886 {
+    top: 607px;
+    left: 545px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text158 {
+    top: 624px;
+    left: 771px;
+    color: rgba(0, 0, 0, 1);
+    width: 106px;
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle887 {
+    top: 624px;
+    left: 593px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text160 {
+    top: 674px;
+    left: 559px;
+    color: rgba(0, 0, 0, 1);
+    width: 190px;
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse57 {
+    top: 737px;
+    left: 792px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text162 {
+    top: 739px;
+    left: 796px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse58 {
+    top: 737px;
+    left: 836px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text163 {
+    top: 739px;
+    left: 840px;
+    color: rgba(0, 0, 0, 1);
+    width: 4px;
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle888 {
+    top: 624px;
+    left: 641px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image25 {
+    top: 721px;
+    left: 559px;
+    width: 38px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image26 {
+    top: 721px;
+    left: 583px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image27 {
+    top: 721px;
+    left: 611px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip16 {
+    top: 727px;
+    left: 765px;
+    width: 27px;
+    height: 28px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline16 {
+    top: 730px;
+    left: 808px;
+    width: 25px;
+    height: 27px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc16 {
+    top: 214px;
+    left: 563px;
+    width: 23px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-iconparkoutlineupc17 {
+    top: 216px;
+    left: 878px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-rectangle889 {
+    top: 215px;
+    left: 917px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-rectangle890 {
+    top: 232px;
+    left: 965px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text167 {
+    top: 283px;
+    left: 931px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse59 {
+    top: 346px;
+    left: 1164px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text169 {
+    top: 347px;
+    left: 1168px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse60 {
+    top: 346px;
+    left: 1208px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text170 {
+    top: 347px;
+    left: 1212px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-vector12 {
+    top: 600.93994140625px;
+    left: 1216px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc18 {
+    top: 225px;
+    left: 971px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group16 {
+    top: 4.41650390625px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle894 {
+    top: 232px;
+    left: 1013px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image28 {
+    top: 329px;
+    left: 931px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image29 {
+    top: 329px;
+    left: 955px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image30 {
+    top: 329px;
+    left: 983px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip17 {
+    top: 335px;
+    left: 1137px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline17 {
+    top: 339px;
+    left: 1180px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle895 {
+    top: 411px;
+    left: 917px;
+    width: 319px;
+    height: 174px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text174 {
+    top: 427px;
+    left: 1143px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle896 {
+    top: 427px;
+    left: 965px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text176 {
+    top: 478px;
+    left: 931px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse63 {
+    top: 541px;
+    left: 1164px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text178 {
+    top: 542px;
+    left: 1168px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse64 {
+    top: 541px;
+    left: 1208px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text179 {
+    top: 542px;
+    left: 1212px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc19 {
+    top: 421px;
+    left: 971px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group17 {
+    top: 4.33349609375px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 23.33333396911621px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle897 {
+    top: 427px;
+    left: 1013px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image31 {
+    top: 524px;
+    left: 931px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image32 {
+    top: 524px;
+    left: 955px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip18 {
+    top: 530px;
+    left: 1137px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline18 {
+    top: 534px;
+    left: 1180px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc20 {
+    top: 214px;
+    left: 935px;
+    width: 23px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-iconparkoutlineupc21 {
+    top: 215px;
+    left: 1235px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-iconparkoutlineupc22 {
+    top: 778px;
+    left: 1635px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-rectangle901 {
+    top: 216px;
+    left: 1292px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-rectangle902 {
+    top: 233px;
+    left: 1340px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text183 {
+    top: 284px;
+    left: 1306px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse67 {
+    top: 347px;
+    left: 1539px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text185 {
+    top: 348px;
+    left: 1543px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse68 {
+    top: 347px;
+    left: 1583px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text186 {
+    top: 348px;
+    left: 1587px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle903 {
+    top: 804px;
+    left: 1292px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text190 {
+    top: 821px;
+    left: 1511px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle904 {
+    top: 821px;
+    left: 1340px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text192 {
+    top: 871px;
+    left: 1306px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse69 {
+    top: 935px;
+    left: 1539px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-text194 {
+    top: 936px;
+    left: 1543px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse70 {
+    top: 935px;
+    left: 1583px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-text195 {
+    top: 936px;
+    left: 1587px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc23 {
+    top: 814px;
+    left: 1346px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group18 {
+    top: 4.4169921875px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle905 {
+    top: 821px;
+    left: 1388px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image33 {
+    top: 918px;
+    left: 1306px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image34 {
+    top: 918px;
+    left: 1330px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip19 {
+    top: 924px;
+    left: 1512px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline19 {
+    top: 928px;
+    left: 1555px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector13 {
+    top: 602.3779296875px;
+    left: 1591px;
+    width: 11px;
+    height: 10px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc24 {
+    top: 226px;
+    left: 1346px;
+    width: 28px;
+    height: 29px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group19 {
+    top: 4.41650390625px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 24.16666603088379px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle906 {
+    top: 233px;
+    left: 1388px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image35 {
+    top: 330px;
+    left: 1306px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image36 {
+    top: 330px;
+    left: 1330px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image37 {
+    top: 330px;
+    left: 1358px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip20 {
+    top: 336px;
+    left: 1512px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline20 {
+    top: 340px;
+    left: 1555px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle907 {
+    top: 412px;
+    left: 1292px;
+    width: 319px;
+    height: 174px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text199 {
+    top: 428px;
+    left: 1518px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle908 {
+    top: 428px;
+    left: 1340px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text201 {
+    top: 479px;
+    left: 1306px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse71 {
+    top: 542px;
+    left: 1539px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text203 {
+    top: 544px;
+    left: 1542px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Medium;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse72 {
+    top: 542px;
+    left: 1583px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text204 {
+    top: 543px;
+    left: 1587px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-iconparkoutlineupc25 {
+    top: 422px;
+    left: 1346px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-group20 {
+    top: 4.33349609375px;
+    left: -37.666748046875px;
+    width: 23.33333396911621px;
+    height: 23.33333396911621px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-rectangle909 {
+    top: 428px;
+    left: 1388px;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image38 {
+    top: 525px;
+    left: 1306px;
+    width: 38px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-image39 {
+    top: 525px;
+    left: 1330px;
+    width: 37px;
+    height: 41px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip21 {
+    top: 531px;
+    left: 1512px;
+    width: 27px;
+    height: 29px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline21 {
+    top: 535px;
+    left: 1555px;
+    width: 25px;
+    height: 26px;
+    position: absolute;
+  }
+  .telakanbanatvd-rectangle910 {
+    top: 608px;
+    left: 1292px;
+    width: 319px;
+    height: 175px;
+    position: absolute;
+    border-radius: 10px;
+  }
+  .telakanbanatvd-text208 {
+    top: 625px;
+    left: 1518px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 13px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle911 {
+    top: 625px;
+    left: 1340px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-text210 {
+    top: 675px;
+    left: 1306px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 14px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse73 {
+    top: 738px;
+    left: 1539px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text212 {
+    top: 740px;
+    left: 1543px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-ellipse74 {
+    top: 738px;
+    left: 1583px;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+  }
+  .telakanbanatvd-text213 {
+    top: 740px;
+    left: 1587px;
+    color: rgba(0, 0, 0, 1);
+    height: auto;
+    position: absolute;
+    font-size: 5px;
+    font-style: Light;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 300;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-rectangle912 {
+    top: 625px;
+    left: 1388px;
+    width: 40px;
+    height: 19px;
+    position: absolute;
+    border-radius: 18px;
+  }
+  .telakanbanatvd-image40 {
+    top: 722px;
+    left: 1306px;
+    width: 38px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image41 {
+    top: 722px;
+    left: 1330px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-image42 {
+    top: 722px;
+    left: 1358px;
+    width: 37px;
+    height: 40px;
+    position: absolute;
+  }
+  .telakanbanatvd-raphaelclip22 {
+    top: 728px;
+    left: 1512px;
+    width: 27px;
+    height: 28px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolslightchatoutline22 {
+    top: 731px;
+    left: 1555px;
+    width: 25px;
+    height: 27px;
+    position: absolute;
+  }
+  .telakanbanatvd-iconparkoutlineupc26 {
+    top: 586px;
+    left: 1635px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-topbar {
+    top: 0px;
+    left: 65px;
+    width: 1663px;
+    height: 63px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-rectangle1 {
+    top: 0px;
+    left: 0px;
+    width: 1663px;
+    height: 63px;
+    position: absolute;
+  }
+  .telakanbanatvd-perfilicon {
+    top: 15px;
+    left: 1608px;
+    width: 33.319740295410156px;
+    height: 33px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+    background-color: rgba(25, 47, 100, 1);
+  }
+  .telakanbanatvd-text217 {
+    top: 7px;
+    left: 12px;
+    color: rgba(252, 253, 255, 1);
+    width: 10px;
+    height: auto;
+    position: absolute;
+    font-size: 15px;
+    font-style: Bold;
+    text-align: left;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .telakanbanatvd-zapcomm3 {
+    top: 0px;
+    left: 13px;
+    width: 204px;
+    height: 63px;
+    position: absolute;
+  }
+  .telakanbanatvdsidebar {
+    top: 0px;
+    left: 0px;
+    width: 65px;
+    height: 1117px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-rectangle2 {
+    top: 0px;
+    left: 0px;
+    width: 65px;
+    height: 1117px;
+    position: absolute;
+  }
+  .telakanbanatvd-materialsymbolsdashboardoutline {
+    top: 123px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-group77 {
+    top: 1066px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-oval {
+    top: 9.0908203125px;
+    left: 9.090904235839844px;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 1);
+    border-style: solid;
+    border-width: 2px;
+  }
+  .telakanbanatvd-shape1 {
+    top: 0px;
+    left: 0px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+  }
+  .telakanbanatvd-icbaselinewhatsapp {
+    top: 177px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-phkanban {
+    top: 231px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-chatbubble {
+    top: 555px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-akariconsthunder {
+    top: 285px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-uilpen {
+    top: 339px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-gravityuipersons {
+    top: 393px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-tag {
+    top: 501px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-shape2 {
+    top: 1px;
+    left: 1px;
+    width: 21px;
+    height: 21px;
+    position: absolute;
+  }
+  .telakanbanatvdcolo-rblack {
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .telakanbanatvd-rectangle3 {
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-group78 {
+    top: 609px;
+    left: 22px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    flex-shrink: 1;
+  }
+  .telakanbanatvd-bicalendar {
+    top: 0px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+  }
+  .telakanbanatvd-icbaselinecheck {
+    top: 5.895894527435303px;
+    left: 4.9716796875px;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector14 {
+    top: 810px;
+    left: 22px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+  }
+  .telakanbanatvd-gitmerge {
+    top: 860.000244140625px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-icon {
+    top: 25px;
+    left: 25px;
+    width: 18px;
+    height: 17px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector15 {
+    top: 447px;
+    left: 22px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector16 {
+    top: 661px;
+    left: 22px;
+    width: 21px;
+    height: 21px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector17 {
+    top: 712px;
+    left: 22px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector18 {
+    top: 914px;
+    left: 24px;
+    width: 21px;
+    height: 13px;
+    position: absolute;
+  }
+  .telakanbanatvd-vector19 {
+    top: 762px;
+    left: 27px;
+    width: 10px;
+    height: 18px;
+    position: absolute;
+  }
+  
