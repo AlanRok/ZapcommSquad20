@@ -10,9 +10,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 import TicketsManager from "../../components/TicketsManagerTabs/";
 import Ticket from "../../components/Ticket/";
-import lupaIcon from "../../assets/lupa.png";
+import SearchIcon from "@material-ui/icons/Search";
 
-// Imagens de perfil
+// Imagens de perfil :D
 import trevorPic from "../../assets/trevor.png";
 import sheilaPic from "../../assets/sheila.png";
 import marcelaPic from "../../assets/marcela.png";
@@ -252,11 +252,7 @@ const TicketsCustom = () => {
 
                 {/* Barra de Pesquisa */}
                 <div className={classes.searchBar}>
-                  <img
-                    src={lupaIcon}
-                    alt="Lupa"
-                    style={{ width: "20px", height: "20px", marginRight: "8px" }}
-                  />
+                  <SearchIcon style={{ marginRight: "8px" }} /> 
                   <input
                     type="text"
                     placeholder="Pesquisar..."
