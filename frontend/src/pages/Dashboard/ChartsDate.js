@@ -37,7 +37,6 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Gráfico de Conversas',
             position: 'left',
         },
         datalabels: {
@@ -94,8 +93,8 @@ export const ChartsDate = () => {
 
     return (
         <>
-            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Total ({ticketsData?.count})
+            <Typography component="h2" variant="h6" color="#000" gutterBottom>
+                Total de Chamados ({ticketsData?.count})
             </Typography>
 
             <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ my: 2, }} >
