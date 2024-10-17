@@ -301,7 +301,7 @@ const MainListItems = (props) => {
 
       <ListItemLink className={classes.background}
         to="/tickets"
-        primary={i18n.t("mainDrawer.listItems.tickets")}
+        primary={i18n.t("Chamados")}
         icon={<WhatsAppIcon style={{ color: 'white' }}/>}
       />
 	  

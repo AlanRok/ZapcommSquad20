@@ -14,7 +14,7 @@ const messages = {
         },
         buttons: {
           submit: "Cadastrar",
-          login: "Já tem uma conta? Entre!",
+          login: "Não tem conta? Entre!",
         },
       },
       login: {
