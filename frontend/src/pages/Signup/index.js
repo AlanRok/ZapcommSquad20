@@ -45,11 +45,22 @@ const Copyright = () => {
 };
 
 const useStyles = makeStyles(theme => ({
+	root: {
+		minHeight: '100vh', 
+		backgroundImage: `url(${require("../../assets/fundo.png")})`, 
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'cover', 
+		backgroundPosition: 'center',	
+	},
 	paper: {
 		marginTop: theme.spacing(8),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
+		backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+		padding: theme.spacing(4), 
+		borderRadius: theme.spacing(2), 
+		boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', 
 	},
 	avatar: {
 		margin: theme.spacing(1),
