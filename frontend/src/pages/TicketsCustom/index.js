@@ -8,6 +8,7 @@ import TicketsManager from "../../components/TicketsManagerTabs/";
 import Ticket from "../../components/Ticket/";
 import logo from "../../assets/logo.png"; //PLW DESIGN LOGO//
 import { i18n } from "../../translate/i18n";
+import lupaIcon from "../../assets/lupa.png";
 
 const useStyles = makeStyles(theme => ({
 	chatContainer: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: "column",
 	},
 	welcomeMsg: {
-		backgroundColor: theme.palette.boxticket, //DARK MODE PLW DESIGN//
+		backgroundColor: '#FCFCFF', //Cor de fundo aplica aqui
 		display: "flex",
 		justifyContent: "space-evenly",
 		alignItems: "center",
@@ -62,14 +63,59 @@ const TicketsCustom = () => {
 								<Ticket />
 							</>
 						) : (
-							<Paper square variant="outlined" className={classes.welcomeMsg}>
-							{/* PLW DESIGN LOGO */}
-							<div>
-							<center><img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="logologin" /></center>
-							</div>
-							{/* PLW DESIGN LOGO */}
-							{/*<span>{i18n.t("chat.noTicketMessage")}</span>*/}
+							<Paper square variant="outlined" className={classes.welcomeMsg} style={{ padding: "40px", height: "100%", display: "block", backgroundColor: "#F2F5FF" }}>
+							<header 
+							style={{ 
+								width: '100%', 
+								marginTop: 0, 
+								display: 'flex', 
+								flexDirection: 'column', 
+								alignItems: 'flex-start' 
+								}}>
+								<h2
+								style={{ 
+									fontFamily: 'Arial, Helvetica, sans-serif', 
+									marginTop: 0 
+									}}>Chamados</h2>
+								<div style={{ 
+									width: '100%' 
+									}}> {/* Para o formulário ocupar toda a largura */}
+								<form
+									style={{
+									width: '100%',
+									maxWidth: 'calc(100% - 100px)',
+									height: '44px',
+									margin: '0 auto',
+									backgroundColor: 'rgba(255, 255, 255, 0.7)',
+									borderRadius: '8px',
+									display: 'flex',
+									alignItems: 'center',
+									padding: '0 10px',
+									}}>
+									
+									<img
+									src={lupaIcon} // Usando a imagem da lupa
+									alt="Lupa"
+									style={{ width: '20px', height: '20px', marginRight: '8px' }} // Estilo da imagem
+									/>
+									<input
+									type="text"
+									id="fname"
+									name="fname"
+									placeholder="Pesquisar..."
+									style={{
+										width: '100%',
+										height: '100%',
+										border: 'none',
+										outline: 'none',
+										boxSizing: 'border-box',
+									}}
+									/>
+								</form>
+								</div>
+							</header>
 							</Paper>
+
 						)}
 					</Grid>
 				</Grid>

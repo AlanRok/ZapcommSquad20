@@ -192,11 +192,11 @@ const messages = {
 			},
 			ticketsManager: {
 				buttons: {
-					newTicket: "New",
+					newTicket: "NOVO",
 				},
 			},
 			ticketsQueueSelect: {
-				placeholder: "Queues",
+				placeholder: "Filas",
 			},
 			tickets: {
 				toasts: {
@@ -206,15 +206,15 @@ const messages = {
 					message: "Message from",
 				},
 				tabs: {
-					open: { title: "Inbox" },
-					closed: { title: "Resolved" },
-					search: { title: "Search" },
+					open: { title: "Abertos" },
+					closed: { title: "Resolvidos" },
+					search: { title: "Pesquisar" },
 				},
 				search: {
-					placeholder: "Search tickets and messages.",
+					placeholder: "Pesquisar por tickets e mensagens.",
 				},
 				buttons: {
-					showAll: "All",
+					showAll: "Todos",
 				},
 			},
 			transferTicketModal: {
@@ -227,17 +227,17 @@ const messages = {
 				},
 			},
 			ticketsList: {
-				pendingHeader: "Queue",
-				assignedHeader: "Working on",
-				noTicketsTitle: "Nothing here!",
-				noTicketsMessage: "No tickets found with this status or search term.",
+				pendingHeader: "Aguardando",
+				assignedHeader: "Atendendo",
+				noTicketsTitle: "Nada aqui!",
+				noTicketsMessage: "Nenhum ticket encontrado com esse status ou termo de pesquisa.",
 				buttons: {
-					accept: "Accept",
+					accept: "Aceitar",
 				},
 			},
 			newTicketModal: {
-				title: "Create Ticket",
-				fieldLabel: "Type to search for a contact",
+				title: "Criar Ticket",
+				fieldLabel: "Escreva para pesquisar por um contato",
 				add: "Add",
 				buttons: {
 					ok: "Save",

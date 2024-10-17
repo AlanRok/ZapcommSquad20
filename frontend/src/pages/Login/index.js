@@ -17,6 +17,8 @@ import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
 import imageLogin from "../../assets/imageLogin.png";
 
+import imageLogin from "../../assets/imageLogin.png";
+
 
 const Copyright = () => {
 	return (
