@@ -117,6 +117,7 @@ const Login = () => {
 				<form className={classes.form} noValidate onSubmit={handlSubmit} id="formpramudar">
 					<TextField
 						variant="outlined"
+						size="small"
 						margin="normal"
 						required
 						fullWidth
@@ -127,9 +128,16 @@ const Login = () => {
 						onChange={handleChangeInput}
 						autoComplete="email"
 						autoFocus
+						InputProps={{
+							style: {
+							  borderRadius: "5px",
+							  
+							}
+						  }}
 					/>
 					<TextField
 						variant="outlined"
+						size="small"
 						margin="normal"
 						required
 						fullWidth
@@ -140,6 +148,12 @@ const Login = () => {
 						value={user.password}
 						onChange={handleChangeInput}
 						autoComplete="current-password"
+						InputProps={{
+							style: {
+							  borderRadius: "5px",
+							  
+							}
+						  }}
 					/>
 					{/* Texto onde leva para tela de esqueci senha */}
 					<Grid container justify="flex-end">
