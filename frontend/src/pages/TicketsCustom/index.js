@@ -18,7 +18,6 @@ import sheilaPic from "../../assets/sheila.png";
 import marcelaPic from "../../assets/marcela.png";
 import marcosPic from "../../assets/marcos.png";
 
-// Definição dos estilos personalizados para o componente
 const useStyles = makeStyles((theme) => ({
   chatContainer: {
     flex: 1,
@@ -114,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(4),
     marginTop: "6px",
-	marginRight: '23em',
+    marginRight: '14em',
   },
   header: {
     marginBottom: theme.spacing(2),
@@ -142,6 +141,11 @@ const useStyles = makeStyles((theme) => ({
   },
   headerElement: {
     marginRight: theme.spacing(4),
+    flex: 1, 
+    "@media (max-width: 600px)": {
+      marginRight: theme.spacing(2), 
+      fontSize: "12px", 
+    },
   },
 }));
 
@@ -273,7 +277,7 @@ const TicketsCustom = () => {
                         checked={selectedContacts.length === contactList.length}
                         onChange={handleSelectAll}
                         color="primary"
-						style={{ marginTop: "-14px", marginLeft: '8.5px' }}
+                        style={{ marginTop: "-14px", marginLeft: '8.5px' }}
                       />
                       <span
                         className={`${classes.header} ${classes.headerElement}`}
@@ -293,16 +297,16 @@ const TicketsCustom = () => {
                       >
                         Empresa
                       </span>
-					  <span
+                      <span
                         className={`${classes.header} ${classes.headerElement}`}
                         style={{ marginRight: "14em" }}
                       >
                         Telefone
                       </span>
-					  <span
+                      <span
                         className={`${classes.header} ${classes.headerElement}`}
                       >
-						Ação
+                        Ação
                       </span>
                     </div>
                     <div className={classes.line}></div>
@@ -326,7 +330,7 @@ const TicketsCustom = () => {
                             <span className={classes.email}>{contact.email}</span>
                           </div>
                           <div className={classes.otherInfo}>
-                            <div className={classes.chipNumber}>
+                            <div className={classes.chipNumber} style={{marginRight: '70px'}}>
                               <span
                                 style={{
                                   backgroundColor: "#34D3A3",
@@ -339,8 +343,8 @@ const TicketsCustom = () => {
                                 Chip 1
                               </span>
                             </div>
-                            <div>{contact.company}</div>
-							<div>{contact.phone}</div>
+                            <div style={{marginRight: '70px'}}>{contact.company}</div>
+                            <div>{contact.phone}</div>
                           </div>
                         </div>
                         {/* Botões de ação */}
