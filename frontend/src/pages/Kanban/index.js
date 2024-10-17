@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
 
 }));
-/*
+
 const Kanban = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -196,8 +196,9 @@ const Kanban = () => {
 
 
 export default Kanban;
-*/
 
+
+/*
 function kanbanColumns() {
   return (
     <body>
@@ -388,3 +389,4 @@ function kanbanColumns() {
   );
 }
 export default kanbanColumns;
+*/ 
