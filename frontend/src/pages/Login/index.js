@@ -15,7 +15,6 @@ import { i18n } from "../../translate/i18n";
 import { nomeEmpresa } from "../../../package.json";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
-
 import imageLogin from "../../assets/imageLogin.png";
 
 
@@ -40,8 +39,7 @@ const useStyles = makeStyles(theme => ({
 		//backgroundImage: "url(https://i.imgur.com/CGby9tN.png)",
 		backgroundColor: "#fff",
 		backgroundRepeat: "no-repeat",
-		backgroundSize: "100% 100%",
-		backgroundPosition: "center",
+		backgroundSize: "50% 50%",
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
@@ -54,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		padding: "55px 30px",
+		padding: "50px 30px",
 		borderRadius: "12.5px",
 	},
 	avatar: {
@@ -67,9 +65,24 @@ const useStyles = makeStyles(theme => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
+
 	},
 	powered: {
 		color: "white"
+	},
+
+	imageLogin: {
+		position: "right", 
+		right: "0", 
+		bottom: "0",
+		height: "120%",
+		display: "block",
+		'@media (max-width: 1070px)': { // deixa responsivo  
+			display: "none",
+		},
+		'@media (max-width: 1150px)': {
+			width: "600px",
+		}, 
 	}
 }));
 
@@ -96,14 +109,15 @@ const Login = () => {
 			<CssBaseline/>
 			<div className={classes.paper}>
 				<div>
-					<img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="Whats" />
+					<img style={{ margin: "0 auto", width: "110%" }} src={logo} alt="Whats" />
 				</div>
 				{/*<Typography component="h1" variant="h5">
 					{i18n.t("login.title")}
 				</Typography>*/}
-				<form className={classes.form} noValidate onSubmit={handlSubmit}>
+				<form className={classes.form} noValidate onSubmit={handlSubmit} id="formpramudar">
 					<TextField
 						variant="outlined"
+						size="small"
 						margin="normal"
 						required
 						fullWidth
@@ -114,9 +128,16 @@ const Login = () => {
 						onChange={handleChangeInput}
 						autoComplete="email"
 						autoFocus
+						InputProps={{
+							style: {
+							  borderRadius: "5px",
+							  
+							}
+						  }}
 					/>
 					<TextField
 						variant="outlined"
+						size="small"
 						margin="normal"
 						required
 						fullWidth
@@ -127,15 +148,21 @@ const Login = () => {
 						value={user.password}
 						onChange={handleChangeInput}
 						autoComplete="current-password"
+						InputProps={{
+							style: {
+							  borderRadius: "5px",
+							  
+							}
+						  }}
 					/>
-					
-					{/* <Grid container justify="flex-end">
+					{/* Texto onde leva para tela de esqueci senha */}
+					<Grid container justify="flex-end">
 					  <Grid item xs={6} style={{ textAlign: "right" }}>
 						<Link component={RouterLink} to="/forgetpsw" variant="body2">
 						  Esqueceu sua senha?
 						</Link>
 					  </Grid>
-					</Grid>*/}
+					</Grid>
 					
 					<Button
 						type="submit"
@@ -160,10 +187,10 @@ const Login = () => {
 						</Grid>
 					</Grid> }
 				</form>
-			
 			</div>
 			<Box mt={8}><Copyright /></Box>
 		</Container>
+				<img className={classes.imageLogin} src={imageLogin} alt="imagem na tela login" />
 		</div>
 	);
 };

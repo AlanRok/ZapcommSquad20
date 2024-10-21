@@ -45,11 +45,22 @@ const Copyright = () => {
 };
 
 const useStyles = makeStyles(theme => ({
+	root: {
+		minHeight: '100vh', 
+		backgroundImage: `url(${require("../../assets/fundo.png")})`, 
+		backgroundRepeat: 'no-repeat',
+		backgroundSize: 'cover', 
+		backgroundPosition: 'center',	
+	},
 	paper: {
 		marginTop: theme.spacing(8),
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
+		backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+		padding: theme.spacing(4), 
+		borderRadius: theme.spacing(2), 
+		boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', 
 	},
 	avatar: {
 		margin: theme.spacing(1),
@@ -58,6 +69,7 @@ const useStyles = makeStyles(theme => ({
 	form: {
 		width: "100%",
 		marginTop: theme.spacing(3),
+		
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
@@ -207,31 +219,15 @@ const SignUp = () => {
 										required
 									/>
 								</Grid>
-								<Grid item xs={12}>
-									<InputLabel htmlFor="plan-selection">Plano</InputLabel>
-									<Field
-										as={Select}
-										variant="outlined"
-										fullWidth
-										id="plan-selection"
-										label="Plano"
-										name="planId"
-										required
-									>
-										{plans.map((plan, key) => (
-											<MenuItem key={key} value={plan.id}>
-												{plan.name} - Atendentes: {plan.users} - WhatsApp: {plan.connections} - Filas: {plan.queues} - R$ {plan.value}
-											</MenuItem>
-										))}
-									</Field>
-								</Grid>
 							</Grid>
 							<Button
 								type="submit"
 								fullWidth
 								variant="contained"
-								color="primary"
 								className={classes.submit}
+								color="primary"
+								style={{backgroundColor: "#0C2454"}}
+								// coloca a cor no botao  
 							>
 								{i18n.t("signup.buttons.submit")}
 							</Button>
