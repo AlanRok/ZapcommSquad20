@@ -300,7 +300,6 @@ const SettingsCustom = () => {
                 </TableRow>
               ))}
             </TableBody>
-
           </Table>
         </TableContainer>
       </div>
@@ -350,9 +349,9 @@ const SettingsCustom = () => {
                 />
               </MainHeaderButtonsWrapper>
             </MainHeader>
-            <h2 style={{ color: "#192F64", fontSize: "15px" }}>Todos os Links</h2>
 
-            <div className={classes.whiteBox}>
+            <h2 style={{ color: "#192F64", fontSize: "15px", margintTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
+            <div className={classes.whiteBox} style={{ marginTop: '1px', marginLeft: '50px' }}>
               <TableContainer component={Paper}>
                 <Table className={classes.table}>
                   <TableHead>
@@ -365,6 +364,7 @@ const SettingsCustom = () => {
                       <TableCell align="center">Ação</TableCell>
                     </TableRow>
                   </TableHead>
+
                   <TableBody>
                     {["Vídeo 1", "Vídeo 2", "Vídeo 3", "Vídeo 4"].map(
                       (video, index) => (
