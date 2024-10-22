@@ -39,7 +39,7 @@ services:
     networks:
       - app-network
 
-    command: >
+    command:
       sh -c "
       npm run dev:server"
 
