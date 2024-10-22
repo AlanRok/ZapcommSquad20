@@ -608,4 +608,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-export default QueueIntegration;
+export default App;
