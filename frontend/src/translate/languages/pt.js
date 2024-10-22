@@ -702,15 +702,15 @@ const messages = {
       announcements: {
         active: 'Ativo',
         inactive: 'Inativo',
-        title: "Informativos",
-        searchPlaceholder: "Pesquisa",
+        title: "Todos os Informativos",
+        searchPlaceholder: "Pesquisa...",
         buttons: {
-          add: "Novo Informativo",
+          add: "+ Novo",
           contactLists: "Listas de Informativos",
         },
         table: {
           priority: "Prioridade",
-          title: "Title",
+          title: "Contato", //alterei de title para "contato"
           text: "Texto",
           mediaName: "Arquivo",
           status: "Status",
