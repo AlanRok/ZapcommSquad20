@@ -29,20 +29,19 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   tab: {
-    backgroundColor: '#20587C',  //DARK MODE PLW DESIGN//
+    backgroundColor: '#20587C',  
     borderRadius: 4,
     width: "100%",
-    "& .MuiTab-wrapper": {
-      color: theme.palette.fontecor,
-    },
     //DARK MODE PLW DESIGN//
     "& .MuiTabs-flexContainer": {
       justifyContent: "center"
     },
-    color: '#FFFFFF',
+    color: '#FFF',
     marginBottom: '20px',
-    padding: '10px 20px',
     fontWeight: 'bold',
+    padding: '5px',
+    maxHeight: '10px',
+    marginTop: '100px'
   },
   paper: {
     padding: theme.spacing(2),
@@ -379,7 +378,7 @@ export default function Options(props) {
             marginTop: 20
           }}
         >
-          <Tab
+          <Tab textColor="#FFFFFF"
             label="INTEGRAÇÕES" />
         </Tabs>
       </Grid>
@@ -387,7 +386,7 @@ export default function Options(props) {
         style={{ marginBottom: 10 }}>
         <Tabs
           indicatorColor="primary"
-          textColor="primary"
+          textColor="#FFFFFF"
           scrollButtons="on"
           variant="scrollable"
           className={classes.tab}
@@ -396,7 +395,7 @@ export default function Options(props) {
         </Tabs>
         <Grid xs={12} sm={12} md={12} item>
           <FormControl className={classes.selectContainer}>
-            <TextField
+            <TextField  style={{flexDirection:'end'}}
               id="asaas"
               name="asaas"
               margin="dense"
@@ -405,7 +404,6 @@ export default function Options(props) {
               value={asaasType}
               onChange={async (e) => {
                 handleChangeAsaas(e.target.value);
-
               }}
             >
             </TextField>
@@ -418,7 +416,3 @@ export default function Options(props) {
     </>
   )
 }
-
-
-
-

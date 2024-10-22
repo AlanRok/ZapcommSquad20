@@ -18,6 +18,11 @@ import ScheduleModal from "../../components/ScheduleModal";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Checkbox from '@material-ui/core/Checkbox';
+import homem1 from '../../assets/kanban/homem1.png';
+import mulher2 from '../../assets/kanban/mulher2.png';
+import mulher4 from '../../assets/kanban/mulher4.png';
+import homem5 from '../../assets/kanban/homem5.png';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
     border: '1px solid #E0E0E0',
-    margintBottom: theme.spacing(4),
+    marginBottom: theme.spacing(4),
     marginTop: '20px',
     minHeight: '650px'
   },
@@ -126,6 +131,13 @@ const SettingsCustom = () => {
   const [emailError, setEmailError] = useState('');
   const [telefoneError, setTelefoneError] = useState('');
   const [searchParam, setSearchParam] = useState("");
+  const imageArray = [
+    { homem1 },
+    { mulher2 },
+    { mulher4 },
+    { homem5 },
+  ];
+
   const handleSearch = (event) => {
     setSearchParam(event.target.value.toLowerCase());
   };
@@ -199,10 +211,20 @@ const SettingsCustom = () => {
       handleClear();
     }
   };
+  const [isHelpSubOptionsVisible, setHelpSubOptionsVisible] = useState(false);
+  const [helpTab, setHelpTab] = useState("tutorials"); // "tutorials" ou "administration"
+
   const renderSidebarItem = (label, value) => (
     <div
       className={`${classes.sidebarItem} ${tab === value ? classes.active : ""}`}
-      onClick={() => handleTabChange(value)}
+      onClick={() => {
+        if (value === "helps") {
+          setHelpSubOptionsVisible(!isHelpSubOptionsVisible);
+          setHelpTab("tutorials");
+        } else {
+          handleTabChange(value);
+        }
+      }}
     >
       {label}
     </div>
@@ -311,9 +333,20 @@ const SettingsCustom = () => {
         <h3>Configurações</h3>
         {renderSidebarItem("Opções", "options")}
         {renderSidebarItem("Empresas", "companies")}
-        {renderSidebarItem("Ajuda", "helps")}
+        <div onClick={() => setHelpSubOptionsVisible(!isHelpSubOptionsVisible)}>
+          {renderSidebarItem("Ajuda", "helps")}
+        </div>
+        {isHelpSubOptionsVisible && (
+          <div>
+            <div className={classes.sidebarItem} onClick={() => setHelpTab("tutorials")}>
+              Tutoriais
+            </div>
+            <div className={classes.sidebarItem} onClick={() => setHelpTab("administration")}>
+              Administração
+            </div>
+          </div>
+        )}
       </div>
-
       <div className={classes.content}>
         {tab === "options" && (
           <div className={classes.whiteBox}>
@@ -328,7 +361,8 @@ const SettingsCustom = () => {
         )}
 
         {tab === "companies" && renderCompaniesTab()}
-        {tab === "helps" && (
+        {helpTab === "tutorials" && (
+
           <div>
             <MainHeader>
               <Title>Pesquisar</Title>
@@ -350,7 +384,7 @@ const SettingsCustom = () => {
               </MainHeaderButtonsWrapper>
             </MainHeader>
 
-            <h2 style={{ color: "#192F64", fontSize: "15px", margintTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
+            <h2 style={{ color: "#192F64", fontSize: "15px", marginTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
             <div className={classes.whiteBox} style={{ marginTop: '1px', marginLeft: '50px' }}>
               <TableContainer component={Paper}>
                 <Table className={classes.table}>
@@ -398,37 +432,83 @@ const SettingsCustom = () => {
             </div>
           </div>
         )}
+
+        {helpTab === "administration" && (
+          <div>
+            <MainHeader>
+              <Title>Pesquisar</Title>
+              <MainHeaderButtonsWrapper>
+                <TextField
+                  fullWidth
+                  placeholder={i18n.t("contacts.searchPlaceholder")}
+                  type="search"
+                  value={searchParam}
+                  onChange={handleSearch}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon style={{ color: "gray" }} />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </MainHeaderButtonsWrapper>
+            </MainHeader>
+
+            <h2 style={{ color: "#192F64", fontSize: "15px", marginTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
+            <div className={classes.whiteBox} style={{ marginTop: '1px', marginLeft: '50px' }}>
+              <TableContainer component={Paper}>
+                <Table className={classes.table}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className={classes.tableCellCheckbox}>
+                        <Checkbox />
+                      </TableCell>
+                      <TableCell>Contato</TableCell>
+                      <TableCell>Link</TableCell>
+                      <TableCell align="center">Ação</TableCell>
+                    </TableRow>
+                  </TableHead>
+
+                  <TableBody>
+                    {["Trevor C. Lemon", "Sheila M. Dooley", "Marcela S. Ferrais", "Marcos C. Pinheiro"].map(
+                      (contato, index) => (
+                        <TableRow key={index}>
+                          <TableCell className={classes.tableCellCheckbox}>
+                            <Checkbox />
+                          </TableCell>
+                          <TableCell>
+                            <img src={imageArray[index]} alt={`Imagem de ${contato}`} className={classes.imageIcon} />
+                          </TableCell>
+                          <TableCell>{contato}</TableCell>
+                          <TableCell className={classes.tableCellLink}>
+                            <a
+                              href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
+                            </a>
+                          </TableCell>
+                          <TableCell align="center">
+                            <img
+                              src={pencilicon}
+                              alt="edit"
+                              className={classes.actionIcon}
+                            />
+                          </TableCell>
+                        </TableRow>
+                      )
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-
 }
 export default SettingsCustom;
-
-/*
- <TableBody>
-                    <TableRow>
-                      <TableCell className={classes.TableCellHelp} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
-                      <TableCell className={classes.TableCellHelp}>Empresa 1</TableCell>
-                      <TableCell className={classes.TableCellHelp}>-</TableCell>
-                      <TableCell className={classes.TableCellHelp}>-</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Plano 1</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Desabilitadas</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Sim</TableCell>
-                      <TableCell className={classes.TableCellHelp}>xx/xx/xxxx</TableCell>
-                      <TableCell className={classes.TableCellHelp}>xx/xx/xxxx</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className={classes.TableCell}><img src={pencilicon} style={{ textAlign: 'center', alignItems: 'center', display: 'flex', marginLeft: '20px' }} justifyContent="center" ></img></TableCell>
-                      <TableCell className={classes.TableCellHelp}>Empresa 2</TableCell>
-                      <TableCell className={classes.TableCellHelp}>-</TableCell>
-                      <TableCell className={classes.TableCellHelp}>-</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Plano 2</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Habilitadas</TableCell>
-                      <TableCell className={classes.TableCellHelp}>Não</TableCell>
-                      <TableCell className={classes.TableCellHelp}>xx/xx/xxxx</TableCell>
-                      <TableCell className={classes.TableCellHelp}>xx/xx/xxxx</TableCell>
-                    </TableRow>
-                    </TableBody>*/
-
 
