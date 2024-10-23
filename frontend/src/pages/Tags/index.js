@@ -89,6 +89,11 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
+
+  pesquisa :{
+    backgroundColor: "white",
+    marginBottom: theme.spacing(1),
+  }
 }));
 
 const Tags = () => {
@@ -219,7 +224,18 @@ return (
       <MainHeader>
         <Title>{i18n.t("tags.title")}</Title>
         <MainHeaderButtonsWrapper>
-          <TextField
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpenTagModal}
+          >
+            {i18n.t("Nova Tag")}
+          </Button>		  
+        </MainHeaderButtonsWrapper>
+      </MainHeader>
+      <TextField className= {classes.pesquisa}
+            variant="outlined"
+            margin="dense"
             placeholder={i18n.t("contacts.searchPlaceholder")}
             type="search"
             value={searchParam}
@@ -227,20 +243,11 @@ return (
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
+                  <SearchIcon style={{ color: "rgb(23, 23, 23)" }} />
                 </InputAdornment>
               ),
             }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenTagModal}
-          >
-            {i18n.t("tags.buttons.add")}
-          </Button>		  
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
       <Paper
         className={classes.mainPaper}
         variant="outlined"
