@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
+    height: "357px !important",
     ...theme.scrollbarStyles,
   },
 }));
@@ -230,30 +231,13 @@ const Quickemessages = () => {
       />
       <MainHeader>
         <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} sm={8} item>
-            <Title>{i18n.t("quickMessages.title")}</Title>
-          </Grid>
-          <Grid xs={12} sm={4} item>
-            <Grid spacing={2} container>
-              <Grid xs={6} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("quickMessages.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+          <Grid xs={12} item>
+            <Grid container justifyContent="space-between" alignItems="center">
+              <Grid item>
+                <Title style={{ marginTop: "5px" }}>{i18n.t("quickMessages.title")}</Title>
               </Grid>
-              <Grid xs={6} sm={6} item>
+              <Grid item>
                 <Button
-                  fullWidth
                   variant="contained"
                   onClick={handleOpenQuickMessageDialog}
                   color="primary"
@@ -263,37 +247,72 @@ const Quickemessages = () => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid xs={12} item>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                padding: "10px",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                borderRadius: "8px",
+                border: "1px solid rgba(0, 0, 0, 0.1)",
+                height: "44px",
+                marginTop: "26px",
+                marginBottom: "26px",
+              }}
+            >
+              <TextField
+                fullWidth
+                placeholder={i18n.t("quickMessages.searchPlaceholder")}
+                type="search"
+                value={searchParam}
+                onChange={handleSearch}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon style={{ color: "gray" }} />
+                    </InputAdornment>
+                  ),
+                  style: {
+                    width: "100%",
+                    border: "none",
+                    outline: "none",
+                    boxSizing: "border-box",
+                    paddingLeft: "8px",
+                    backgroundColor: "transparent",
+                    height: "44px",
+                  },
+                }}
+              />
+            </div>
+          </Grid>
         </Grid>
       </MainHeader>
       <Paper
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        style={{ height: '357px', width: '100%' }}
       >
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center">
-                {i18n.t("quickMessages.table.shortcode")}
-              </TableCell>
-
-              <TableCell align="center">
-                {i18n.t("quickMessages.table.mediaName")}
-              </TableCell>        
-              <TableCell align="center">
-                {i18n.t("quickMessages.table.actions")}
-              </TableCell>
+              <TableCell align="center">{i18n.t("quickMessages.table.name")}</TableCell> 
+              <TableCell align="center">{i18n.t("quickMessages.table.category")}</TableCell> 
+              <TableCell align="center">{i18n.t("quickMessages.table.shortcut")}</TableCell> 
+              <TableCell align="center">{i18n.t("quickMessages.table.content")}</TableCell> 
+              <TableCell align="center">{i18n.t("quickMessages.table.actions")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <>
               {quickemessages.map((quickemessage) => (
                 <TableRow key={quickemessage.id}>
-                  <TableCell align="center">{quickemessage.shortcode}</TableCell>
-
-                  <TableCell align="center">
-                    {quickemessage.mediaName ?? i18n.t("quickMessages.noAttachment")}
-                  </TableCell>
+                  <TableCell align="center">{quickemessage.name}</TableCell> 
+                  <TableCell align="center">{quickemessage.category}</TableCell> 
+                  <TableCell align="center">{quickemessage.shortcut}</TableCell> 
+                  <TableCell align="center">{quickemessage.content}</TableCell> 
                   <TableCell align="center">
                     <IconButton
                       size="small"
@@ -301,8 +320,6 @@ const Quickemessages = () => {
                     >
                       <EditIcon />
                     </IconButton>
-
-
                     <IconButton
                       size="small"
                       onClick={(e) => {
@@ -321,6 +338,7 @@ const Quickemessages = () => {
         </Table>
       </Paper>
     </MainContainer>
+
   );
 };
 

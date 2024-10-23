@@ -560,6 +560,11 @@ const messages = {
           actions: "Ações",
           mediaName: "Nome do Arquivo",
           status: "Status",
+          name: "Nome",
+          category: "Categoria",
+          shortcut: "Atalho",
+          content: "Conteúdo",
+          actions: "Ações",
         },
       },
       messageVariablesPicker: {
