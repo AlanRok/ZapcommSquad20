@@ -39,10 +39,12 @@ const useStyles = makeStyles((theme) => ({
     borderRight: "1px solid #E0E0E0",
   },
   sidebarItem: {
+    fontSize: '16px',
     padding: theme.spacing(1),
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#E0E0E0",
+      fontWright: 'bold',
     },
   },
   active: {
@@ -56,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(1),
     marginBottom: theme.spacing(2),
+    justifyContent: 'center',
   },
   filterField: {
     flex: '1',
@@ -69,6 +72,16 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  tableContainer: {
+    marginTop: theme.spacing(3),
+    backgroundColor: '#FFFFFF',
+  },
+  tableCellCheckboxImage: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+    padding: theme.spacing(1),
+  },
   TableCell: {
     border: '2px solid rgba(0, 0, 0, 0.25)',
     borderRadius: '2px',
@@ -79,9 +92,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
     border: '1px solid #E0E0E0',
-    marginBottom: theme.spacing(4),
-    marginTop: '20px',
-    minHeight: '650px'
+    height: 'auto',
   },
   filterContainer: {
     marginBottom: theme.spacing(2),
@@ -109,6 +120,24 @@ const useStyles = makeStyles((theme) => ({
     borderTop: 'none',
     borderRadius: '2px',
   },
+  tableCellLink: {
+    color: "#1A73E8",
+    wordBreak: "break-all",
+  },
+  tableCellCheckbox: {
+    padding: theme.spacing(1),
+
+  },
+  actionCell: {
+    paddingRight: theme.spacing(4),
+    textAlign: 'Center'
+  },
+  actionIcon: {
+    cursor: "pointer",
+    width: 20,
+    height: 20,
+  },
+
 }));
 
 const SettingsCustom = () => {
@@ -132,11 +161,12 @@ const SettingsCustom = () => {
   const [telefoneError, setTelefoneError] = useState('');
   const [searchParam, setSearchParam] = useState("");
   const imageArray = [
-    { homem1 },
-    { mulher2 },
-    { mulher4 },
-    { homem5 },
+    homem1,
+    mulher2,
+    mulher4,
+    homem5,
   ];
+
 
   const handleSearch = (event) => {
     setSearchParam(event.target.value.toLowerCase());
@@ -212,7 +242,12 @@ const SettingsCustom = () => {
     }
   };
   const [isHelpSubOptionsVisible, setHelpSubOptionsVisible] = useState(false);
-  const [helpTab, setHelpTab] = useState("tutorials"); // "tutorials" ou "administration"
+  const [helpTab, setHelpTab] = useState("tutorials");
+  const handleHelpSubOptionClick = (subTab) => {
+    setHelpTab(subTab);
+    setTab('helps');
+  };
+
 
   const renderSidebarItem = (label, value) => (
     <div
@@ -220,7 +255,7 @@ const SettingsCustom = () => {
       onClick={() => {
         if (value === "helps") {
           setHelpSubOptionsVisible(!isHelpSubOptionsVisible);
-          setHelpTab("tutorials");
+          setHelpTab("");
         } else {
           handleTabChange(value);
         }
@@ -229,103 +264,165 @@ const SettingsCustom = () => {
       {label}
     </div>
   );
+  const renderHelpTab = () => {
+    if (helpTab == 'tutorials') {
+      return (
 
-  const renderCompaniesTab = () => {
-    return (
-      <div className={classes.whiteBox}>
-        <h2>Empresas</h2>
-
-
-        <Grid container className={classes.filterContainer} spacing={2}>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Nome" variant="outlined" fullWidth className={classes.inputEmpresas} value={nome}
-              onChange={(e) => setNome(e.target.value)} />
-          </Grid>
-          <Grid item xs={12} sm={3} >
-            <TextField label="E-mail" variant="outlined" fullWidth className={classes.inputEmpresas} value={email}
-              onChange={(e) => setEmail(e.target.value)} error={!!emailError}
-              helperText={emailError} />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Telefone" variant="outlined" fullWidth className={classes.inputEmpresas} value={telefone}
-              onChange={(e) => setTelefone(e.target.value)} error={!!telefoneError}
-              helperText={telefoneError} />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Plano" variant="outlined" fullWidth className={classes.inputEmpresas} value={plano}
-              onChange={(e) => setPlano(e.target.value)} />
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={2} className={classes.filterContainer}>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Status" variant="outlined" fullWidth select className={classes.inputEmpresas} value={status}
-              onChange={(e) => setStatus(e.target.value)}>
-              <MenuItem value="active">Ativo</MenuItem>
-              <MenuItem value="inactive">Inativo</MenuItem>
-            </TextField>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Campanhas" variant="outlined" fullWidth className={classes.inputEmpresas} value={campanhas}
-              onChange={(e) => setCampanhas(e.target.value)} />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Vencimento" variant="outlined" fullWidth className={classes.inputEmpresas} value={vencimento}
-              onChange={(e) => setVencimento(e.target.value)} />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField label="Recorrência" variant="outlined" fullWidth select className={classes.inputEmpresas} value={recorrencia}
-              onChange={(e) => setRecorrencia(e.target.value)}>
-              <MenuItem value="active">Ativo</MenuItem>
-              <MenuItem value="inactive">Inativo</MenuItem>
-            </TextField>
-          </Grid>
-        </Grid>
-        <div style={{ marginTop: '56px', marginBottom: '80px' }}></div>
-        <div className={classes.buttonContainer}>
-          <Button variant="outlined" style={{ backgroundColor: '#BFC8CE', color: '#030303', borderRadius: '7px' }} onClick={handleClear}>
-            Limpar
-          </Button>
-          <Button variant="contained" color="primary" onClick={handleSave}>
-            Salvar
-          </Button>
+        <div>
+          <MainHeader>
+            <TextField
+              id="outlined-basic"
+              label=""
+              variant="outlined"
+              size="small"
+              placeholder={i18n.t("contacts.searchPlaceholder")}
+              type="search"
+              value={searchParam}
+              onChange={handleSearch}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: 'rgba(0, 0, 0, 0.4)' }} />
+                  </InputAdornment>
+                ),
+                style: {
+                  borderRadius: "5px",
+                  display: 'flex',
+                  backgroundColor: 'white',
+                  marginTop: '68px',
+                },
+              }}
+            />
+          </MainHeader>
+          <div style={{ marginTop: '27px', color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
+            <h2>Todos os Links</h2>
+          </div>
+          <div fullWidth>
+            <TableContainer component={Paper}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableCellCheckbox}>
+                      <Checkbox />
+                      Vídeo
+                    </TableCell>
+                    <TableCell align='center'>Link</TableCell>
+                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {["Vídeo 1", "Vídeo 2", "Vídeo 3", "Vídeo 4"].map(
+                    (video, index) => (
+                      <TableRow key={index}>
+                        <TableCell className={classes.tableCellCheckbox}>
+                          <Checkbox />
+                          {video}
+                        </TableCell>
+                        <TableCell className={classes.tableCellLink} align="center">
+                          <a
+                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
+                          </a>
+                        </TableCell>
+                        <TableCell align="center" className={classes.actionCell}>
+                          <img
+                            src={pencilicon}
+                            alt="edit"
+                            className={classes.actionIcon}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    )
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
-        <TableContainer component={Paper} style={{ marginTop: '84px' }}>
-          <Table className={classes.table} style={{ backgroundColor: "#F8F8F9", borderCollapse: 'collapse' }}>
-            <TableHead>
-              <TableRow style={{ fontWeight: 'bold' }}>
-                <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>#</TableCell>
-                <TableCell className={classes.TableCell}>Nome</TableCell>
-                <TableCell className={classes.TableCell}>E-mail</TableCell>
-                <TableCell className={classes.TableCell}>Telefone</TableCell>
-                <TableCell className={classes.TableCell}>Plano</TableCell>
-                <TableCell className={classes.TableCell}>Campanhas</TableCell>
-                <TableCell className={classes.TableCell}>Status</TableCell>
-                <TableCell className={classes.TableCell}>Criado Em</TableCell>
-                <TableCell className={classes.TableCell}>Vencimento</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tableData.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>
-                    <img src={pencilicon} alt="edit" />
-                  </TableCell>
-                  <TableCell className={classes.TableCell}>{row.nome}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.email || '-'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.telefone || '-'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.plano || 'Plano 1'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.campanhas || 'Desabilitadas'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.status || 'Sim'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.createdAt || 'xx/xx/xxxx'}</TableCell>
-                  <TableCell className={classes.TableCell}>{row.vencimento || 'xx/xx/xxxx'}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    );
+      );
+    }
+    if (helpTab == 'administration') {
+      return (
+        <div>
+          <MainHeader>
+            <TextField
+              id="outlined-basic"
+              label=""
+              variant="outlined"
+              size="small"
+              placeholder={i18n.t("contacts.searchPlaceholder")}
+              type="search"
+              value={searchParam}
+              onChange={handleSearch}
+              fullWidth
+
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: 'rgba(0, 0, 0, 1.0)' }} />
+                  </InputAdornment>
+                ),
+                style: {
+                  borderRadius: "5px",
+                  display: 'flex',
+                  backgroundColor: 'white',
+                  marginTop: '68px',
+                },
+              }}
+            />
+          </MainHeader>
+
+          <div style={{ color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
+            <h2>Todos os Links</h2>
+          </div>
+          <div fullWidth>
+            <TableContainer component={Paper} className={classes.tableContainer}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableCellCheckboxImage}> <Checkbox />Contato</TableCell>
+                    <TableCell align="center">Link</TableCell>
+                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
+                  </TableRow>
+                </TableHead>
+
+                <TableBody>
+                  {["Trevor C. Lemon", "Sheila M. Dooley", "Marcela S. Ferrais", "Marcos C. Pinheiro"].map(
+                    (contato, index) => (
+                      <TableRow key={index}>
+                        <TableCell className={classes.tableCellCheckboxImage}>
+                          <Checkbox />
+                          <img src={imageArray[index]} alt={`Imagem de ${contato}`} className={classes.imageIcon} />
+                          {contato}
+                        </TableCell>
+                        <TableCell className={classes.tableCellLink} align="center">
+                          <a
+                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
+                          </a>
+                        </TableCell>
+                        <TableCell align="center" className={classes.actionCell}>
+                          <img src={pencilicon} alt="edit" className={classes.actionIcon} />
+                        </TableCell>
+                      </TableRow>
+                    )
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
+
+      );
+    }
+    return null;
   };
   return (
     <div className={classes.root}>
@@ -337,11 +434,11 @@ const SettingsCustom = () => {
           {renderSidebarItem("Ajuda", "helps")}
         </div>
         {isHelpSubOptionsVisible && (
-          <div>
-            <div className={classes.sidebarItem} onClick={() => setHelpTab("tutorials")}>
+          <div style={{ marginLeft: '20px' }}>
+            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("tutorials")}>
               Tutoriais
             </div>
-            <div className={classes.sidebarItem} onClick={() => setHelpTab("administration")}>
+            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("administration")}>
               Administração
             </div>
           </div>
@@ -349,7 +446,7 @@ const SettingsCustom = () => {
       </div>
       <div className={classes.content}>
         {tab === "options" && (
-          <div className={classes.whiteBox}>
+          <div className={classes.whiteBox} style={{ height: 'auto' }}>
             <h2>{i18n.t("settings.title")}</h2>
             <Options
               settings={settings}
@@ -359,153 +456,126 @@ const SettingsCustom = () => {
             />
           </div>
         )}
+        {tab == 'companies' && (
+          <div className={classes.whiteBox}>
+            <h2>Empresas</h2>
 
-        {tab === "companies" && renderCompaniesTab()}
-        {helpTab === "tutorials" && (
 
-          <div>
-            <MainHeader>
-              <Title>Pesquisar</Title>
-              <MainHeaderButtonsWrapper>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contacts.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </MainHeaderButtonsWrapper>
-            </MainHeader>
+            <Grid container className={classes.filterContainer} spacing={2}>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Nome" variant="outlined" fullWidth className={classes.inputEmpresas} value={nome}
+                  onChange={(e) => setNome(e.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={3} >
+                <TextField label="E-mail" variant="outlined" fullWidth className={classes.inputEmpresas} value={email}
+                  onChange={(e) => setEmail(e.target.value)} error={!!emailError}
+                  helperText={emailError} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Telefone" variant="outlined" fullWidth className={classes.inputEmpresas} value={telefone}
+                  onChange={(e) => setTelefone(e.target.value)} error={!!telefoneError}
+                  helperText={telefoneError} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Plano" variant="outlined" fullWidth className={classes.inputEmpresas} value={plano}
+                  onChange={(e) => setPlano(e.target.value)} />
+              </Grid>
+            </Grid>
 
-            <h2 style={{ color: "#192F64", fontSize: "15px", marginTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
-            <div className={classes.whiteBox} style={{ marginTop: '1px', marginLeft: '50px' }}>
-              <TableContainer component={Paper}>
-                <Table className={classes.table}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={classes.tableCellCheckbox}>
-                        <Checkbox />
-                      </TableCell>
-                      <TableCell>Vídeo</TableCell>
-                      <TableCell>Link</TableCell>
-                      <TableCell align="center">Ação</TableCell>
-                    </TableRow>
-                  </TableHead>
-
-                  <TableBody>
-                    {["Vídeo 1", "Vídeo 2", "Vídeo 3", "Vídeo 4"].map(
-                      (video, index) => (
-                        <TableRow key={index}>
-                          <TableCell className={classes.tableCellCheckbox}>
-                            <Checkbox />
-                          </TableCell>
-                          <TableCell>{video}</TableCell>
-                          <TableCell className={classes.tableCellLink}>
-                            <a
-                              href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                            </a>
-                          </TableCell>
-                          <TableCell align="center">
-                            <img
-                              src={pencilicon}
-                              alt="edit"
-                              className={classes.actionIcon}
-                            />
-                          </TableCell>
-                        </TableRow>
-                      )
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+            <Grid container spacing={2} className={classes.filterContainer}>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Status" variant="outlined" fullWidth select className={classes.inputEmpresas} value={status}
+                  onChange={(e) => setStatus(e.target.value)}>
+                  <MenuItem value="active">Ativo</MenuItem>
+                  <MenuItem value="inactive">Inativo</MenuItem>
+                </TextField>
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Campanhas" variant="outlined" fullWidth className={classes.inputEmpresas} value={campanhas}
+                  onChange={(e) => setCampanhas(e.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Vencimento" variant="outlined" fullWidth className={classes.inputEmpresas} value={vencimento}
+                  onChange={(e) => setVencimento(e.target.value)} />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField label="Recorrência" variant="outlined" fullWidth select className={classes.inputEmpresas} value={recorrencia}
+                  onChange={(e) => setRecorrencia(e.target.value)}>
+                  <MenuItem value="active">Ativo</MenuItem>
+                  <MenuItem value="inactive">Inativo</MenuItem>
+                </TextField>
+              </Grid>
+            </Grid>
+            <div style={{ marginTop: '56px', marginBottom: '80px' }}></div>
+            <div className={classes.buttonContainer}>
+              <Button variant="outlined" style={{ backgroundColor: '#BFC8CE', color: '#030303', borderRadius: '7px' }} onClick={handleClear}>
+                Limpar
+              </Button>
+              <Button variant="contained" color="primary" onClick={handleSave}>
+                Salvar
+              </Button>
             </div>
+            <TableContainer component={Paper} style={{ marginTop: '84px' }}>
+              <Table className={classes.table} style={{ backgroundColor: "#F8F8F9", borderCollapse: 'collapse' }}>
+                <TableHead>
+                  <TableRow style={{ fontWeight: 'bold' }}>
+                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>#</TableCell>
+                    <TableCell className={classes.TableCell}>Nome</TableCell>
+                    <TableCell className={classes.TableCell}>E-mail</TableCell>
+                    <TableCell className={classes.TableCell}>Telefone</TableCell>
+                    <TableCell className={classes.TableCell}>Plano</TableCell>
+                    <TableCell className={classes.TableCell}>Campanhas</TableCell>
+                    <TableCell className={classes.TableCell}>Status</TableCell>
+                    <TableCell className={classes.TableCell}>Criado Em</TableCell>
+                    <TableCell className={classes.TableCell}>Vencimento</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow style={{ fontWeight: 'bold' }}>
+                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
+                    <TableCell className={classes.TableCell}>Empresa 1</TableCell>
+                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
+                    <TableCell className={classes.TableCell} align="center">-</TableCell>
+                    <TableCell className={classes.TableCell}>Plano1</TableCell>
+                    <TableCell className={classes.TableCell}>Desabilitadas</TableCell>
+                    <TableCell className={classes.TableCell}>Sim</TableCell>
+                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
+                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
+                  </TableRow>
+                  <TableRow style={{ fontWeight: 'bold' }}>
+                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
+                    <TableCell className={classes.TableCell}>Empresa 2</TableCell>
+                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
+                    <TableCell className={classes.TableCell} align="center">-</TableCell>
+                    <TableCell className={classes.TableCell}>Plano2</TableCell>
+                    <TableCell className={classes.TableCell}>Habilitadas</TableCell>
+                    <TableCell className={classes.TableCell}>Sim</TableCell>
+                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
+                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
+                  </TableRow>
+                  {tableData.map((row, index) => (
+                    <TableRow key={index}>
+                      <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>
+                        <img src={pencilicon} alt="edit" />
+                      </TableCell>
+                      <TableCell className={classes.TableCell}>{row.nome}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.email || '-'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.telefone || '-'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.plano || 'Plano 1'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.campanhas || 'Desabilitadas'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.status || 'Sim'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.createdAt || 'xx/xx/xxxx'}</TableCell>
+                      <TableCell className={classes.TableCell}>{row.vencimento || 'xx/xx/xxxx'}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </div>
         )}
+        {tab === "helps" && renderHelpTab()}
 
-        {helpTab === "administration" && (
-          <div>
-            <MainHeader>
-              <Title>Pesquisar</Title>
-              <MainHeaderButtonsWrapper>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contacts.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </MainHeaderButtonsWrapper>
-            </MainHeader>
 
-            <h2 style={{ color: "#192F64", fontSize: "15px", marginTop: '35px', marginLeft: '50px' }}>Todos os Links</h2>
-            <div className={classes.whiteBox} style={{ marginTop: '1px', marginLeft: '50px' }}>
-              <TableContainer component={Paper}>
-                <Table className={classes.table}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={classes.tableCellCheckbox}>
-                        <Checkbox />
-                      </TableCell>
-                      <TableCell>Contato</TableCell>
-                      <TableCell>Link</TableCell>
-                      <TableCell align="center">Ação</TableCell>
-                    </TableRow>
-                  </TableHead>
-
-                  <TableBody>
-                    {["Trevor C. Lemon", "Sheila M. Dooley", "Marcela S. Ferrais", "Marcos C. Pinheiro"].map(
-                      (contato, index) => (
-                        <TableRow key={index}>
-                          <TableCell className={classes.tableCellCheckbox}>
-                            <Checkbox />
-                          </TableCell>
-                          <TableCell>
-                            <img src={imageArray[index]} alt={`Imagem de ${contato}`} className={classes.imageIcon} />
-                          </TableCell>
-                          <TableCell>{contato}</TableCell>
-                          <TableCell className={classes.tableCellLink}>
-                            <a
-                              href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                            </a>
-                          </TableCell>
-                          <TableCell align="center">
-                            <img
-                              src={pencilicon}
-                              alt="edit"
-                              className={classes.actionIcon}
-                            />
-                          </TableCell>
-                        </TableRow>
-                      )
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

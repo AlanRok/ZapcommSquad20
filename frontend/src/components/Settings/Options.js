@@ -29,19 +29,17 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   tab: {
-    backgroundColor: '#20587C',  
+    backgroundColor: '#20587C',
     borderRadius: 4,
     width: "100%",
-    //DARK MODE PLW DESIGN//
     "& .MuiTabs-flexContainer": {
       justifyContent: "center"
     },
     color: '#FFF',
-    marginBottom: '20px',
+    marginBottom: '2px',
     fontWeight: 'bold',
     padding: '5px',
-    maxHeight: '10px',
-    marginTop: '100px'
+    height:'auto',
   },
   paper: {
     padding: theme.spacing(2),
@@ -242,9 +240,6 @@ export default function Options(props) {
     });
     toast.success("Operação atualizada com sucesso.");
     setCheckMsgIsGroupType(false);
-    /*     if (typeof scheduleTypeChanged === "function") {
-          scheduleTypeChanged(value);
-        } */
   }
 
   async function handleSendGreetingAccepted(value) {
@@ -257,10 +252,6 @@ export default function Options(props) {
     toast.success("Operação atualizada com sucesso.");
     setLoadingSendGreetingAccepted(false);
   }
-
-
-  {/*NOVO CÓDIGO*/ }
-
   async function handleSettingsTransfTicket(value) {
     setSettingsTransfTicket(value);
     setLoadingSettingsTransfTicket(true);
@@ -369,16 +360,17 @@ export default function Options(props) {
       <Grid spacing={3} container>
         <Tabs
           indicatorColor="primary"
-          textColor="primary"
+          textColor="#FFFFFF"
           scrollButtons="on"
           variant="scrollable"
           className={classes.tab}
           style={{
             marginBottom: 20,
-            marginTop: 20
+            marginTop: 40,
+            fontSize: '15px',
           }}
         >
-          <Tab textColor="#FFFFFF"
+          <Tab
             label="INTEGRAÇÕES" />
         </Tabs>
       </Grid>
@@ -390,12 +382,18 @@ export default function Options(props) {
           scrollButtons="on"
           variant="scrollable"
           className={classes.tab}
+          style={{
+            marginTop: '20px',
+            marginBottom: '40px',
+            fontSize: '15px',
+            align:'center'
+          }}
         >
           <Tab label="ASAAS" />
         </Tabs>
         <Grid xs={12} sm={12} md={12} item>
           <FormControl className={classes.selectContainer}>
-            <TextField  style={{flexDirection:'end'}}
+            <TextField style={{ flexDirection: 'end' }}
               id="asaas"
               name="asaas"
               margin="dense"
