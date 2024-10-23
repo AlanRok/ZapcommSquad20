@@ -27,6 +27,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import logo from "../../assets/logo.png";
 import { i18n } from "../../translate/i18n";
+import imageLogin from "../../assets/imageLogin.png"
 
 import { openApi } from "../../services/api";
 import toastError from "../../errors/toastError";
@@ -46,21 +47,25 @@ const Copyright = () => {
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		minHeight: '100vh', 
-		backgroundImage: `url(${require("../../assets/fundo.png")})`, 
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover', 
-		backgroundPosition: 'center',	
+		width: "100vw",
+		height: "100vh",
+		backgroundColor: "#fff",
+		backgroundRepeat: "no-repeat",
+		backgroundSize: "50% 50%",
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		textAlign: "center",
+		position: "relative",	
 	},
 	paper: {
-		marginTop: theme.spacing(8),
+		backgroundColor: "#fff",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		backgroundColor: 'rgba(255, 255, 255, 0.8)', 
-		padding: theme.spacing(4), 
-		borderRadius: theme.spacing(2), 
-		boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', 
+		padding: "50px 30px",
+		borderRadius: "12.5px",
 	},
 	avatar: {
 		margin: theme.spacing(1),
@@ -68,12 +73,29 @@ const useStyles = makeStyles(theme => ({
 	},
 	form: {
 		width: "100%",
-		marginTop: theme.spacing(3),
+		marginTop: theme.spacing(1),
 		
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
+	powered: {
+		color: "white"
+	},
+
+	imageLogin: {
+		position: "right", 
+		right: "0", 
+		bottom: "0",
+		height: "120%",
+		display: "block",
+		'@media (max-width: 1070px)': { // deixa responsivo  
+			display: "none",
+		},
+		'@media (max-width: 1150px)': {
+			width: "600px",
+		}, 
+	}
 }));
 
 const UserSchema = Yup.object().shape({
@@ -127,16 +149,19 @@ const SignUp = () => {
 
 
 	return (
+		<div className={classes.root}>
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
+			
 			<div className={classes.paper}>
 				<div>
-					<center><img style={{ margin: "0 auto", width: "70%" }} src={logo} alt="Whats" /></center>
+					<center><img style={{ margin: "0 auto", width: "110%" }} src={logo} alt="zapcomm" /></center>
 				</div>
 				{/*<Typography component="h1" variant="h5">
 					{i18n.t("signup.title")}
 				</Typography>*/}
 				{/* <form className={classes.form} noValidate onSubmit={handleSignUp}> */}
+				
 				<Formik
 					initialValues={user}
 					enableReinitialize={true}
@@ -162,6 +187,7 @@ const SignUp = () => {
 										fullWidth
 										id="name"
 										label="Nome da Empresa"
+										size="small"
 									/>
 								</Grid>
 
@@ -172,6 +198,7 @@ const SignUp = () => {
 										fullWidth
 										id="email"
 										label={i18n.t("signup.form.email")}
+										size="small"
 										name="email"
 										error={touched.email && Boolean(errors.email)}
 										helperText={touched.email && errors.email}
@@ -199,6 +226,7 @@ const SignUp = () => {
 											variant="outlined"
 											fullWidth
 											label="Telefone com (DDD)"
+											size="small"
 											inputProps={{ maxLength: 11 }} // Definindo o limite de caracteres
 										/>
 									)}
@@ -213,6 +241,7 @@ const SignUp = () => {
 										error={touched.password && Boolean(errors.password)}
 										helperText={touched.password && errors.password}
 										label={i18n.t("signup.form.password")}
+										size="small"
 										type="password"
 										id="password"
 										autoComplete="current-password"
@@ -249,6 +278,9 @@ const SignUp = () => {
 			</div>
 			<Box mt={5}>{/* <Copyright /> */}</Box>
 		</Container>
+			<img className={classes.imageLogin} src={imageLogin} alt="imagem na tela login" />
+		</div>
+		
 	);
 };
 

@@ -109,7 +109,7 @@ const Login = () => {
 			<CssBaseline/>
 			<div className={classes.paper}>
 				<div>
-					<img style={{ margin: "0 auto", width: "110%" }} src={logo} alt="Whats" />
+					<img style={{ margin: "0 auto", width: "110%" }} src={logo} alt="zapcomm" />
 				</div>
 				{/*<Typography component="h1" variant="h5">
 					{i18n.t("login.title")}
