@@ -18,10 +18,6 @@ import ScheduleModal from "../../components/ScheduleModal";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Checkbox from '@material-ui/core/Checkbox';
-import homem1 from '../../assets/homem1.png';
-import mulher2 from '../../assets/mulher2.png';
-import mulher4 from '../../assets/mulher4.png';
-import homem5 from '../../assets/homem5.png';
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
 
@@ -78,10 +74,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FFFFFF',
   },
   tableCellCheckboxImage: {
-    display: 'flex',
     alignItems: 'center',
-    gap: theme.spacing(1),
-    padding: theme.spacing(1),
   },
   TableCell: {
     border: '2px solid rgba(0, 0, 0, 0.25)',
@@ -163,10 +156,6 @@ const SettingsCustom = () => {
   const [telefoneError, setTelefoneError] = useState('');
   const [searchParam, setSearchParam] = useState("");
   const imageArray = [
-    homem1,
-    mulher2,
-    mulher4,
-    homem5,
   ];
 
 
@@ -398,7 +387,6 @@ const SettingsCustom = () => {
                       <TableRow key={index}>
                         <TableCell className={classes.tableCellCheckboxImage}>
                           <Checkbox />
-                          <img src={imageArray[index]} alt={`Imagem de ${contato}`} className={classes.imageIcon} />
                           {contato}
                         </TableCell>
                         <TableCell className={classes.tableCellLink} align="center">
@@ -523,7 +511,7 @@ const SettingsCustom = () => {
               </Button>
             </div>
             <TableContainer component={Paper} style={{ marginTop: '84px' }}>
-              <Table className={classes.table} style={{ backgroundColor: "#F8F8F9", borderCollapse: 'collapse' }}>
+              <Table className={classes.table} style={{ backgroundColor: "#FFFFFF", borderCollapse: 'none' }}>
                 <TableHead>
                   <TableRow style={{ fontWeight: 'bold' }}>
                     <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>#</TableCell>
