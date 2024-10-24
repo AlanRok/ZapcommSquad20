@@ -69,6 +69,21 @@ const useStyles = makeStyles(theme => ({
 	buttonProgress: {
 		color: green[500],
 	},
+	sidebar: {
+		width: 240,
+		backgroundColor: "#FFFFFF",
+		padding: theme.spacing(2),
+		borderRight: "1px solid #E0E0E0",
+	},
+	sidebarItem: {
+		fontSize: '16px',
+		padding: theme.spacing(1),
+		cursor: "pointer",
+		"&:hover": {
+			backgroundColor: "#E0E0E0",
+			fontWright: 'bold',
+		}
+	},
 }));
 
 const CustomToolTip = ({ title, content, children }) => {
@@ -97,7 +112,6 @@ const CustomToolTip = ({ title, content, children }) => {
 
 const Connections = () => {
 	const classes = useStyles();
-
 	const { user } = useContext(AuthContext);
 	const { whatsApps, loading } = useContext(WhatsAppsContext);
 	const [whatsAppModalOpen, setWhatsAppModalOpen] = useState(false);
@@ -198,6 +212,41 @@ const Connections = () => {
 		setConfirmModalInfo(confirmationModalInitialState);
 	};
 
+	const [tab, setTab] = useState("connections");
+
+	const handleTabChange = (newTab) => {
+		setTab(newTab);
+	};
+
+	const renderSidebarItem = (label, value) => (
+		<div
+			className={`${classes.sidebarItem} ${tab === value ? classes.active : ""}`}
+			onClick={() => handleTabChange(value)}
+		>
+			{label}
+		</div>
+	);
+	return (
+		<div className={classes.root}>
+			<div className={classes.sidebar}>
+				<h3>Conexões</h3>
+				{renderSidebarItem("Conexões", "connections")}
+				{renderSidebarItem("Adicionar WhatsApp", "addWhatsApp")}
+			</div>
+			<div className={classes.content}>
+				{tab === "connections" && (
+					<div>Conteúdo de conexões</div>
+				)}
+				{tab === "addWhatsApp" && (
+					<div>
+						<WhatsAppModal></WhatsAppModal>
+					</div>
+
+				)}
+			</div>
+		</div>
+	);
+
 	const renderActionButtons = whatsApp => {
 		return (
 			<>
@@ -234,17 +283,17 @@ const Connections = () => {
 				{(whatsApp.status === "CONNECTED" ||
 					whatsApp.status === "PAIRING" ||
 					whatsApp.status === "TIMEOUT") && (
-					<Button
-						size="small"
-						variant="outlined"
-						color="secondary"
-						onClick={() => {
-							handleOpenConfirmationModal("disconnect", whatsApp.id);
-						}}
-					>
-						{i18n.t("connections.buttons.disconnect")}
-					</Button>
-				)}
+						<Button
+							size="small"
+							variant="outlined"
+							color="secondary"
+							onClick={() => {
+								handleOpenConfirmationModal("disconnect", whatsApp.id);
+							}}
+						>
+							{i18n.t("connections.buttons.disconnect")}
+						</Button>
+					)}
 				{whatsApp.status === "OPENING" && (
 					<Button size="small" variant="outlined" disabled color="default">
 						{i18n.t("connections.buttons.connecting")}
