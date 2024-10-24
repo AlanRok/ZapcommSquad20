@@ -6,6 +6,7 @@ import Board from 'react-trello';
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 import './kanban.css'
 import mulher2 from '../../assets/mulher2.png';
 import mulher3 from '../../assets/kanban/mulher3.png';
@@ -15,6 +16,8 @@ import homem3 from '../../assets/kanban/homem3.png';
 import retanguloazul2 from '../../assets/kanban/retanguloazul2.png';
 import retanguloverde from '../../assets/kanban/retanguloverde.png';
 
+=======
+>>>>>>> main
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     borderRadius: "5px",
   },
-
+  
 }));
 
 const Kanban = () => {
@@ -185,16 +188,25 @@ const Kanban = () => {
 
   return (
     <div className={classes.root}>
+<<<<<<< HEAD
       <Board
         data={file}
         onCardMoveAcrossLanes={handleCardMove}
         style={{ backgroundColor: 'rgba(252, 252, 252, 0.03)' }}
       />
+=======
+      <Board 
+		data={file} 
+		onCardMoveAcrossLanes={handleCardMove}
+		style={{backgroundColor: 'rgba(252, 252, 252, 0.03)'}}
+    />
+>>>>>>> main
     </div>
   );
 };
 
 
+<<<<<<< HEAD
 export default Kanban;
 
 
@@ -390,3 +402,6 @@ function kanbanColumns() {
 }
 export default kanbanColumns;
 */ 
+=======
+export default Kanban;
+>>>>>>> main
