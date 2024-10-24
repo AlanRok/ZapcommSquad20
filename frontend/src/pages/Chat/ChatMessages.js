@@ -9,7 +9,10 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import SendIcon from "@material-ui/icons/Send";
+// import SendIcon from "@material-ui/icons/Send";
+import TextField from '@mui/material/TextField';
+import SendRoundedIcon from '@material-ui/icons/SendRounded';
+
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { useDate } from "../../hooks/useDate";
@@ -32,25 +35,31 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "auto",
     height: "100%",
     ...theme.scrollbarStyles,
-    backgroundColor: theme.palette.chatlist, //DARK MODE PLW DESIGN//
-  },
-  inputArea: {
-    position: "relative",
-    height: "auto",
-  },
-  input: {
-    padding: "20px",
-  },
+    backgroundColor: "#EBEFFF", 
+  },  
   buttonSend: {
-    margin: theme.spacing(1),
+    backgroundColor: "#192F64",
+    color: "#fff",
+    borderRadius: "50%",
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: "5px",
+    transition: "background-color 0.3s ease",
+    "&:hover": {
+      backgroundColor: "#1E40A3", 
+    },
   },
   boxLeft: {
     padding: "10px 10px 5px",
     margin: "10px",
     position: "relative",
-    backgroundColor: "blue",
+    backgroundColor: "#1ABCFE",
     maxWidth: 300,
     borderRadius: 10,
+    color: "#fff",
     borderBottomLeftRadius: 0,
     border: "1px solid rgba(0, 0, 0, 0.12)",
   },
@@ -58,9 +67,13 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px 10px 5px",
     margin: "10px 10px 10px auto",
     position: "relative",
-    backgroundColor: "green", //DARK MODE PLW DESIGN//
+    position: "relative",
+    backgroundColor: "#192F64", 
+    // backgroundColor: "#005C4B", 
+    textAlign: "right",
     textAlign: "right",
     maxWidth: 300,
+    color: "#fff",
     borderRadius: 10,
     borderBottomRightRadius: 0,
     border: "1px solid rgba(0, 0, 0, 0.12)",
@@ -148,9 +161,48 @@ export default function ChatMessages({
           })}
         <div ref={baseRef}></div>
       </div>
-      <div className={classes.inputArea}>
-        <FormControl variant="outlined" fullWidth>
-          <Input
+              {/* NOVO FORM DE ENVIAR MENSAGEM */}
+              
+      <FormControl variant="outlined" fullWidth>
+        <TextField
+          id="outlined-textarea"
+          placeholder="Escreva sua Mensagem"
+          multiline
+          value={contentMessage}
+          onKeyUp={(e) => {
+            if (e.key === "Enter" && contentMessage.trim() !== "") {
+              handleSendMessage(contentMessage);
+              setContentMessage("");
+            }
+          }}
+          style={{
+            width: "100%" 
+          }}
+          onChange={(e) => setContentMessage(e.target.value)}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => {
+                    if (contentMessage.trim() !== "") {
+                      handleSendMessage(contentMessage);
+                      setContentMessage("");
+                    }
+                  }}
+                  className={classes.buttonSend}
+
+                  // TODA ESTILIZAÇÃO ESTA NO USESTYLES
+
+                >
+                  <SendRoundedIcon fontSize="small"/>
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </FormControl>
+
+          {/* <Input
             multiline
             value={contentMessage}
             onKeyUp={(e) => {
@@ -159,8 +211,14 @@ export default function ChatMessages({
                 setContentMessage("");
               }
             }}
+            inputProps={{style: {
+              width: "100%",
+              border: "solid",
+              borderRadius: "10px",
+              padding: "10px",
+            }}}
             onChange={(e) => setContentMessage(e.target.value)}
-            className={classes.input}
+            // className={classes.input}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -176,9 +234,8 @@ export default function ChatMessages({
                 </IconButton>
               </InputAdornment>
             }
-          />
-        </FormControl>
-      </div>
+          /> */}
+      {/* </FormControl> */}
     </Paper>
   );
 }
