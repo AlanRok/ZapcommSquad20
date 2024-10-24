@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2px',
     fontWeight: 'bold',
     padding: '5px',
-    height:'auto',
+    height: 'auto',
   },
   paper: {
     padding: theme.spacing(2),
@@ -78,9 +78,7 @@ const useStyles = makeStyles((theme) => ({
     border: '0px solid rgba(0, 0, 0, 0.25)',
     borderRadius: 5,
     width: '100%',
-    Input: {
-      color: '#967E7E'
-    }
+    color: '#967E7E'
   },
 }));
 
@@ -386,7 +384,7 @@ export default function Options(props) {
             marginTop: '20px',
             marginBottom: '40px',
             fontSize: '15px',
-            align:'center'
+            align: 'center'
           }}
         >
           <Tab label="ASAAS" />

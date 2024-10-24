@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
 import './kanban.css'
-import mulher2 from '../../assets/kanban/mulher2.png';
+import mulher2 from '../../assets/mulher2.png';
 import mulher3 from '../../assets/kanban/mulher3.png';
-import homem1 from '../../assets/kanban/homem1.png';
+import homem1 from '../../assets/homem1.png';
 import homem2 from '../../assets/kanban/homem2.png';
 import homem3 from '../../assets/kanban/homem3.png';
 import retanguloazul2 from '../../assets/kanban/retanguloazul2.png';
@@ -45,7 +45,7 @@ const Kanban = () => {
   const fetchTags = async () => {
     try {
       const response = await api.get("/tags/kanban");
-      const fetchedTags = response.data.lista || []; 
+      const fetchedTags = response.data.lista || [];
 
       setTags(fetchedTags);
 
@@ -72,7 +72,7 @@ const Kanban = () => {
 
   const fetchTickets = async (jsonString) => {
     try {
-      
+
       const { data } = await api.get("/ticket/kanban", {
         params: {
           queueIds: JSON.stringify(jsonString),
@@ -99,21 +99,21 @@ const Kanban = () => {
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
-              <div>
-                <p>
-                  {ticket.contact.number}
-                  <br />
-                  {ticket.lastMessage}
-                </p>
-                <button 
-                  className={classes.button} 
-                  onClick={() => {
-                    handleCardClick(ticket.uuid)
-                  }}>
-                    Ver Ticket
-                </button>
-              </div>
-            ),
+            <div>
+              <p>
+                {ticket.contact.number}
+                <br />
+                {ticket.lastMessage}
+              </p>
+              <button
+                className={classes.button}
+                onClick={() => {
+                  handleCardClick(ticket.uuid)
+                }}>
+                Ver Ticket
+              </button>
+            </div>
+          ),
           title: ticket.contact.name,
           draggable: true,
           href: "/tickets/" + ticket.uuid,
@@ -139,19 +139,19 @@ const Kanban = () => {
                   <br />
                   {ticket.lastMessage}
                 </p>
-                <button 
-                  className={classes.button} 
+                <button
+                  className={classes.button}
                   onClick={() => {
-                    
+
                     handleCardClick(ticket.uuid)
                   }}>
-                    Ver Ticket
+                  Ver Ticket
                 </button>
               </div>
             ),
             title: ticket.contact.name,
             draggable: true,
-            href: "/tickets/" + ticket.uuid,          
+            href: "/tickets/" + ticket.uuid,
           })),
           style: { backgroundColor: tag.color, color: "white" }
         };
@@ -161,22 +161,22 @@ const Kanban = () => {
     setFile({ lanes });
   };
 
-  const handleCardClick = (uuid) => {  
+  const handleCardClick = (uuid) => {
     //console.log("Clicked on card with UUID:", uuid);
     history.push('/tickets/' + uuid);
   };
 
   useEffect(() => {
     popularCards(jsonString);
-}, [tags, tickets, reloadData]);
+  }, [tags, tickets, reloadData]);
 
   const handleCardMove = async (cardId, sourceLaneId, targetLaneId) => {
     try {
-        
-          await api.delete(`/ticket-tags/${targetLaneId}`);
-        toast.success('Ticket Tag Removido!');
-          await api.put(`/ticket-tags/${targetLaneId}/${sourceLaneId}`);
-        toast.success('Ticket Tag Adicionado com Sucesso!');
+
+      await api.delete(`/ticket-tags/${targetLaneId}`);
+      toast.success('Ticket Tag Removido!');
+      await api.put(`/ticket-tags/${targetLaneId}/${sourceLaneId}`);
+      toast.success('Ticket Tag Adicionado com Sucesso!');
 
     } catch (err) {
       console.log(err);
@@ -185,11 +185,11 @@ const Kanban = () => {
 
   return (
     <div className={classes.root}>
-      <Board 
-    data={file} 
-    onCardMoveAcrossLanes={handleCardMove}
-    style={{backgroundColor: 'rgba(252, 252, 252, 0.03)'}}
-    />
+      <Board
+        data={file}
+        onCardMoveAcrossLanes={handleCardMove}
+        style={{ backgroundColor: 'rgba(252, 252, 252, 0.03)' }}
+      />
     </div>
   );
 };

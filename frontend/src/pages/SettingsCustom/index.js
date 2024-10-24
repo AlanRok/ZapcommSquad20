@@ -18,10 +18,11 @@ import ScheduleModal from "../../components/ScheduleModal";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Checkbox from '@material-ui/core/Checkbox';
-import homem1 from '../../assets/kanban/homem1.png';
-import mulher2 from '../../assets/kanban/mulher2.png';
-import mulher4 from '../../assets/kanban/mulher4.png';
-import homem5 from '../../assets/kanban/homem5.png';
+import homem1 from '../../assets/homem1.png';
+import mulher2 from '../../assets/mulher2.png';
+import mulher4 from '../../assets/mulher4.png';
+import homem5 from '../../assets/homem5.png';
+import ExpandMore from "@material-ui/icons/ExpandMore";
 
 
 
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 650,
   },
   tableContainer: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0),
     backgroundColor: '#FFFFFF',
   },
   tableCellCheckboxImage: {
@@ -141,6 +142,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SettingsCustom = () => {
+  
   const classes = useStyles();
   const [tab, setTab] = useState("options");
   const [schedulesEnabled, setSchedulesEnabled] = useState(false);
@@ -283,7 +285,7 @@ const SettingsCustom = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'rgba(0, 0, 0, 0.4)' }} />
+                    <SearchIcon style={{ color: "gray" }} />
                   </InputAdornment>
                 ),
                 style: {
@@ -363,7 +365,7 @@ const SettingsCustom = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon sx={{ color: 'rgba(0, 0, 0, 1.0)' }} />
+                    <SearchIcon style={{ color: "gray" }} />
                   </InputAdornment>
                 ),
                 style: {
@@ -379,7 +381,7 @@ const SettingsCustom = () => {
           <div style={{ color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
             <h2>Todos os Links</h2>
           </div>
-          <div fullWidth>
+          <div >
             <TableContainer component={Paper} className={classes.tableContainer}>
               <Table className={classes.table}>
                 <TableHead>
@@ -431,7 +433,12 @@ const SettingsCustom = () => {
         {renderSidebarItem("Opções", "options")}
         {renderSidebarItem("Empresas", "companies")}
         <div onClick={() => setHelpSubOptionsVisible(!isHelpSubOptionsVisible)}>
-          {renderSidebarItem("Ajuda", "helps")}
+          <div
+            className={`${classes.sidebarItem} ${tab === "helps" ? classes.active : ""}`}
+          >
+            Ajuda
+            <ExpandMore position='end' align='center' style={{ marginLeft: 13, algin: 'center', transform: isHelpSubOptionsVisible ? 'rotate(180deg)' : 'rotate(0deg)', color: "gray" }} />
+          </div>
         </div>
         {isHelpSubOptionsVisible && (
           <div style={{ marginLeft: '20px' }}>
