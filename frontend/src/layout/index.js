@@ -352,7 +352,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
       >
         <div className={classes.toolbarIcon}>
           <img src={logobranca} className={classes.logo} alt="logo" />
-          <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
+          <IconButton style={{color:"white"}} onClick={() => setDrawerOpen(!drawerOpen)}>
             <ChevronLeftIcon />
           </IconButton>
         </div>

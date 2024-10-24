@@ -340,62 +340,62 @@ const Dashboard = () => {
     return count;
   };
   
-    function renderFilters() {
-    if (filterType === 1) {
-      return (
-        <>
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Data Inicial"
-              type="date"
-              value={dateFrom}
-              onChange={(e) => setDateFrom(e.target.value)}
-              className={classes.fullWidth}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <TextField
-              label="Data Final"
-              type="date"
-              value={dateTo}
-              onChange={(e) => setDateTo(e.target.value)}
-              className={classes.fullWidth}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-          </Grid>
-        </>
-      );
-    } else {
-      return (
-        <Grid item xs={12} sm={6} md={4}>
-          <FormControl className={classes.selectContainer}>
-            <InputLabel id="period-selector-label">Período</InputLabel>
-            <Select
-              labelId="period-selector-label"
-              id="period-selector"
-              value={period}
-              onChange={(e) => handleChangePeriod(e.target.value)}
-            >
-              <MenuItem value={0}>Nenhum selecionado</MenuItem>
-              <MenuItem value={3}>Últimos 3 dias</MenuItem>
-              <MenuItem value={7}>Últimos 7 dias</MenuItem>
-              <MenuItem value={15}>Últimos 15 dias</MenuItem>
-              <MenuItem value={30}>Últimos 30 dias</MenuItem>
-              <MenuItem value={60}>Últimos 60 dias</MenuItem>
-              <MenuItem value={90}>Últimos 90 dias</MenuItem>
-            </Select>
-            <FormHelperText>Selecione o período desejado</FormHelperText>
-          </FormControl>
-        </Grid>
-      );
-    }
-  }
-
+    // function renderFilters() {
+    // if (filterType === 1) {
+  //     return (
+  //       <>
+  //         <Grid item xs={12} sm={6} md={4}>
+  //           <TextField
+  //             label="Data Inicial"
+  //             type="date"
+  //             value={dateFrom}
+  //             onChange={(e) => setDateFrom(e.target.value)}
+  //             className={classes.fullWidth}
+  //             InputLabelProps={{
+  //               shrink: true,
+  //             }}
+  //           />
+  //         </Grid>
+  //         <Grid item xs={12} sm={6} md={4}>
+  //           <TextField
+  //             label="Data Final"
+  //             type="date"
+  //             value={dateTo}
+  //             onChange={(e) => setDateTo(e.target.value)}
+  //             className={classes.fullWidth}
+  //             InputLabelProps={{
+  //               shrink: true,
+  //             }}
+  //           />
+  //         </Grid>
+  //       </>
+  //     );
+  //   } else {
+  //     return (
+  //       <Grid item xs={12} sm={6} md={4}>
+  //         <FormControl className={classes.selectContainer}>
+  //           <InputLabel id="period-selector-label">Período</InputLabel>
+  //           <Select
+  //             labelId="period-selector-label"
+  //             id="period-selector"
+  //             value={period}
+  //             onChange={(e) => handleChangePeriod(e.target.value)}
+  //           >
+  //             <MenuItem value={0}>Nenhum selecionado</MenuItem>
+  //             <MenuItem value={3}>Últimos 3 dias</MenuItem>
+  //             <MenuItem value={7}>Últimos 7 dias</MenuItem>
+  //             <MenuItem value={15}>Últimos 15 dias</MenuItem>
+  //             <MenuItem value={30}>Últimos 30 dias</MenuItem>
+  //             <MenuItem value={60}>Últimos 60 dias</MenuItem>
+  //             <MenuItem value={90}>Últimos 90 dias</MenuItem>
+  //           </Select>
+  //           <FormHelperText>Selecione o período desejado</FormHelperText>
+  //         </FormControl>
+  //       </Grid>
+  //     );
+  //   }
+  // }
+      
   return (
     <div>
       <Container maxWidth="lg" className={classes.container}>
@@ -668,7 +668,7 @@ const Dashboard = () => {
           </Grid>
 		  
 		  {/* FILTROS */}
-          <Grid item xs={12} sm={6} md={4}>
+          {/* <Grid item xs={12} sm={6} md={4}>
             <FormControl className={classes.selectContainer}>
               <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
               <Select
@@ -681,12 +681,12 @@ const Dashboard = () => {
               </Select>
               <FormHelperText>Selecione o período desejado</FormHelperText>
             </FormControl>
-          </Grid>
+          </Grid> */}
 
-          {renderFilters()}
+          {/* {renderFilters()} */}
 
           {/* BOTAO FILTRAR */}
-          <Grid item xs={12} className={classes.alignRight}>
+          {/* <Grid item xs={12} className={classes.alignRight}>
             <ButtonWithSpinner
               loading={loading}
               onClick={() => fetchData()}
@@ -695,17 +695,17 @@ const Dashboard = () => {
             >
               Filtrar
             </ButtonWithSpinner>
-          </Grid>
+          </Grid> */}
 
           {/* USUARIOS ONLINE */}
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             {attendants.length ? (
               <TableAttendantsStatus
                 attendants={attendants}
                 loading={loading}
               />
             ) : null}
-          </Grid>
+          </Grid> */}
 
           {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
           <Grid item xs={12}>
