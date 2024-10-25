@@ -88,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
         overflowY: "scroll",
         ...theme.scrollbarStyles,
     },
+
+    pesquisa :{
+        backgroundColor: "white",
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 const FileLists = () => {
@@ -218,7 +223,18 @@ const FileLists = () => {
             <MainHeader>
                 <Title>{i18n.t("files.title")} ({files.length})</Title>
                 <MainHeaderButtonsWrapper>
-                    <TextField
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleOpenFileListModal}
+                    >
+                        {i18n.t("files.buttons.add")}
+                    </Button>
+                </MainHeaderButtonsWrapper>
+            </MainHeader>
+            <TextField className={classes.pesquisa}
+                        variant="outlined"
+                        margin="dense"
                         placeholder={i18n.t("contacts.searchPlaceholder")}
                         type="search"
                         value={searchParam}
@@ -230,16 +246,7 @@ const FileLists = () => {
                                 </InputAdornment>
                             ),
                         }}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenFileListModal}
-                    >
-                        {i18n.t("files.buttons.add")}
-                    </Button>
-                </MainHeaderButtonsWrapper>
-            </MainHeader>
+            />
             <Paper
                 className={classes.mainPaper}
                 variant="outlined"
