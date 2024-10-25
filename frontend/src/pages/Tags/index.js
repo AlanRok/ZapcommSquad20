@@ -19,6 +19,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Checkbox from '@mui/material/Checkbox';
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -222,14 +223,14 @@ return (
         tagId={selectedTag && selectedTag.id}
       />
       <MainHeader>
-        <Title>{i18n.t("tags.title")}</Title>
+        <Title>{i18n.t("tags.title")} ({tags.length})</Title>
         <MainHeaderButtonsWrapper>
           <Button
             variant="contained"
             color="primary"
             onClick={handleOpenTagModal}
           >
-            {i18n.t("Nova Tag")}
+            {i18n.t("tags.buttons.add")}
           </Button>		  
         </MainHeaderButtonsWrapper>
       </MainHeader>
@@ -271,10 +272,8 @@ return (
                 <TableRow key={tag.id}>
                   <TableCell align="center">
                     <Chip
-                      variant="outlined"
                       style={{
                         backgroundColor: tag.color,
-                        textShadow: "1px 1px 1px #000",
                         color: "white",
                       }}
                       label={tag.name}
