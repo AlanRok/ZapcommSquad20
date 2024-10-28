@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { toast } from "react-toastify";
@@ -15,7 +14,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { i18n } from "../../translate/i18n";
-
 import api from "../../services/api";
 import toastError from "../../errors/toastError";
 import ColorPicker from "../ColorPicker";
@@ -44,11 +42,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     flex: 1,
   },
-
   btnWrapper: {
     position: "relative",
   },
-
   buttonProgress: {
     color: green[500],
     position: "absolute",
@@ -64,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
   colorAdorment: {
     width: 20,
     height: 20,
+  },
+  customInput: {
+    backgroundColor: "rgba(217, 217, 217, 0.20)",
   },
 }));
 
@@ -134,7 +133,6 @@ const QueueModal = ({ open, onClose, queueId }) => {
     (async () => {
       try {
         const { data } = await api.get("/queueIntegration");
-
         setIntegrations(data.queueIntegrations);
       } catch (err) {
         toastError(err);
@@ -151,7 +149,6 @@ const QueueModal = ({ open, onClose, queueId }) => {
           return { ...prevState, ...data };
         });
         data.promptId ? setSelectedPrompt(data.promptId) : setSelectedPrompt(null);
-
         setSchedules(data.schedules);
       } catch (err) {
         toastError(err);
@@ -243,142 +240,166 @@ const QueueModal = ({ open, onClose, queueId }) => {
               {({ touched, errors, isSubmitting, values }) => (
                 <Form>
                   <DialogContent dividers>
-                    <Field
-                      as={TextField}
-                      label={i18n.t("queueModal.form.name")}
-                      autoFocus
-                      name="name"
-                      error={touched.name && Boolean(errors.name)}
-                      helperText={touched.name && errors.name}
-                      variant="outlined"
-                      margin="dense"
-                      className={classes.textField}
-                    />
-                    <Field
-                      as={TextField}
-                      label={i18n.t("queueModal.form.color")}
-                      name="color"
-                      id="color"
-                      onFocus={() => {
-                        setColorPickerModalOpen(true);
-                        greetingRef.current.focus();
-                      }}
-                      error={touched.color && Boolean(errors.color)}
-                      helperText={touched.color && errors.color}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <div
-                              style={{ backgroundColor: values.color }}
-                              className={classes.colorAdorment}
-                            ></div>
-                          </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <IconButton
-                            size="small"
-                            color="default"
-                            onClick={() => setColorPickerModalOpen(true)}
-                          >
-                            <Colorize />
-                          </IconButton>
-                        ),
-                      }}
-                      variant="outlined"
-                      margin="dense"
-                      className={classes.textField}
-                    />
-                    <ColorPicker
-                      open={colorPickerModalOpen}
-                      handleClose={() => setColorPickerModalOpen(false)}
-                      onChange={(color) => {
-                        values.color = color;
-                        setQueue(() => {
-                          return { ...values, color };
-                        });
-                      }}
-                    />
-                    <Field
-                      as={TextField}
-                      label={i18n.t("queueModal.form.orderQueue")}
-                      name="orderQueue"
-                      type="orderQueue"
-                      error={touched.orderQueue && Boolean(errors.orderQueue)}
-                      helperText={touched.orderQueue && errors.orderQueue}
-                      variant="outlined"
-                      margin="dense"
-                      className={classes.textField1}
-                    />
-                    <div>
-                      <FormControl
-                        variant="outlined"
-                        margin="dense"
-                        className={classes.FormControl}
-                        fullWidth
-                      >
-                        <InputLabel id="integrationId-selection-label">
-                          {i18n.t("queueModal.form.integrationId")}
-                        </InputLabel>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12} sm={6} md={4}>
                         <Field
-                          as={Select}
-                          label={i18n.t("queueModal.form.integrationId")}
-                          name="integrationId"
-                          id="integrationId"
-                          placeholder={i18n.t("queueModal.form.integrationId")}
-                          labelId="integrationId-selection-label"
-                          value={values.integrationId || ""}
-                        >
-                          <MenuItem value={""} >{"Nenhum"}</MenuItem>
-                          {integrations.map((integration) => (
-                            <MenuItem key={integration.id} value={integration.id}>
-                              {integration.name}
-                            </MenuItem>
-                          ))}
-                        </Field>
-
-                      </FormControl>
-                      <FormControl
-                        margin="dense"
-                        variant="outlined"
-                        fullWidth
-                      >
-                        <InputLabel>
-                          {i18n.t("whatsappModal.form.prompt")}
-                        </InputLabel>
-                        <Select
-                          labelId="dialog-select-prompt-label"
-                          id="dialog-select-prompt"
-                          name="promptId"
-                          value={selectedPrompt || ""}
-                          onChange={handleChangePrompt}
-                          label={i18n.t("whatsappModal.form.prompt")}
+                          as={TextField}
+                          className={classes.customInput}
+                          label={i18n.t("queueModal.form.name")}
+                          autoFocus
+                          name="name"
+                          error={touched.name && Boolean(errors.name)}
+                          helperText={touched.name && errors.name}
+                          variant="outlined"
+                          margin="dense"
                           fullWidth
-                          MenuProps={{
-                            anchorOrigin: {
-                              vertical: "bottom",
-                              horizontal: "left",
-                            },
-                            transformOrigin: {
-                              vertical: "top",
-                              horizontal: "left",
-                            },
-                            getContentAnchorEl: null,
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Field
+                          as={TextField}
+                          className={classes.customInput}
+                          label={i18n.t("queueModal.form.color")}
+                          name="color"
+                          id="color"
+                          onFocus={() => {
+                            setColorPickerModalOpen(true);
+                            greetingRef.current.focus();
                           }}
+                          error={touched.color && Boolean(errors.color)}
+                          helperText={touched.color && errors.color}
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <div
+                                  style={{ backgroundColor: values.color }}
+                                  className={classes.colorAdorment}
+                                ></div>
+                              </InputAdornment>
+                            ),
+                            endAdornment: (
+                              <IconButton
+                                size="small"
+                                color="default"
+                                onClick={() => setColorPickerModalOpen(true)}
+                              >
+                                <Colorize />
+                              </IconButton>
+                            ),
+                          }}
+                          variant="outlined"
+                          margin="dense"
+                          fullWidth
+                        />
+                        <ColorPicker
+                          open={colorPickerModalOpen}
+                          handleClose={() => setColorPickerModalOpen(false)}
+                          onChange={(color) => {
+                            values.color = color;
+                            setQueue(() => {
+                              return { ...values, color };
+                            });
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <Field
+                          as={TextField}
+                          className={classes.customInput}
+                          label={i18n.t("queueModal.form.orderQueue")}
+                          name="orderQueue"
+                          type="orderQueue"
+                          error={touched.orderQueue && Boolean(errors.orderQueue)}
+                          helperText={touched.orderQueue && errors.orderQueue}
+                          variant="outlined"
+                          margin="dense"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <FormControl
+                          margin="dense"
+                          variant="outlined"
+                          fullWidth
                         >
-                          {prompts.map((prompt) => (
-                            <MenuItem
-                              key={prompt.id}
-                              value={prompt.id}
-                            >
-                              {prompt.name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </div>
+                          <InputLabel>
+                            {i18n.t("whatsappModal.tabs.integrations")}
+                          </InputLabel>
+                          <Select
+                            labelId="dialog-select-prompt-label"
+                            id="dialog-select-prompt"
+                            name="promptId"
+                            value={selectedPrompt || ""}
+                            onChange={handleChangePrompt}
+                            label={i18n.t("whatsappModal.tabs.integrations")}
+                            fullWidth
+                            MenuProps={{
+                              anchorOrigin: {
+                                vertical: "bottom",
+                                horizontal: "left",
+                              },
+                              transformOrigin: {
+                                vertical: "top",
+                                horizontal: "left",
+                              },
+                              getContentAnchorEl: null,
+                            }}
+                            className={classes.customInput} 
+                          >
+                            {prompts.map((prompt) => (
+                              <MenuItem key={prompt.id} value={prompt.id}>
+                                {prompt.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+
+                      <Grid item xs={12} sm={6} md={4}>
+                        <FormControl
+                          margin="dense"
+                          variant="outlined"
+                          fullWidth
+                          className={classes.customInput}  
+                        >
+                          <InputLabel>
+                            {i18n.t("whatsappModal.form.prompt")}
+                          </InputLabel>
+                          <Select
+                            labelId="dialog-select-prompt-label"
+                            id="dialog-select-prompt"
+                            name="promptId"
+                            value={selectedPrompt || ""}
+                            onChange={handleChangePrompt}
+                            label={i18n.t("whatsappModal.form.prompt")}
+                            fullWidth
+                            MenuProps={{
+                              anchorOrigin: {
+                                vertical: "bottom",
+                                horizontal: "left",
+                              },
+                              transformOrigin: {
+                                vertical: "top",
+                                horizontal: "left",
+                              },
+                              getContentAnchorEl: null,
+                            }}
+                            className={classes.customInput}  
+                          >
+                            {prompts.map((prompt) => (
+                              <MenuItem key={prompt.id} value={prompt.id}>
+                                {prompt.name}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </Grid>
+
+                    </Grid>
                     <div style={{ marginTop: 5 }}>
                       <Field
                         as={TextField}
+                        className={classes.customInput}
                         label={i18n.t("queueModal.form.greetingMessage")}
                         type="greetingMessage"
                         multiline
@@ -399,6 +420,7 @@ const QueueModal = ({ open, onClose, queueId }) => {
                       {schedulesEnabled && (
                         <Field
                           as={TextField}
+                          className={classes.customInput}
                           label={i18n.t("queueModal.form.outOfHoursMessage")}
                           type="outOfHoursMessage"
                           multiline
