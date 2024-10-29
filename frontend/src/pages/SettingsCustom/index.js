@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, Paper, Tabs, Tab, Button, TextField, MenuItem, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { makeStyles, Paper, Tabs, Tab, Button, TextField, MenuItem, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from "@material-ui/core";
+import { DeleteOutline } from "@material-ui/icons";
 import EditIcon from '@material-ui/icons/Edit';
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -78,7 +79,14 @@ const useStyles = makeStyles((theme) => ({
   },
   TableCell: {
     border: '2px solid rgba(0, 0, 0, 0.25)',
+    borderCollapse: 'collapse',
     borderRadius: '2px',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderBottom: '2px solid rgba(0, 0, 0, 0.25)',
+    borderTop: 'none',
+    align: 'center',
+    textAlign: 'center',
   },
   whiteBox: {
     backgroundColor: '#FFFFFF',
@@ -99,7 +107,8 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    border: '2px solid rgba(0, 0, 0, 0.25)',
   },
   inputEmpresas: {
     backgroundColor: '#F8F8F9',
@@ -123,8 +132,14 @@ const useStyles = makeStyles((theme) => ({
 
   },
   actionCell: {
-    paddingRight: theme.spacing(4),
-    textAlign: 'Center'
+    align: 'center',
+    textAlign: 'Center',
+    borderBottom: '2px solid rgba(0, 0, 0, 0.25)',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderTop: 'none',
+    borderRadius: '2px',
+    margin: '0 4px',
   },
   actionIcon: {
     cursor: "pointer",
@@ -135,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SettingsCustom = () => {
-  
+
   const classes = useStyles();
   const [tab, setTab] = useState("options");
   const [schedulesEnabled, setSchedulesEnabled] = useState(false);
@@ -155,14 +170,32 @@ const SettingsCustom = () => {
   const [emailError, setEmailError] = useState('');
   const [telefoneError, setTelefoneError] = useState('');
   const [searchParam, setSearchParam] = useState("");
-  const imageArray = [
-  ];
-
-
+  const [tableData, setTableData] = useState([{
+    nome: "Empresa 1",
+    email: "-",
+    telefone: "-",
+    plano: "Plano1",
+    campanhas: "Desabilitadas",
+    status: "Sim",
+    createdAt: "xx/xx/xxxx",
+    vencimento: "xx/xx/xxxx",
+  },
+  {
+    nome: "Empresa 2",
+    email: "-",
+    telefone: "-",
+    plano: "Plano2",
+    campanhas: "Habilitadas",
+    status: "Não",
+    createdAt: "xx/xx/xxxx",
+    vencimento: "xx/xx/xxxx",
+  },
+  ]);;
+  const [editingIndex, setEditingIndex] = useState(null);
+  const imageArray = [];
   const handleSearch = (event) => {
     setSearchParam(event.target.value.toLowerCase());
   };
-  const [tableData, setTableData] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -190,6 +223,7 @@ const SettingsCustom = () => {
     setRecorrencia('');
     setEmailError('');
     setTelefoneError('');
+    setEditingIndex(null);
   };
 
   const validateEmail = () => {
@@ -228,9 +262,36 @@ const SettingsCustom = () => {
         recorrencia,
         createdAt: new Date().toLocaleDateString(),
       };
-      setTableData((prevData) => [...prevData, newEntry]);
+      if (editingIndex !== null) {
+        setTableData((prevData) =>
+          prevData.map((item, index) =>
+            index === editingIndex ? newEntry : item
+          )
+        );
+      } else {
+        setTableData((prevData) => [...prevData, newEntry]);
+      }
+
       handleClear();
     }
+  };
+  const handleEdit = (index) => {
+    // Preenche o formulário com os dados da linha selecionada
+    const selectedRow = tableData[index];
+    setNome(selectedRow.nome);
+    setEmail(selectedRow.email);
+    setTelefone(selectedRow.telefone);
+    setPlano(selectedRow.plano);
+    setStatus(selectedRow.status);
+    setCampanhas(selectedRow.campanhas);
+    setVencimento(selectedRow.vencimento);
+    setRecorrencia(selectedRow.recorrencia);
+    setEditingIndex(index); // Define o índice da linha que está sendo editada
+  };
+  const handleDelete = (index) => {
+    // Remove a linha da tabela
+    setTableData((prevData) => prevData.filter((_, i) => i !== index));
+    toast.success("Empresa excluída com sucesso!");
   };
   const [isHelpSubOptionsVisible, setHelpSubOptionsVisible] = useState(false);
   const [helpTab, setHelpTab] = useState("tutorials");
@@ -511,48 +572,23 @@ const SettingsCustom = () => {
               </Button>
             </div>
             <TableContainer component={Paper} style={{ marginTop: '84px' }}>
-              <Table className={classes.table} style={{ backgroundColor: "#FFFFFF", borderCollapse: 'none' }}>
+              <Table className={classes.table} style={{ borderCollapse: 'none' }}>
                 <TableHead>
                   <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>#</TableCell>
                     <TableCell className={classes.TableCell}>Nome</TableCell>
-                    <TableCell className={classes.TableCell}>E-mail</TableCell>
+                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>E-mail</TableCell>
                     <TableCell className={classes.TableCell}>Telefone</TableCell>
                     <TableCell className={classes.TableCell}>Plano</TableCell>
                     <TableCell className={classes.TableCell}>Campanhas</TableCell>
                     <TableCell className={classes.TableCell}>Status</TableCell>
                     <TableCell className={classes.TableCell}>Criado Em</TableCell>
                     <TableCell className={classes.TableCell}>Vencimento</TableCell>
+                    <TableCell className={classes.TableCell} align="center">Ações</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
-                    <TableCell className={classes.TableCell}>Empresa 1</TableCell>
-                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
-                    <TableCell className={classes.TableCell} align="center">-</TableCell>
-                    <TableCell className={classes.TableCell}>Plano1</TableCell>
-                    <TableCell className={classes.TableCell}>Desabilitadas</TableCell>
-                    <TableCell className={classes.TableCell}>Sim</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                  </TableRow>
-                  <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
-                    <TableCell className={classes.TableCell}>Empresa 2</TableCell>
-                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
-                    <TableCell className={classes.TableCell} align="center">-</TableCell>
-                    <TableCell className={classes.TableCell}>Plano2</TableCell>
-                    <TableCell className={classes.TableCell}>Habilitadas</TableCell>
-                    <TableCell className={classes.TableCell}>Sim</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                  </TableRow>
                   {tableData.map((row, index) => (
                     <TableRow key={index}>
-                      <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>
-                        <img src={pencilicon} alt="edit" />
-                      </TableCell>
                       <TableCell className={classes.TableCell}>{row.nome}</TableCell>
                       <TableCell className={classes.TableCell}>{row.email || '-'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.telefone || '-'}</TableCell>
@@ -561,6 +597,14 @@ const SettingsCustom = () => {
                       <TableCell className={classes.TableCell}>{row.status || 'Sim'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.createdAt || 'xx/xx/xxxx'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.vencimento || 'xx/xx/xxxx'}</TableCell>
+                      <TableCell className={classes.actionCell}>
+                        <IconButton onClick={() => handleEdit(index)} size='small'>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={() => handleDelete(index)} size='small'>
+                          <DeleteOutline />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

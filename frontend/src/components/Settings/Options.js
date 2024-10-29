@@ -363,7 +363,7 @@ export default function Options(props) {
           variant="scrollable"
           className={classes.tab}
           style={{
-            marginBottom: 20,
+            marginBottom: 2,
             marginTop: 40,
             fontSize: '15px',
           }}
