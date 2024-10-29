@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SettingsCustom = () => {
-
+  
   const classes = useStyles();
   const [tab, setTab] = useState("options");
   const [schedulesEnabled, setSchedulesEnabled] = useState(false);

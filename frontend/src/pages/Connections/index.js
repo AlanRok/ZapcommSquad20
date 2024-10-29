@@ -16,6 +16,7 @@ import {
 	Tooltip,
 	Typography,
 	CircularProgress,
+	withWidth,
 } from "@material-ui/core";
 import {
 	Edit,
