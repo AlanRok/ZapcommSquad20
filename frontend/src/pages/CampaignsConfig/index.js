@@ -137,7 +137,8 @@ const CampaignsConfig = () => {
             </Grid>
             <Grid xs={12} md={4} item>
               <FormControl
-                variant="outlined"
+                id="outlined-basic" label="" variant="outlined"
+
                 className={classes.formControl}
                 fullWidth
               >
