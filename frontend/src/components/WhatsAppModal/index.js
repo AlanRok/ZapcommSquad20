@@ -63,6 +63,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FFFFFF',
     borderRadius: '10px',
   },
+  DialogActionss: {
+    justifyContent: 'flex-end',
+    marginRight: theme.spacing(2),
+  }
 }));
 
 const SessionSchema = Yup.object().shape({
@@ -432,7 +436,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
                   </div>
                 </div>
               </DialogContent>
-              <DialogActions>
+              <DialogActions className={classes.DialogActionss}>
                 <Button
                   style={{
                     backgroundColor: '#FF0000',
