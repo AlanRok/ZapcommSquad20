@@ -21,7 +21,7 @@ import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper"
 import Checkbox from '@material-ui/core/Checkbox';
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HelpsManager from "../../components/HelpsManager";
-import ConfirmationModal from "../ConfirmationModal";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 
 
@@ -288,18 +288,24 @@ const SettingsCustom = () => {
     setCampanhas(selectedRow.campanhas);
     setVencimento(selectedRow.vencimento);
     setRecorrencia(selectedRow.recorrencia);
-    setEditingIndex(index); 
+    setEditingIndex(index);
   };
+  //Funções para deletar linha
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const handleDelete = (index) => {
-    setTableData((prevData) => prevData.filter((_, i) => i !== index));
+    setItemToDelete(index);
+    setShowConfirmDialog(true);
+  };
+  const handleConfirmDelete = () => {
+    setTableData((prevData) => prevData.filter((_, i) => i !== itemToDelete));
     toast.success("Empresa excluída com sucesso!");
+    setShowConfirmDialog(false);
+    setItemToDelete(null);
   };
-  const [isHelpSubOptionsVisible, setHelpSubOptionsVisible] = useState(false);
-  const [helpTab, setHelpTab] = useState("tutorials");
-  const handleHelpSubOptionClick = (subTab) => {
-    setHelpTab(subTab);
-    setTab('helps');
-  };
+
+
 
 
   const renderSidebarItem = (label, value) => (
@@ -431,6 +437,14 @@ const SettingsCustom = () => {
                     </TableRow>
                   ))}
                 </TableBody>
+                <ConfirmationModal
+                  title="Confirmação de Exclusão"
+                  open={showConfirmDialog}
+                  onClose={() => setShowConfirmDialog(false)}
+                  onConfirm={handleConfirmDelete}
+                >
+                  Deseja realmente excluir este registro?
+                </ConfirmationModal>
               </Table>
             </TableContainer>
           </div>

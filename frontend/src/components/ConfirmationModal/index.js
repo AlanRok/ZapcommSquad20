@@ -23,7 +23,7 @@ const ConfirmationModal = ({ title, children, open, onClose, onConfirm }) => {
 				<DialogActions>
 					<Button
 						style={{
-							backgroundColor: '#F6F874',
+							backgroundColor: 'gray',
 							color: '#FFFFFF',
 						}}
 						variant="contained"
