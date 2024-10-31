@@ -22,43 +22,68 @@ import useHelps from "../../hooks/useHelps";
 
 
 const useStyles = makeStyles(theme => ({
-	root: {
-		width: '100%'
-	},
+    root: {
+        width: '100%'
+    },
     mainPaper: {
-		width: '100%',
-		flex: 1,
-		padding: theme.spacing(2)
+        width: '100%',
+        flex: 1,
+        padding: theme.spacing(2)
     },
-	fullWidth: {
-		width: '100%'
-	},
+    fullWidth: {
+        width: '100%'
+    },
     tableContainer: {
-		width: '100%',
-		overflowX: "scroll",
-		...theme.scrollbarStyles
+        width: '100%',
+        overflowX: "scroll",
+        ...theme.scrollbarStyles,
+        padding: theme.spacing(0),
+        borderRadius: 8,
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+        border: '1px solid #E0E0E0',
+        height: 'auto',
+        borderCollapse: 'none',
+        border: '2px solid rgba(0, 0, 0, 0.25)',
     },
-	textfield: {
-		width: '100%'
-	},
+    textfield: {
+        width: '100%'
+    },
     textRight: {
         textAlign: 'right'
     },
     row: {
-		paddingTop: theme.spacing(2),
-		paddingBottom: theme.spacing(2)
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2)
     },
     control: {
-		paddingRight: theme.spacing(1),
-		paddingLeft: theme.spacing(1)
-	},
+        paddingRight: theme.spacing(1),
+        paddingLeft: theme.spacing(1)
+    },
     buttonContainer: {
         textAlign: 'right',
-		padding: theme.spacing(1)
-	}
+        padding: theme.spacing(1)
+    },
+    inputsHelpManager: {
+        backgroundColor: '#F8F8F9',
+        border: '0px solid rgba(0, 0, 0, 0.25)',
+        borderRadius: 5,
+        width: '100%',
+    },
+    TableCell: {
+        border: '2px solid rgba(0, 0, 0, 0.25)',
+        borderCollapse: 'collapse',
+        borderRadius: '2px',
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderTop: '2px solid rgba(0, 0, 0, 0.25)',
+        borderBottom: 'none',
+        align: 'center',
+        textAlign: 'center',
+    },
+
 }));
 
-export function HelpManagerForm (props) {
+export function HelpManagerForm(props) {
     const { onSubmit, onDelete, onCancel, initialValue, loading } = props;
     const classes = useStyles()
 
@@ -68,7 +93,7 @@ export function HelpManagerForm (props) {
         setRecord(initialValue)
     }, [initialValue])
 
-    const handleSubmit = async(data) => {
+    const handleSubmit = async (data) => {
         onSubmit(data)
     }
 
@@ -93,7 +118,7 @@ export function HelpManagerForm (props) {
                                 label="Título"
                                 name="title"
                                 variant="outlined"
-                                className={classes.fullWidth}
+                                className={classes.inputsHelpManager}
                                 margin="dense"
                             />
                         </Grid>
@@ -103,7 +128,7 @@ export function HelpManagerForm (props) {
                                 label="Código do Vídeo"
                                 name="video"
                                 variant="outlined"
-                                className={classes.fullWidth}
+                                className={classes.inputsHelpManager}
                                 margin="dense"
                             />
                         </Grid>
@@ -113,7 +138,7 @@ export function HelpManagerForm (props) {
                                 label="Descrição"
                                 name="description"
                                 variant="outlined"
-                                className={classes.fullWidth}
+                                className={classes.inputsHelpManager}
                                 margin="dense"
                             />
                         </Grid>
@@ -122,7 +147,7 @@ export function HelpManagerForm (props) {
                                 Limpar
                             </ButtonWithSpinner>
                         </Grid>
-                        { record.id !== undefined ? (
+                        {record.id !== undefined ? (
                             <Grid sm={3} md={1} item>
                                 <ButtonWithSpinner className={classes.fullWidth} loading={loading} onClick={() => onDelete(record)} variant="contained" color="secondary">
                                     Excluir
@@ -141,7 +166,7 @@ export function HelpManagerForm (props) {
     )
 }
 
-export function HelpsManagerGrid (props) {
+export function HelpsManagerGrid(props) {
     const { records, onSelect } = props
     const classes = useStyles()
 
@@ -149,36 +174,36 @@ export function HelpsManagerGrid (props) {
         <Paper className={classes.tableContainer}>
             <Table className={classes.fullWidth} size="small" aria-label="a dense table">
                 <TableHead>
-                <TableRow>
-                    <TableCell align="center" style={{width: '1%'}}>#</TableCell>
-                    <TableCell align="left">Título</TableCell>
-                    <TableCell align="left">Descrição</TableCell>
-                    <TableCell align="left">Vídeo</TableCell>
-                </TableRow>
+                    <TableRow>
+                        <TableCell align="center" >Título</TableCell>
+                        <TableCell align="center" >Descrição</TableCell>
+                        <TableCell align="center" >Vídeo</TableCell>
+                        <TableCell align="center" style={{ width: '1%' }} >#</TableCell>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
-                {records.map((row) => (
-                    <TableRow key={row.id}>
-                        <TableCell align="center" style={{width: '1%'}}>
-                            <IconButton onClick={() => onSelect(row)} aria-label="delete">
-                                <EditIcon />
-                            </IconButton>
-                        </TableCell>
-                        <TableCell align="left">{row.title || '-'}</TableCell>
-                        <TableCell align="left">{row.description || '-'}</TableCell>
-                        <TableCell align="left">{row.video || '-'}</TableCell>
-                    </TableRow>
-                ))}
+                    {records.map((row) => (
+                        <TableRow key={row.id}>
+                            <TableCell align="center" className={classes.TableCell}>{row.title || '-'}</TableCell>
+                            <TableCell align="center" className={classes.TableCell}>{row.description || '-'}</TableCell>
+                            <TableCell align="center" className={classes.TableCell}>{row.video || '-'}</TableCell>
+                            <TableCell align="center" style={{ width: '1%' }} className={classes.TableCell}>
+                                <IconButton onClick={() => onSelect(row)} aria-label="delete">
+                                    <EditIcon />
+                                </IconButton>
+                            </TableCell>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </Paper>
     )
 }
 
-export default function HelpsManager () {
+export default function HelpsManager() {
     const classes = useStyles()
     const { list, save, update, remove } = useHelps()
-    
+
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
     const [loading, setLoading] = useState(false)
     const [records, setRecords] = useState([])
@@ -189,7 +214,7 @@ export default function HelpsManager () {
     })
 
     useEffect(() => {
-        async function fetchData () {
+        async function fetchData() {
             await loadHelps()
         }
         fetchData()
@@ -262,16 +287,16 @@ export default function HelpsManager () {
         <Paper className={classes.mainPaper} elevation={0}>
             <Grid spacing={2} container>
                 <Grid xs={12} item>
-                    <HelpManagerForm 
-                        initialValue={record} 
-                        onDelete={handleOpenDeleteDialog} 
-                        onSubmit={handleSubmit} 
-                        onCancel={handleCancel} 
+                    <HelpManagerForm
+                        initialValue={record}
+                        onDelete={handleOpenDeleteDialog}
+                        onSubmit={handleSubmit}
+                        onCancel={handleCancel}
                         loading={loading}
                     />
                 </Grid>
                 <Grid xs={12} item>
-                    <HelpsManagerGrid 
+                    <HelpsManagerGrid
                         records={records}
                         onSelect={handleSelect}
                     />

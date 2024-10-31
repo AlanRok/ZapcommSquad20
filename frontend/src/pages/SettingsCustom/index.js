@@ -20,6 +20,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Checkbox from '@material-ui/core/Checkbox';
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import HelpsManager from "../../components/HelpsManager";
+import ConfirmationModal from "../ConfirmationModal";
 
 
 
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#E0E0E0",
-      fontWright: 'bold',
+      fontWeight: 'bold',
     },
   },
   active: {
@@ -73,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
   tableContainer: {
     marginTop: theme.spacing(0),
     backgroundColor: '#FFFFFF',
+    width: '100%',
   },
   tableCellCheckboxImage: {
     alignItems: 'center',
@@ -276,7 +279,6 @@ const SettingsCustom = () => {
     }
   };
   const handleEdit = (index) => {
-    // Preenche o formulário com os dados da linha selecionada
     const selectedRow = tableData[index];
     setNome(selectedRow.nome);
     setEmail(selectedRow.email);
@@ -286,10 +288,9 @@ const SettingsCustom = () => {
     setCampanhas(selectedRow.campanhas);
     setVencimento(selectedRow.vencimento);
     setRecorrencia(selectedRow.recorrencia);
-    setEditingIndex(index); // Define o índice da linha que está sendo editada
+    setEditingIndex(index); 
   };
   const handleDelete = (index) => {
-    // Remove a linha da tabela
     setTableData((prevData) => prevData.filter((_, i) => i !== index));
     toast.success("Empresa excluída com sucesso!");
   };
@@ -304,201 +305,17 @@ const SettingsCustom = () => {
   const renderSidebarItem = (label, value) => (
     <div
       className={`${classes.sidebarItem} ${tab === value ? classes.active : ""}`}
-      onClick={() => {
-        if (value === "helps") {
-          setHelpSubOptionsVisible(!isHelpSubOptionsVisible);
-          setHelpTab("");
-        } else {
-          handleTabChange(value);
-        }
-      }}
-    >
+      onClick={() => handleTabChange(value)}>
       {label}
     </div>
-  );
-  const renderHelpTab = () => {
-    if (helpTab == 'tutorials') {
-      return (
-
-        <div>
-          <MainHeader>
-            <TextField
-              id="outlined-basic"
-              label=""
-              variant="outlined"
-              size="small"
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-                style: {
-                  borderRadius: "5px",
-                  display: 'flex',
-                  backgroundColor: 'white',
-                  marginTop: '68px',
-                },
-              }}
-            />
-          </MainHeader>
-          <div style={{ marginTop: '27px', color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
-            <h2>Todos os Links</h2>
-          </div>
-          <div fullWidth>
-            <TableContainer component={Paper}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableCellCheckbox}>
-                      <Checkbox />
-                      Vídeo
-                    </TableCell>
-                    <TableCell align='center'>Link</TableCell>
-                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {["Vídeo 1", "Vídeo 2", "Vídeo 3", "Vídeo 4"].map(
-                    (video, index) => (
-                      <TableRow key={index}>
-                        <TableCell className={classes.tableCellCheckbox}>
-                          <Checkbox />
-                          {video}
-                        </TableCell>
-                        <TableCell className={classes.tableCellLink} align="center">
-                          <a
-                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                          </a>
-                        </TableCell>
-                        <TableCell align="center" className={classes.actionCell}>
-                          <img
-                            src={pencilicon}
-                            alt="edit"
-                            className={classes.actionIcon}
-                          />
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </div>
-      );
-    }
-    if (helpTab == 'administration') {
-      return (
-        <div>
-          <MainHeader>
-            <TextField
-              id="outlined-basic"
-              label=""
-              variant="outlined"
-              size="small"
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              fullWidth
-
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-                style: {
-                  borderRadius: "5px",
-                  display: 'flex',
-                  backgroundColor: 'white',
-                  marginTop: '68px',
-                },
-              }}
-            />
-          </MainHeader>
-
-          <div style={{ color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
-            <h2>Todos os Links</h2>
-          </div>
-          <div >
-            <TableContainer component={Paper} className={classes.tableContainer}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableCellCheckboxImage}> <Checkbox />Contato</TableCell>
-                    <TableCell align="center">Link</TableCell>
-                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {["Trevor C. Lemon", "Sheila M. Dooley", "Marcela S. Ferrais", "Marcos C. Pinheiro"].map(
-                    (contato, index) => (
-                      <TableRow key={index}>
-                        <TableCell className={classes.tableCellCheckboxImage}>
-                          <Checkbox />
-                          {contato}
-                        </TableCell>
-                        <TableCell className={classes.tableCellLink} align="center">
-                          <a
-                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                          </a>
-                        </TableCell>
-                        <TableCell align="center" className={classes.actionCell}>
-                          <img src={pencilicon} alt="edit" className={classes.actionIcon} />
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </div>
-
-      );
-    }
-    return null;
-  };
+  )
   return (
     <div className={classes.root}>
       <div className={classes.sidebar}>
         <h3>Configurações</h3>
         {renderSidebarItem("Opções", "options")}
         {renderSidebarItem("Empresas", "companies")}
-        <div onClick={() => setHelpSubOptionsVisible(!isHelpSubOptionsVisible)}>
-          <div
-            className={`${classes.sidebarItem} ${tab === "helps" ? classes.active : ""}`}
-          >
-            Ajuda
-            <ExpandMore position='end' align='center' style={{ marginLeft: 13, algin: 'center', transform: isHelpSubOptionsVisible ? 'rotate(180deg)' : 'rotate(0deg)', color: "gray" }} />
-          </div>
-        </div>
-        {isHelpSubOptionsVisible && (
-          <div style={{ marginLeft: '20px' }}>
-            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("tutorials")}>
-              Tutoriais
-            </div>
-            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("administration")}>
-              Administração
-            </div>
-          </div>
-        )}
+        {renderSidebarItem("Ajuda", "helps")}
       </div>
       <div className={classes.content}>
         {tab === "options" && (
@@ -510,6 +327,12 @@ const SettingsCustom = () => {
                 setSchedulesEnabled(value === "company")
               }
             />
+          </div>
+        )}
+        {tab === "helps" && (
+          <div className={classes.whiteBox}>
+            <h2>Ajuda</h2>
+            <HelpsManager />
           </div>
         )}
         {tab == 'companies' && (
@@ -612,9 +435,6 @@ const SettingsCustom = () => {
             </TableContainer>
           </div>
         )}
-        {tab === "helps" && renderHelpTab()}
-
-
       </div>
     </div>
   );
