@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, Paper, Tabs, Tab, Button, TextField, MenuItem, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { makeStyles, Paper, Tabs, Tab, Button, TextField, MenuItem, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from "@material-ui/core";
+import { DeleteOutline } from "@material-ui/icons";
 import EditIcon from '@material-ui/icons/Edit';
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -19,6 +20,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Checkbox from '@material-ui/core/Checkbox';
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import HelpsManager from "../../components/HelpsManager";
+import ConfirmationModal from "../ConfirmationModal";
 
 
 
@@ -41,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#E0E0E0",
-      fontWright: 'bold',
+      fontWeight: 'bold',
     },
   },
   active: {
@@ -72,13 +75,21 @@ const useStyles = makeStyles((theme) => ({
   tableContainer: {
     marginTop: theme.spacing(0),
     backgroundColor: '#FFFFFF',
+    width: '100%',
   },
   tableCellCheckboxImage: {
     alignItems: 'center',
   },
   TableCell: {
     border: '2px solid rgba(0, 0, 0, 0.25)',
+    borderCollapse: 'collapse',
     borderRadius: '2px',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderBottom: '2px solid rgba(0, 0, 0, 0.25)',
+    borderTop: 'none',
+    align: 'center',
+    textAlign: 'center',
   },
   whiteBox: {
     backgroundColor: '#FFFFFF',
@@ -99,7 +110,8 @@ const useStyles = makeStyles((theme) => ({
   },
   table: {
     minWidth: 650,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    border: '2px solid rgba(0, 0, 0, 0.25)',
   },
   inputEmpresas: {
     backgroundColor: '#F8F8F9',
@@ -123,8 +135,14 @@ const useStyles = makeStyles((theme) => ({
 
   },
   actionCell: {
-    paddingRight: theme.spacing(4),
-    textAlign: 'Center'
+    align: 'center',
+    textAlign: 'Center',
+    borderBottom: '2px solid rgba(0, 0, 0, 0.25)',
+    borderLeft: 'none',
+    borderRight: 'none',
+    borderTop: 'none',
+    borderRadius: '2px',
+    margin: '0 4px',
   },
   actionIcon: {
     cursor: "pointer",
@@ -155,14 +173,32 @@ const SettingsCustom = () => {
   const [emailError, setEmailError] = useState('');
   const [telefoneError, setTelefoneError] = useState('');
   const [searchParam, setSearchParam] = useState("");
-  const imageArray = [
-  ];
-
-
+  const [tableData, setTableData] = useState([{
+    nome: "Empresa 1",
+    email: "-",
+    telefone: "-",
+    plano: "Plano1",
+    campanhas: "Desabilitadas",
+    status: "Sim",
+    createdAt: "xx/xx/xxxx",
+    vencimento: "xx/xx/xxxx",
+  },
+  {
+    nome: "Empresa 2",
+    email: "-",
+    telefone: "-",
+    plano: "Plano2",
+    campanhas: "Habilitadas",
+    status: "Não",
+    createdAt: "xx/xx/xxxx",
+    vencimento: "xx/xx/xxxx",
+  },
+  ]);;
+  const [editingIndex, setEditingIndex] = useState(null);
+  const imageArray = [];
   const handleSearch = (event) => {
     setSearchParam(event.target.value.toLowerCase());
   };
-  const [tableData, setTableData] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -190,6 +226,7 @@ const SettingsCustom = () => {
     setRecorrencia('');
     setEmailError('');
     setTelefoneError('');
+    setEditingIndex(null);
   };
 
   const validateEmail = () => {
@@ -228,9 +265,34 @@ const SettingsCustom = () => {
         recorrencia,
         createdAt: new Date().toLocaleDateString(),
       };
-      setTableData((prevData) => [...prevData, newEntry]);
+      if (editingIndex !== null) {
+        setTableData((prevData) =>
+          prevData.map((item, index) =>
+            index === editingIndex ? newEntry : item
+          )
+        );
+      } else {
+        setTableData((prevData) => [...prevData, newEntry]);
+      }
+
       handleClear();
     }
+  };
+  const handleEdit = (index) => {
+    const selectedRow = tableData[index];
+    setNome(selectedRow.nome);
+    setEmail(selectedRow.email);
+    setTelefone(selectedRow.telefone);
+    setPlano(selectedRow.plano);
+    setStatus(selectedRow.status);
+    setCampanhas(selectedRow.campanhas);
+    setVencimento(selectedRow.vencimento);
+    setRecorrencia(selectedRow.recorrencia);
+    setEditingIndex(index); 
+  };
+  const handleDelete = (index) => {
+    setTableData((prevData) => prevData.filter((_, i) => i !== index));
+    toast.success("Empresa excluída com sucesso!");
   };
   const [isHelpSubOptionsVisible, setHelpSubOptionsVisible] = useState(false);
   const [helpTab, setHelpTab] = useState("tutorials");
@@ -243,201 +305,17 @@ const SettingsCustom = () => {
   const renderSidebarItem = (label, value) => (
     <div
       className={`${classes.sidebarItem} ${tab === value ? classes.active : ""}`}
-      onClick={() => {
-        if (value === "helps") {
-          setHelpSubOptionsVisible(!isHelpSubOptionsVisible);
-          setHelpTab("");
-        } else {
-          handleTabChange(value);
-        }
-      }}
-    >
+      onClick={() => handleTabChange(value)}>
       {label}
     </div>
-  );
-  const renderHelpTab = () => {
-    if (helpTab == 'tutorials') {
-      return (
-
-        <div>
-          <MainHeader>
-            <TextField
-              id="outlined-basic"
-              label=""
-              variant="outlined"
-              size="small"
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-                style: {
-                  borderRadius: "5px",
-                  display: 'flex',
-                  backgroundColor: 'white',
-                  marginTop: '68px',
-                },
-              }}
-            />
-          </MainHeader>
-          <div style={{ marginTop: '27px', color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
-            <h2>Todos os Links</h2>
-          </div>
-          <div fullWidth>
-            <TableContainer component={Paper}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableCellCheckbox}>
-                      <Checkbox />
-                      Vídeo
-                    </TableCell>
-                    <TableCell align='center'>Link</TableCell>
-                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {["Vídeo 1", "Vídeo 2", "Vídeo 3", "Vídeo 4"].map(
-                    (video, index) => (
-                      <TableRow key={index}>
-                        <TableCell className={classes.tableCellCheckbox}>
-                          <Checkbox />
-                          {video}
-                        </TableCell>
-                        <TableCell className={classes.tableCellLink} align="center">
-                          <a
-                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                          </a>
-                        </TableCell>
-                        <TableCell align="center" className={classes.actionCell}>
-                          <img
-                            src={pencilicon}
-                            alt="edit"
-                            className={classes.actionIcon}
-                          />
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </div>
-      );
-    }
-    if (helpTab == 'administration') {
-      return (
-        <div>
-          <MainHeader>
-            <TextField
-              id="outlined-basic"
-              label=""
-              variant="outlined"
-              size="small"
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              fullWidth
-
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-                style: {
-                  borderRadius: "5px",
-                  display: 'flex',
-                  backgroundColor: 'white',
-                  marginTop: '68px',
-                },
-              }}
-            />
-          </MainHeader>
-
-          <div style={{ color: "#192F64", fontSize: "10px", textDecoration: 'underline' }}>
-            <h2>Todos os Links</h2>
-          </div>
-          <div >
-            <TableContainer component={Paper} className={classes.tableContainer}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={classes.tableCellCheckboxImage}> <Checkbox />Contato</TableCell>
-                    <TableCell align="center">Link</TableCell>
-                    <TableCell align="center" className={classes.actionCell}>Ação</TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {["Trevor C. Lemon", "Sheila M. Dooley", "Marcela S. Ferrais", "Marcos C. Pinheiro"].map(
-                    (contato, index) => (
-                      <TableRow key={index}>
-                        <TableCell className={classes.tableCellCheckboxImage}>
-                          <Checkbox />
-                          {contato}
-                        </TableCell>
-                        <TableCell className={classes.tableCellLink} align="center">
-                          <a
-                            href={`https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit#${index}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            https://docs.google.com/document/d/1lwbwMPhTGQfGFOf3D9MjxriNZg2iYF5eLz4DRgXPkac/edit
-                          </a>
-                        </TableCell>
-                        <TableCell align="center" className={classes.actionCell}>
-                          <img src={pencilicon} alt="edit" className={classes.actionIcon} />
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        </div>
-
-      );
-    }
-    return null;
-  };
+  )
   return (
     <div className={classes.root}>
       <div className={classes.sidebar}>
         <h3>Configurações</h3>
         {renderSidebarItem("Opções", "options")}
         {renderSidebarItem("Empresas", "companies")}
-        <div onClick={() => setHelpSubOptionsVisible(!isHelpSubOptionsVisible)}>
-          <div
-            className={`${classes.sidebarItem} ${tab === "helps" ? classes.active : ""}`}
-          >
-            Ajuda
-            <ExpandMore position='end' align='center' style={{ marginLeft: 13, algin: 'center', transform: isHelpSubOptionsVisible ? 'rotate(180deg)' : 'rotate(0deg)', color: "gray" }} />
-          </div>
-        </div>
-        {isHelpSubOptionsVisible && (
-          <div style={{ marginLeft: '20px' }}>
-            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("tutorials")}>
-              Tutoriais
-            </div>
-            <div className={classes.sidebarItem} onClick={() => handleHelpSubOptionClick("administration")}>
-              Administração
-            </div>
-          </div>
-        )}
+        {renderSidebarItem("Ajuda", "helps")}
       </div>
       <div className={classes.content}>
         {tab === "options" && (
@@ -449,6 +327,12 @@ const SettingsCustom = () => {
                 setSchedulesEnabled(value === "company")
               }
             />
+          </div>
+        )}
+        {tab === "helps" && (
+          <div className={classes.whiteBox}>
+            <h2>Ajuda</h2>
+            <HelpsManager />
           </div>
         )}
         {tab == 'companies' && (
@@ -511,48 +395,23 @@ const SettingsCustom = () => {
               </Button>
             </div>
             <TableContainer component={Paper} style={{ marginTop: '84px' }}>
-              <Table className={classes.table} style={{ backgroundColor: "#FFFFFF", borderCollapse: 'none' }}>
+              <Table className={classes.table} style={{ borderCollapse: 'none' }}>
                 <TableHead>
                   <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>#</TableCell>
                     <TableCell className={classes.TableCell}>Nome</TableCell>
-                    <TableCell className={classes.TableCell}>E-mail</TableCell>
+                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>E-mail</TableCell>
                     <TableCell className={classes.TableCell}>Telefone</TableCell>
                     <TableCell className={classes.TableCell}>Plano</TableCell>
                     <TableCell className={classes.TableCell}>Campanhas</TableCell>
                     <TableCell className={classes.TableCell}>Status</TableCell>
                     <TableCell className={classes.TableCell}>Criado Em</TableCell>
                     <TableCell className={classes.TableCell}>Vencimento</TableCell>
+                    <TableCell className={classes.TableCell} align="center">Ações</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
-                    <TableCell className={classes.TableCell}>Empresa 1</TableCell>
-                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
-                    <TableCell className={classes.TableCell} align="center">-</TableCell>
-                    <TableCell className={classes.TableCell}>Plano1</TableCell>
-                    <TableCell className={classes.TableCell}>Desabilitadas</TableCell>
-                    <TableCell className={classes.TableCell}>Sim</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                  </TableRow>
-                  <TableRow style={{ fontWeight: 'bold' }}>
-                    <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}><img src={pencilicon}></img></TableCell>
-                    <TableCell className={classes.TableCell}>Empresa 2</TableCell>
-                    <TableCell className={classes.TableCell} align='center'>-</TableCell>
-                    <TableCell className={classes.TableCell} align="center">-</TableCell>
-                    <TableCell className={classes.TableCell}>Plano2</TableCell>
-                    <TableCell className={classes.TableCell}>Habilitadas</TableCell>
-                    <TableCell className={classes.TableCell}>Sim</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                    <TableCell className={classes.TableCell} align="center">xx/xx/xxxx</TableCell>
-                  </TableRow>
                   {tableData.map((row, index) => (
                     <TableRow key={index}>
-                      <TableCell className={classes.TableCell} style={{ textAlign: 'center' }}>
-                        <img src={pencilicon} alt="edit" />
-                      </TableCell>
                       <TableCell className={classes.TableCell}>{row.nome}</TableCell>
                       <TableCell className={classes.TableCell}>{row.email || '-'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.telefone || '-'}</TableCell>
@@ -561,6 +420,14 @@ const SettingsCustom = () => {
                       <TableCell className={classes.TableCell}>{row.status || 'Sim'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.createdAt || 'xx/xx/xxxx'}</TableCell>
                       <TableCell className={classes.TableCell}>{row.vencimento || 'xx/xx/xxxx'}</TableCell>
+                      <TableCell className={classes.actionCell}>
+                        <IconButton onClick={() => handleEdit(index)} size='small'>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton onClick={() => handleDelete(index)} size='small'>
+                          <DeleteOutline />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -568,9 +435,6 @@ const SettingsCustom = () => {
             </TableContainer>
           </div>
         )}
-        {tab === "helps" && renderHelpTab()}
-
-
       </div>
     </div>
   );
