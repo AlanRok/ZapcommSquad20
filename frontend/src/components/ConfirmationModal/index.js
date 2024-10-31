@@ -15,29 +15,35 @@ const ConfirmationModal = ({ title, children, open, onClose, onConfirm }) => {
 			onClose={() => onClose(false)}
 			aria-labelledby="confirm-dialog"
 		>
-			<DialogTitle id="confirm-dialog">{title}</DialogTitle>
-			<DialogContent dividers>
-				<Typography>{children}</Typography>
-			</DialogContent>
-			<DialogActions>
-				<Button
-					variant="contained"
-					onClick={() => onClose(false)}
-					color="default"
-				>
-					{i18n.t("confirmationModal.buttons.cancel")}
-				</Button>
-				<Button
-					variant="contained"
-					onClick={() => {
-						onClose(false);
-						onConfirm();
-					}}
-					color="secondary"
-				>
-					{i18n.t("confirmationModal.buttons.confirm")}
-				</Button>
-			</DialogActions>
+			<div style={{ backgroundColor: '#FFFFFF' }}>
+				<DialogTitle id="confirm-dialog">{title}</DialogTitle>
+				<DialogContent dividers>
+					<Typography>{children}</Typography>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						style={{
+							backgroundColor: '#F6F874',
+							color: '#FFFFFF',
+						}}
+						variant="contained"
+						onClick={() => onClose(false)}
+
+					>
+						{i18n.t("confirmationModal.buttons.cancel")}
+					</Button>
+					<Button
+						variant="contained"
+						onClick={() => {
+							onClose(false);
+							onConfirm();
+						}}
+						color="secondary"
+					>
+						{i18n.t("confirmationModal.buttons.confirm")}
+					</Button>
+				</DialogActions>
+			</div>
 		</Dialog>
 	);
 };
