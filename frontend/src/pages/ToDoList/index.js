@@ -9,32 +9,38 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-
+import MainContainer from '../../components/MainContainer';
+import Title from '../../components/Title';
+import { TableRow } from '@material-ui/core';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    margin: '2rem'
+  },
+  title: {
+    fontWeight: "normal",
+    fontSize: "1.6em"
   },
   inputContainer: {
     display: 'flex',
     width: '100%',
-    marginBottom: '1rem'
   },
   input: {
     flexGrow: 1,
-    marginRight: '1rem'
+    marginRight: '1rem',
+    backgroundColor: "white",
   },
   listContainer: {
     width: '100%',
     height: '100%',
     marginTop: '1rem',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "white",
+    border: "solid, #E0E0E0, 1px",
     borderRadius: '5px',
   },
   list: {
-    marginBottom: '5px'
+    borderBottom: "1px solid #ddd",
   }
 });
 
@@ -93,37 +99,38 @@ const ToDoList = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.inputContainer}>
-        <TextField
-          className={classes.input}
-          label="Nova tarefa"
-          value={task}
-          onChange={handleTaskChange}
-          variant="outlined"
-        />
-        <Button variant="contained" color="primary" onClick={handleAddTask}>
-          {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
-        </Button>
-      </div>
-      <div className={classes.listContainer}>
-        <List>
-          {tasks.map((task, index) => (
-            <ListItem key={index} className={classes.list}>
-              <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
-              <ListItemSecondaryAction>
-                <IconButton onClick={() => handleEditTask(index)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton onClick={() => handleDeleteTask(index)}>
-                  <DeleteIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    </div>
+      <MainContainer className={classes.root}>
+        <h1 className={classes.title}>Tarefas ({tasks.length})</h1>
+        <div className={classes.inputContainer}>
+          <TextField
+            className={classes.input}
+            label="Nova tarefa"
+            value={task}
+            onChange={handleTaskChange}
+            variant="outlined"
+          />
+          <Button variant="contained" color="primary" onClick={handleAddTask}>
+            {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
+          </Button>
+        </div>
+        <div className={classes.listContainer}>
+          <List>
+            {tasks.map((task, index) => (
+              <ListItem key={index} className={classes.list}>
+                <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
+                <ListItemSecondaryAction>
+                  <IconButton onClick={() => handleEditTask(index)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton onClick={() => handleDeleteTask(index)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+        </div>
+    </MainContainer>
   );
 };
 
