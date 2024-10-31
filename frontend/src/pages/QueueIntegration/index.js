@@ -20,6 +20,7 @@ import {
   TableHead,
   TableRow,
   TextField,
+  Box,
   Tooltip
 } from "@material-ui/core";
 
@@ -101,6 +102,10 @@ const useStyles = makeStyles((theme) => ({
     width: "140px",
     height: "40px",
     borderRadius: 4
+  },
+  searchField: {
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
@@ -247,19 +252,6 @@ const QueueIntegration = () => {
       <MainHeader>
         <Title>{i18n.t("queueIntegration.title")} ({queueIntegration.length})</Title>
         <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon color="secondary" />
-                </InputAdornment>
-              ),
-            }}
-          />
           <Button
             variant="contained"
             color="primary"
@@ -269,6 +261,27 @@ const QueueIntegration = () => {
           </Button>
         </MainHeaderButtonsWrapper>
       </MainHeader>
+
+      <Box mb={2}>
+        <TextField
+          placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+          type="search"
+          variant="outlined"
+          size="small"
+          value={searchParam}
+          onChange={handleSearch}
+          fullWidth
+          className={classes.searchField}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="grey" />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -280,21 +293,26 @@ const QueueIntegration = () => {
               <TableCell padding="checkbox"></TableCell>
               <TableCell align="center">{i18n.t("queueIntegration.table.id")}</TableCell>
               <TableCell align="center">{i18n.t("queueIntegration.table.name")}</TableCell>
+              <TableCell align="center">{i18n.t("queueIntegration.table.actions")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <>
               {queueIntegration.map((integration) => (
                 <TableRow key={integration.id}>
-                  <TableCell >
-                    {integration.type === "dialogflow" && (<Avatar 
-                      src={dialogflow} className={classes.avatar} />)}
-                    {integration.type === "n8n" && (<Avatar
-                      src={n8n} className={classes.avatar} />)}
-                    {integration.type === "webhook" && (<Avatar
-                      src={webhooks} className={classes.avatar} />)}
-                    {integration.type === "typebot" && (<Avatar
-                      src={typebot} className={classes.avatar} />)}
+                  <TableCell>
+                    {integration.type === "dialogflow" && (
+                      <Avatar src={dialogflow} className={classes.avatar} />
+                    )}
+                    {integration.type === "n8n" && (
+                      <Avatar src={n8n} className={classes.avatar} />
+                    )}
+                    {integration.type === "webhook" && (
+                      <Avatar src={webhooks} className={classes.avatar} />
+                    )}
+                    {integration.type === "typebot" && (
+                      <Avatar src={typebot} className={classes.avatar} />
+                    )}
                   </TableCell>
 
                   <TableCell align="center">{integration.id}</TableCell>
@@ -322,6 +340,10 @@ const QueueIntegration = () => {
               {loading && <TableRowSkeleton columns={7} />}
             </>
           </TableBody>
+
+
+
+
         </Table>
       </Paper>
     </MainContainer>
