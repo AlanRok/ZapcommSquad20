@@ -173,6 +173,7 @@ const FilesModal = ({ open, onClose, fileListId, reload }) => {
     return (
         <div className={classes.root}>
             <Dialog
+                PaperProps={{ style: { borderRadius: 16, padding: 20 } }}
                 open={open}
                 onClose={handleClose}
                 maxWidth="md"
