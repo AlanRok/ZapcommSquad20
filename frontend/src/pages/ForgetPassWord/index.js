@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100vw",
     height: "100vh",
-    background: "black", //Cor de fundo
+    background: "white", //Cor de fundo
     backgroundRepeat: "no-repeat",
     backgroundSize: "100% 100%",
     backgroundPosition: "center",
@@ -174,7 +174,7 @@ const handleSendEmail = async (values) => {
               alt="Whats"
             />
           </div>
-          <Typography component="h1" variant="h5">
+          <Typography font-size="16px">
             {i18n.t("Redefinir senha")}
           </Typography>
           <Formik
@@ -322,6 +322,7 @@ const handleSendEmail = async (values) => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    style={{backgroundColor: "#0C2454"}}
                   >
                     Enviar Email
                   </Button>

@@ -268,23 +268,11 @@ const Contacts = () => {
       <MainHeader>
         <Title>{i18n.t("contacts.title")}</Title>
         <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
           <Button
             variant="contained"
             color="primary"
             onClick={(e) => setConfirmOpen(true)}
+            style={{backgroundColor: "#192F64"}}
           >
             {i18n.t("contacts.buttons.import")}
           </Button>
@@ -292,18 +280,39 @@ const Contacts = () => {
             variant="contained"
             color="primary"
             onClick={handleOpenContactModal}
+            style={{backgroundColor: "#192F64"}}
           >
             {i18n.t("contacts.buttons.add")}
           </Button>
 
          <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-          <Button	variant="contained" color="primary"> 
+          <Button	variant="contained" color="primary" style={{backgroundColor: "#192F64"}}> 
           EXPORTAR CONTATOS 
           </Button>
           </CSVLink>		  
 
         </MainHeaderButtonsWrapper>
       </MainHeader>
+          {/* BARRA DE PESQUISA DE CONTATO */}
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("contacts.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
+            }}
+          />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -327,52 +336,62 @@ const Contacts = () => {
           </TableHead>
           <TableBody>
             <>
-              {contacts.map((contact) => (
-                <TableRow key={contact.id}>
-                  <TableCell style={{ paddingRight: 0 }}>
-                    {<Avatar src={contact.profilePicUrl} />}
-                  </TableCell>
-                  <TableCell>{contact.name}</TableCell>
-                  <TableCell align="center">{contact.number}</TableCell>
-                  <TableCell align="center">{contact.email}</TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        setContactTicket(contact);
-                        setNewTicketModalOpen(true);
-                      }}
-                    >
-                      <WhatsAppIcon />
-                    </IconButton>
-                    <IconButton
-                      size="small"
-                      onClick={() => hadleEditContact(contact.id)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <Can
-                      role={user.profile}
-                      perform="contacts-page:deleteContact"
-                      yes={() => (
-                        <IconButton
-                          size="small"
-                          onClick={(e) => {
-                            setConfirmOpen(true);
-                            setDeletingContact(contact);
-                          }}
-                        >
-                          <DeleteOutlineIcon />
-                        </IconButton>
-                      )}
-                    />
+    {/* Da linha 337 até a 343 adicionei uma op ternária para conferir se há contato ou não e exibir que não tem caso não tenha*/}
+              {contacts.length === 0 && !loading ? (
+                <TableRow>
+                  <TableCell colSpan={5} align="center">
+                    Nenhum contato foi encontrado    
                   </TableCell>
                 </TableRow>
-              ))}
+              ) : (
+                contacts.map((contact) => (
+                  <TableRow key={contact.id}>
+                    <TableCell style={{ paddingRight: 0 }}>
+                      <Avatar src={contact.profilePicUrl} />
+                    </TableCell>
+                    <TableCell>{contact.name}</TableCell>
+                    <TableCell align="center">{contact.number}</TableCell>
+                    <TableCell align="center">{contact.email}</TableCell>
+                    <TableCell align="center">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setContactTicket(contact);
+                          setNewTicketModalOpen(true);
+                        }}
+                      >
+                        <WhatsAppIcon />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        onClick={() => hadleEditContact(contact.id)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <Can
+                        role={user.profile}
+                        perform="contacts-page:deleteContact"
+                        yes={() => (
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              setConfirmOpen(true);
+                              setDeletingContact(contact);
+                            }}
+                          >
+                            <DeleteOutlineIcon />
+                          </IconButton>
+                        )}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
               {loading && <TableRowSkeleton avatar columns={3} />}
             </>
           </TableBody>
         </Table>
+
       </Paper>
     </MainContainer>
   );

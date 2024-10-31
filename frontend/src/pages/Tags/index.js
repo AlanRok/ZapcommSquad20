@@ -19,6 +19,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Checkbox from '@mui/material/Checkbox';
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -89,6 +90,11 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
+
+  pesquisa :{
+    backgroundColor: "white",
+    marginBottom: theme.spacing(1),
+  }
 }));
 
 const Tags = () => {
@@ -217,21 +223,8 @@ return (
         tagId={selectedTag && selectedTag.id}
       />
       <MainHeader>
-        <Title>{i18n.t("tags.title")}</Title>
+        <Title>{i18n.t("tags.title")} ({tags.length})</Title>
         <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
           <Button
             variant="contained"
             color="primary"
@@ -241,6 +234,21 @@ return (
           </Button>		  
         </MainHeaderButtonsWrapper>
       </MainHeader>
+      <TextField className= {classes.pesquisa}
+            variant="outlined"
+            margin="dense"
+            placeholder={i18n.t("contacts.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon style={{ color: "rgb(23, 23, 23)" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -264,10 +272,8 @@ return (
                 <TableRow key={tag.id}>
                   <TableCell align="center">
                     <Chip
-                      variant="outlined"
                       style={{
                         backgroundColor: tag.color,
-                        textShadow: "1px 1px 1px #000",
                         color: "white",
                       }}
                       label={tag.name}

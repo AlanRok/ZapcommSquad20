@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+
   },
 
   multFieldLine: {
@@ -53,6 +54,19 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -12,
     marginLeft: -12,
   },
+  textField: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: '10px',
+
+  },
+  WhatsAppModalField: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: '10px',
+  },
+  DialogActionss: {
+    justifyContent: 'flex-end',
+    marginRight: theme.spacing(2),
+  }
 }));
 
 const SessionSchema = Yup.object().shape({
@@ -73,8 +87,6 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
     isDefault: false,
     token: "",
     provider: "beta",
-    //timeSendQueue: 0,
-    //sendIdQueue: 0,
     expiresInactiveMessage: "",
     expiresTicket: 0,
     timeUseBotQueues: 0,
@@ -86,8 +98,8 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
   const [selectedQueueId, setSelectedQueueId] = useState(null)
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const [prompts, setPrompts] = useState([]);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     const fetchSession = async () => {
       if (!whatsAppId) return;
 
@@ -97,7 +109,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
 
         const whatsQueueIds = data.queues?.map((queue) => queue.id);
         setSelectedQueueIds(whatsQueueIds);
-		setSelectedQueueId(data.transferQueueId);
+        setSelectedQueueId(data.transferQueueId);
       } catch (err) {
         toastError(err);
       }
@@ -128,7 +140,7 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
   }, []);
 
   const handleSaveWhatsApp = async (values) => {
-const whatsappData = {
+    const whatsappData = {
       ...values, queueIds: selectedQueueIds, transferQueueId: selectedQueueId,
       promptId: selectedPrompt ? selectedPrompt : null
     };
@@ -161,7 +173,7 @@ const whatsappData = {
   const handleClose = () => {
     onClose();
     setWhatsApp(initialState);
-	  setSelectedQueueId(null);
+    setSelectedQueueId(null);
     setSelectedQueueIds([]);
   };
 
@@ -170,9 +182,12 @@ const whatsappData = {
       <Dialog
         open={open}
         onClose={handleClose}
-        maxWidth="md"
+        maxWidth="lg"
         fullWidth
         scroll="paper"
+        PaperProps={{
+          style: { backgroundColor: '#EBEFFF' }
+        }}
       >
         <DialogTitle>
           {whatsAppId
@@ -191,11 +206,11 @@ const whatsappData = {
           }}
         >
           {({ values, touched, errors, isSubmitting }) => (
-            <Form>
+            <Form >
               <DialogContent dividers>
                 <div className={classes.multFieldLine}>
                   <Grid spacing={2} container>
-                    <Grid item>
+                    <Grid item xs={12} md={6}>
                       <Field
                         as={TextField}
                         label={i18n.t("whatsappModal.form.name")}
@@ -206,23 +221,75 @@ const whatsappData = {
                         variant="outlined"
                         margin="dense"
                         className={classes.textField}
+                        fullWidth
                       />
                     </Grid>
-                    <Grid style={{ paddingTop: 15 }} item>
-                      <FormControlLabel
-                        control={
-                          <Field
-                            as={Switch}
-                            color="primary"
-                            name="isDefault"
-                            checked={values.isDefault}
-                          />
-                        }
-                        label={i18n.t("whatsappModal.form.default")}
+                    <Grid item xs={12} md={6}>
+                      <Field
+                        as={TextField}
+                        label={i18n.t("queueModal.form.token")}
+                        type="token"
+                        fullWidth
+                        name="token"
+                        variant="outlined"
+                        margin="dense"
+                        className={classes.WhatsAppModalField}
                       />
                     </Grid>
                   </Grid>
                 </div>
+
+                <Grid spacing={2} container>
+                  <Grid item xs={12} md={6}>
+                    <FormControl
+                      margin="dense"
+                      variant="outlined"
+                      fullWidth
+                    >
+                      <InputLabel >
+                        {i18n.t("whatsappModal.form.prompt")}
+                      </InputLabel>
+                      <Select
+                        className={classes.WhatsAppModalField}
+                        labelId="dialog-select-prompt-label"
+                        id="dialog-select-prompt"
+                        name="promptId"
+                        value={selectedPrompt || ""}
+                        onChange={handleChangePrompt}
+                        label={i18n.t("whatsappModal.form.prompt")}
+                        fullWidth
+                        MenuProps={{
+                          anchorOrigin: {
+                            vertical: "bottom",
+                            horizontal: "left",
+                          },
+                          transformOrigin: {
+                            vertical: "top",
+                            horizontal: "left",
+                          },
+                          getContentAnchorEl: null,
+                        }}
+                      >
+                        {prompts.map((prompt) => (
+                          <MenuItem
+                            key={prompt.id}
+                            value={prompt.id}
+                          >
+                            {prompt.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <QueueSelect
+                      selectedQueueIds={selectedQueueIds}
+                      onChange={(selectedIds) => handleChangeQueue(selectedIds)}
+                      className={classes.WhatsAppModalField}
+                      title={'Fila'}
+                    />
+                  </Grid>
+                </Grid>
                 <div>
                   <Field
                     as={TextField}
@@ -240,6 +307,7 @@ const whatsappData = {
                     }
                     variant="outlined"
                     margin="dense"
+                    className={classes.WhatsAppModalField}
                   />
                 </div>
                 <div>
@@ -260,6 +328,7 @@ const whatsappData = {
                     }
                     variant="outlined"
                     margin="dense"
+                    className={classes.WhatsAppModalField}
                   />
                 </div>
                 <div>
@@ -280,6 +349,7 @@ const whatsappData = {
                     }
                     variant="outlined"
                     margin="dense"
+                    className={classes.WhatsAppModalField}
                   />
                 </div>
                 <div>
@@ -297,92 +367,39 @@ const whatsappData = {
                     helperText={touched.ratingMessage && errors.ratingMessage}
                     variant="outlined"
                     margin="dense"
+                    className={classes.WhatsAppModalField}
                   />
                 </div>
-                <div>
-                  <Field
-                    as={TextField}
-                    label={i18n.t("queueModal.form.token")}
-                    type="token"
-                    fullWidth
-                    name="token"
-                    variant="outlined"
-                    margin="dense"
-                  />
-                </div>
-                <QueueSelect
-                  selectedQueueIds={selectedQueueIds}
-                  onChange={(selectedIds) => handleChangeQueue(selectedIds)}
-                />
-                <FormControl
-                  margin="dense"
-                  variant="outlined"
-                  fullWidth
-                >
-                  <InputLabel>
-                    {i18n.t("whatsappModal.form.prompt")}
-                  </InputLabel>
-                  <Select
-                    labelId="dialog-select-prompt-label"
-                    id="dialog-select-prompt"
-                    name="promptId"
-                    value={selectedPrompt || ""}
-                    onChange={handleChangePrompt}
-                    label={i18n.t("whatsappModal.form.prompt")}
-                    fullWidth
-                    MenuProps={{
-                      anchorOrigin: {
-                        vertical: "bottom",
-                        horizontal: "left",
-                      },
-                      transformOrigin: {
-                        vertical: "top",
-                        horizontal: "left",
-                      },
-                      getContentAnchorEl: null,
-                    }}
-                  >
-                    {prompts.map((prompt) => (
-                      <MenuItem
-                        key={prompt.id}
-                        value={prompt.id}
-                      >
-                        {prompt.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+
                 <div>
                   <h3>{i18n.t("whatsappModal.form.queueRedirection")}</h3>
                   <p>{i18n.t("whatsappModal.form.queueRedirectionDesc")}</p>
-				<Grid container spacing={2}>
-                  <Grid item sm={6} >
-                    <Field
-                      fullWidth
-                      type="number"
-                      as={TextField}
-                      label='Transferir após x (minutos)'
-                      name="timeToTransfer"
-                      error={touched.timeToTransfer && Boolean(errors.timeToTransfer)}
-                      helperText={touched.timeToTransfer && errors.timeToTransfer}
-                      variant="outlined"
-                      margin="dense"
-                      className={classes.textField}
-                      InputLabelProps={{ shrink: values.timeToTransfer ? true : false }}
-                    />
-
-                  </Grid>
-
-                  <Grid item sm={6}>
-                    <QueueSelect
-                      selectedQueueIds={selectedQueueId}
-                      onChange={(selectedId) => {
-                        setSelectedQueueId(selectedId)
-                      }}
-                      multiple={false}
-                      title={'Fila de Transferência'}
-                    />
-                  </Grid>
+                  <Grid container spacing={2}>
+                    <Grid item sm={6} >
+                      <Field
+                        fullWidth
+                        type="number"
+                        as={TextField}
+                        label='Transferir após x (minutos)'
+                        name="timeToTransfer"
+                        error={touched.timeToTransfer && Boolean(errors.timeToTransfer)}
+                        helperText={touched.timeToTransfer && errors.timeToTransfer}
+                        variant="outlined"
+                        margin="dense"
+                        className={classes.textField}
+                        InputLabelProps={{ shrink: values.timeToTransfer ? true : false }}
+                      />
+                    </Grid>
+                    <Grid item sm={6}>
+                      <QueueSelect
+                        selectedQueueIds={selectedQueueId}
+                        onChange={(selectedId) => {
+                          setSelectedQueueId(selectedId)
+                        }}
+                        multiple={false}
+                        title={'Fila de Transferência'}
+                      />
+                    </Grid>
 
                   </Grid>
                   <Grid spacing={2} container>
@@ -397,6 +414,7 @@ const whatsappData = {
                         margin="dense"
                         error={touched.expiresTicket && Boolean(errors.expiresTicket)}
                         helperText={touched.expiresTicket && errors.expiresTicket}
+                        className={classes.WhatsAppModalField}
                       />
                     </Grid>
                   </Grid>
@@ -413,14 +431,19 @@ const whatsappData = {
                       helperText={touched.expiresInactiveMessage && errors.expiresInactiveMessage}
                       variant="outlined"
                       margin="dense"
+                      className={classes.WhatsAppModalField}
                     />
                   </div>
                 </div>
               </DialogContent>
-              <DialogActions>
+              <DialogActions className={classes.DialogActionss}>
                 <Button
+                  style={{
+                    backgroundColor: '#FF0000',
+                    color: '#FFFFFF',
+                  }}
                   onClick={handleClose}
-                  color="secondary"
+
                   disabled={isSubmitting}
                   variant="outlined"
                 >
@@ -453,3 +476,23 @@ const whatsappData = {
 };
 
 export default React.memo(WhatsAppModal);
+
+
+
+/*
+Botão do whatsAppmodal (Padrão)
+
+    <Grid style={{ paddingTop: 15 }} item xs={12} md={6}>
+                      <FormControlLabel
+                        control={
+                          <Field
+                            as={Switch}
+                            color="primary"
+                            name="isDefault"
+                            checked={values.isDefault}
+                          />
+                        }
+                        label={i18n.t("whatsappModal.form.default")}
+                      />
+                    </Grid>
+*/

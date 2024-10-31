@@ -20,11 +20,14 @@ import ChatMessages from "./ChatMessages";
 import { UsersFilter } from "../../components/UsersFilter";
 import api from "../../services/api";
 import { SocketContext } from "../../context/Socket/SocketContext";
+import { i18n } from "../../translate/i18n";
+import Title from "../../components/Title";
 
 import { has, isObject } from "lodash";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import { VerticalAlignCenter } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -36,12 +39,13 @@ const useStyles = makeStyles((theme) => ({
     height: `calc(100% - 48px)`,
     overflowY: "hidden",
     border: "1px solid rgba(0, 0, 0, 0.12)",
+    backgroundColor: theme.palette.boxlist,
   },
   gridContainer: {
     flex: 1,
     height: "100%",
     border: "1px solid rgba(0, 0, 0, 0.12)",
-    backgroundColor: theme.palette.dark,
+    backgroundColor: "#fff",
   },
   gridItem: {
     height: "100%",
@@ -333,9 +337,10 @@ function Chat(props) {
   const renderGrid = () => {
     return (
       <Grid className={classes.gridContainer} container>
+        
         <Grid className={classes.gridItem} md={3} item>
-          
-            <div className={classes.btnContainer}>
+            <div className={classes.btnContainer} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Title >{i18n.t("Chat")}</Title>
               <Button
                 onClick={() => {
                   setDialogType("new");
@@ -344,7 +349,7 @@ function Chat(props) {
                 color="primary"
                 variant="contained"
               >
-                Nova
+                Novo chat
               </Button>
             </div>
           
