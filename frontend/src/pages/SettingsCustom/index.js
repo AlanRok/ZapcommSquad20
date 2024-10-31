@@ -21,7 +21,7 @@ import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper"
 import Checkbox from '@material-ui/core/Checkbox';
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import HelpsManager from "../../components/HelpsManager";
-import ConfirmationModal from "../ConfirmationModal";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 
 
