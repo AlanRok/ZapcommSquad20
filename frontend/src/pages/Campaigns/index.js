@@ -273,20 +273,7 @@ const Campaigns = () => {
           <Grid xs={12} sm={4} item>
             <Grid spacing={2} container>
               <Grid xs={6} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("campaigns.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                {/* para o botaão fica na direita */}
               </Grid>
               <Grid xs={6} sm={6} item>
                 <Button
@@ -302,6 +289,32 @@ const Campaigns = () => {
           </Grid>
         </Grid>
       </MainHeader>
+      {/* BARRA DE PESQUISA DE CAMPANHA */}
+      <TextField
+        fullWidth
+        id="outlined-basic" label="" variant="outlined"
+        size="small"
+        placeholder={i18n.t("campaigns.searchPlaceholder")}
+        type="search"
+        value={searchParam}
+        onChange={handleSearch}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon style={{ color: "gray" }} />
+            </InputAdornment>
+          ),
+          style: {
+            borderRadius: "3px",
+            width: "100%",
+            display: 'flex',
+            alignSelf: 'center',
+            backgroundColor: 'white',
+            marginTop: "10px",
+            marginBottom: "20px"
+          }
+        }}
+      />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -338,7 +351,14 @@ const Campaigns = () => {
           </TableHead>
           <TableBody>
             <>
-              {campaigns.map((campaign) => (
+            {campaigns.length === 0 && !loading ? (
+                <TableRow>
+                  <TableCell colSpan={10} align="center">
+                    Nenhuma campanha foi encontrada    
+                  </TableCell>
+                </TableRow>
+              ) : (
+              campaigns.map((campaign) => (
                 <TableRow key={campaign.id}>
                   <TableCell align="center">{campaign.name}</TableCell>
                   <TableCell align="center">
@@ -412,7 +432,8 @@ const Campaigns = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+              )}  
               {loading && <TableRowSkeleton columns={8} />}
             </>
           </TableBody>
