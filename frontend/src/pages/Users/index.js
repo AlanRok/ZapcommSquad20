@@ -219,43 +219,26 @@ const Users = () => {
     </Grid>
   </MainHeader>
   {/* Barra de Pesquisa */}
-  <Grid item xs={12} sm={12} style={{ marginBottom: '16px', width: "100%" }}>
         <TextField
           placeholder={i18n.t("contacts.searchPlaceholder")}
           type="search"
           variant="outlined"
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '& fieldset': {
-                border: 'none',
-              },
-              '&:hover fieldset': {
-                border: 'none',
-              },
-              '&.Mui-focused fieldset': {
-                border: 'none',
-              },
-            },
-          }}
+          size="small"
           fullWidth
           value={searchParam}
           onChange={handleSearch}
           InputProps={{
             style: {
-              backgroundColor: '#FFFFFF',
-              border: '2px solid #808080',
-              borderRadius: '5px',
-              height: '42px',
-              borderWidth: '0px',
+              borderRadius: "3px",
+              width: "100%",
+              display: 'flex',
+              alignSelf: 'center',
+              backgroundColor: 'white',
+              marginTop: "10px",
+              marginBottom: "20px"
             },
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon style={{ color: "gray" }} />
-              </InputAdornment>
-            ),
           }}
         />
-      </Grid>
 
   {/* Tabela e conteúdo abaixo */}
   <Grid item xs={12} sm={12} style={{ marginBottom: '16px',width: "100%" }}>
