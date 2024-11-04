@@ -40,11 +40,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  
-  searchField: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)", 
-    borderRadius: theme.shape.borderRadius, 
-  },
 }));
 
 const reducer = (state, action) => {
@@ -199,19 +194,28 @@ const Queues = () => {
           </Button>
         </MainHeaderButtonsWrapper>
       </MainHeader>
-
-      <Box mb={2}>
+        {/* BARRA DE PESQUISA  */}
         <TextField
-          label={i18n.t("queues.searchPlaceholder")}
+          id="outlined-basic"
           variant="outlined"
+          label=""
+          placeholder={i18n.t("queues.searchPlaceholder")}
           size="small"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           fullWidth
-          // Aplicando a classe personalizada
-          className={classes.searchField}
+          InputProps={{
+            style: {
+              borderRadius: "3px",
+              width: "100%",
+              display: 'flex',
+              alignSelf: 'center',
+              backgroundColor: 'white',
+              marginTop: "10px",
+              marginBottom: "20px"
+            }
+          }}
         />
-      </Box>
 
       <Paper className={classes.mainPaper} variant="outlined">
         <Table size="small">
