@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import { styled } from '@mui/material/styles';
+
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -89,69 +89,7 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
-  announcementSearchbar:{
-    
-  },
-  titleCell: {              //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  statusCell: {             //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  priorityCell: {           //fonte de uma coluna da linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  actionsCell: {            //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  contactsColuna: {            //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '600',
-  },
-  statusColuna: {            //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  priorityColuna: {            //fonte de uma coluna linha principal do "grafico"
-    fontSize: '15px',
-    fontWeight: '350',
-  },
-  Title:{
-    fontSize:'50px',
-    fontWeight: '350'
-  }
 }));
-
-const CustomTextField = styled(TextField)({
-  
-  backgroundColor: '#f0f0f0',
-  borderRadius: '5px',
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'green', // Cor da borda
-    },
-    '&:hover fieldset': {
-      borderColor: 'blue', // Cor da borda ao passar o mouse
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'red', // Cor da borda ao focar
-    },
-  },
-});
-
-function Form() {
-  return (
-    <CustomTextField
-      label="Customizado"
-      variant="outlined"
-      placeholder="Texto customizado"
-    />
-  );
-}
 
 const Announcements = () => {
   const classes = useStyles();
@@ -203,7 +141,7 @@ const Announcements = () => {
     const companyId = user.companyId;
     const socket = socketManager.getSocket(companyId);
 
-    socket.on(companyId-announcements, (data) => {
+    socket.on(`company-announcement`, (data) => {
       if (data.action === "update" || data.action === "create") {
         dispatch({ type: "UPDATE_ANNOUNCEMENTS", payload: data.record });
       }
@@ -313,67 +251,48 @@ const Announcements = () => {
         announcementId={selectedAnnouncement && selectedAnnouncement.id}
       />
       <MainHeader>
-      <Grid style={{ width: "99.6%" }} container>
-        <Grid xs={12} sm={12} item style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px'}}>
-          <Title >Informativos</Title>
-          <Button
-            variant="contained"
-            onClick={handleOpenAnnouncementModal}
-            color="primary"
-          >
-            {i18n.t("announcements.buttons.add")}
-          </Button>
+        <Grid style={{ width: "99.6%" }} container>
+          <Grid xs={12} sm={8} item>
+            <Title>{i18n.t("announcements.title")} ({announcements.length})</Title>
+          </Grid>
+          <Grid xs={12} sm={4} item>
+            <Grid spacing={2} container>
+              <Grid xs={6} sm={6} item>
+              </Grid>
+              <Grid xs={6} sm={6} item>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={handleOpenAnnouncementModal}
+                  color="primary"
+                >
+                  {i18n.t("announcements.buttons.add")}
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
-          {/* Mantém os outros componentes como estão */}
-  <Grid xs={12} sm={4} item>
-    <Grid spacing={2} container>
-      <Grid xs={6} sm={6} item style={{ marginBottom: '16px', width:'100%'}}> 
-        <TextField
-          variant="outlined"
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '& fieldset': {
-                border: 'none',  // Remove a borda normal
-              },
-              '&:hover fieldset': {
-               border: 'none',  // Remove o efeito de hover
-              },
-              '&.Mui-focused fieldset': {
-                border: 'none',  // Remove a borda ao focar
-              },
-            },
-          }}
-          fullWidth
-          placeholder={i18n.t("announcements.searchPlaceholder")}
-          type="search"
-          value={searchParam}
-          onChange={handleSearch}
-          InputProps={{
-            style: {
-              backgroundColor: '#FFFFFF',
-              border: '2px solid #808080',
-              borderRadius: '5px',
-              width: '1238px',
-              height: '42px',
-              borderWidth: '0px'
-            },
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon style={{ color: "grey" }} />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Grid>
-    </Grid>
-    <Grid xs={12} sm={15} item>
-      <Title>
-        {i18n.t("announcements.title")}({announcements.length})
-      </Title>
-    </Grid>
-  </Grid>
-</Grid>
       </MainHeader>
+      {/* BARRA DE PESQUISA  */}
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
+            }}
+          />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -382,16 +301,19 @@ const Announcements = () => {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell align="center" className={classes.titleCell}>
+              <TableCell align="center">
                 {i18n.t("announcements.table.title")}
               </TableCell>
-              <TableCell align="center" className={classes.statusCell}>
-                {i18n.t("announcements.table.status")}
-              </TableCell>
-              <TableCell align="center" className={classes.priorityCell}>
+              <TableCell align="center">
                 {i18n.t("announcements.table.priority")}
               </TableCell>
-              <TableCell align="center" className={classes.actionsCell}>
+              <TableCell align="center">
+                {i18n.t("announcements.table.mediaName")}
+              </TableCell>
+              <TableCell align="center">
+                {i18n.t("announcements.table.status")}
+              </TableCell>
+              <TableCell align="center">
                 {i18n.t("announcements.table.actions")}
               </TableCell>
             </TableRow>
@@ -400,14 +322,15 @@ const Announcements = () => {
             <>
               {announcements.map((announcement) => (
                 <TableRow key={announcement.id}>
-                  <TableCell align="center" className={classes.contactsColuna}>
-                    {announcement.title}
-                  </TableCell>
-                  <TableCell align="center" className={classes.statusColuna}>
-                    {announcement.status ? i18n.t("announcements.active") : i18n.t("announcements.inactive")}
-                  </TableCell>
-                  <TableCell align="center" className={classes.priorityColuna}>
+                  <TableCell align="center">{announcement.title}</TableCell>
+                  <TableCell align="center">
                     {translatePriority(announcement.priority)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {announcement.mediaName ?? i18n.t("quickMessages.noAttachment")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {announcement.status ? i18n.t("announcements.active") : i18n.t("announcements.inactive")}
                   </TableCell>
                   <TableCell align="center">
                     <IconButton
