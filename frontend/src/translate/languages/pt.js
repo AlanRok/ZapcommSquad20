@@ -756,6 +756,7 @@ const messages = {
       },
       queues: {
         title: "Filas & Chatbot",
+        searchPlaceholder: "Pesquisar filas...",
         table: {
 		  id:"ID",
           name: "Nome",

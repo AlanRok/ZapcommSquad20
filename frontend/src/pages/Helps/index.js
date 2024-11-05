@@ -86,9 +86,15 @@ const Helps = () => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+    // PARA PEGAR APENAS O ID DO VIDEO 
+  const getVideoId = (video) => {
+    return video.includes("youtube.com") ? video.split("v=")[1] : video;
+  }  
+    // PARA RODAR O VIDEO 
   const openVideoModal = (video) => {
-    setSelectedVideo(video);
+    const videoId = getVideoId(video)
+    // console.log("Video ID:", videoId); foi pra teste no console do site
+    setSelectedVideo(videoId);
   };
 
   const closeVideoModal = () => {
@@ -135,10 +141,15 @@ const Helps = () => {
     return (
       <>
         <div className={`${classes.mainPaper} ${classes.mainPaperContainer}`}>
-          {records.length ? records.map((record, key) => (
+          {/* para mostrar a Thumbnail do video, que originalmente
+          não estava carregando, pois só roda se tiver apenas o Id e não o link completo */}
+        {records.length ? records.map((record, key) => {
+        const videoId = getVideoId(record.video);
+        return (
+          
             <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} onClick={() => openVideoModal(record.video)}>
               <img
-                src={`https://img.youtube.com/vi/${record.video}/mqdefault.jpg`}
+                src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
                 alt="Thumbnail"
                 className={classes.videoThumbnail}
               />
@@ -149,7 +160,7 @@ const Helps = () => {
                 {record.description}
               </Typography>
             </Paper>
-          )) : null}
+          )}) : null}
         </div>
       </>
     );

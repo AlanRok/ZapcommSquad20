@@ -18,6 +18,7 @@ import {
   TextField,
   Grid,
   Paper,
+  Box,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -278,8 +279,8 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
                             type="jsonContent"
                             multiline
                             //inputRef={greetingRef}
-                            maxRows={5}
-                            minRows={5}
+                            maxRows={20}
+                            minRows={20}
                             fullWidth
                             name="jsonContent"
                             error={touched.jsonContent && Boolean(errors.jsonContent)}
@@ -447,7 +448,7 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
                             className={classes.textField}
                           />
                         </Grid>
-                        
+
                       </>
                     )}
                   </Grid>
@@ -455,27 +456,6 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
               </Paper>
 
               <DialogActions>
-                {values.type === "dialogflow" && (
-                  <Button
-                    //type="submit"
-                    onClick={(e) => handleTestSession(e, values)}
-                    color="inherit"
-                    disabled={isSubmitting}
-                    name="testSession"
-                    variant="outlined"
-                    className={classes.btnLeft}
-                  >
-                    {i18n.t("queueIntegrationModal.buttons.test")}
-                  </Button>
-                )}
-                <Button
-                  onClick={handleClose}
-                  color="secondary"
-                  disabled={isSubmitting}
-                  variant="outlined"
-                >
-                  {i18n.t("queueIntegrationModal.buttons.cancel")}
-                </Button>
                 <Button
                   type="submit"
                   color="primary"
@@ -493,7 +473,33 @@ const QueueIntegration = ({ open, onClose, integrationId }) => {
                     />
                   )}
                 </Button>
+
+                <Button
+                  onClick={handleClose}
+                  color="secondary"
+                  disabled={isSubmitting}
+                  variant="outlined"
+                >
+                  {i18n.t("queueIntegrationModal.buttons.cancel")}
+                </Button>
+
+                <Box flexGrow={1} />
+
+                {values.type === "dialogflow" && (
+                  <Button
+                    onClick={(e) => handleTestSession(e, values)}
+                    color="inherit"
+                    disabled={isSubmitting}
+                    name="testSession"
+                    variant="outlined"
+                    className={classes.btnLeft}
+                  >
+                    {i18n.t("queueIntegrationModal.buttons.test")}
+                  </Button>
+                )}
               </DialogActions>
+
+
             </Form>
           )}
         </Formik>
