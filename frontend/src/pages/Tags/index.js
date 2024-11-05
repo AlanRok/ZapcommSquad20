@@ -234,19 +234,24 @@ return (
           </Button>		  
         </MainHeaderButtonsWrapper>
       </MainHeader>
-      <TextField className= {classes.pesquisa}
-            variant="outlined"
-            margin="dense"
-            placeholder={i18n.t("contacts.searchPlaceholder")}
+        {/* BARRA DE PESQUISA  */}
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("quickMessages.searchPlaceholder")}
             type="search"
             value={searchParam}
             onChange={handleSearch}
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "rgb(23, 23, 23)" }} />
-                </InputAdornment>
-              ),
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
             }}
           />
       <Paper
