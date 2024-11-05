@@ -232,21 +232,26 @@ const FileLists = () => {
                     </Button>
                 </MainHeaderButtonsWrapper>
             </MainHeader>
-            <TextField className={classes.pesquisa}
-                        variant="outlined"
-                        margin="dense"
-                        placeholder={i18n.t("contacts.searchPlaceholder")}
-                        type="search"
-                        value={searchParam}
-                        onChange={handleSearch}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon style={{ color: "gray" }} />
-                                </InputAdornment>
-                            ),
-                        }}
-            />
+            {/* BARRA DE PESQUISA  */}
+            <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
+            }}
+          />
             <Paper
                 className={classes.mainPaper}
                 variant="outlined"

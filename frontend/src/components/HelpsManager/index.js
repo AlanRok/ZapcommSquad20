@@ -125,7 +125,7 @@ export function HelpManagerForm(props) {
                         <Grid xs={12} sm={6} md={3} item>
                             <Field
                                 as={TextField}
-                                label="Código do Vídeo"
+                                label="Link do Vídeo"
                                 name="video"
                                 variant="outlined"
                                 className={classes.inputsHelpManager}

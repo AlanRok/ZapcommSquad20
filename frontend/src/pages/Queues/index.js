@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
-    backgroundColor: "rgba(255, 255, 255, 0.80)", 
+    backgroundColor: "rgba(255, 255, 255, 0.80)",
     ...theme.scrollbarStyles,
   },
   customTableCell: {
@@ -40,11 +40,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  
+<<<<<<< HEAD
+
   searchField: {
-    backgroundColor: "rgba(255, 255, 255, 0.7)", 
-    borderRadius: theme.shape.borderRadius, 
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    borderRadius: theme.shape.borderRadius,
   },
+=======
+>>>>>>> 86aa235d5c1e73d08b798fa9550ba94a3b39c418
 }));
 
 const reducer = (state, action) => {
@@ -95,7 +98,7 @@ const Queues = () => {
 
   const [queues, dispatch] = useReducer(reducer, []);
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [queueModalOpen, setQueueModalOpen] = useState(false);
   const [selectedQueue, setSelectedQueue] = useState(null);
@@ -172,8 +175,7 @@ const Queues = () => {
       <ConfirmationModal
         title={
           selectedQueue &&
-          `${i18n.t("queues.confirmationModal.deleteTitle")} ${
-            selectedQueue.name
+          `${i18n.t("queues.confirmationModal.deleteTitle")} ${selectedQueue.name
           }?`
         }
         open={confirmModalOpen}
@@ -199,19 +201,28 @@ const Queues = () => {
           </Button>
         </MainHeaderButtonsWrapper>
       </MainHeader>
-
-      <Box mb={2}>
+        {/* BARRA DE PESQUISA  */}
         <TextField
-          label={i18n.t("queues.searchPlaceholder")}
+          id="outlined-basic"
           variant="outlined"
+          label=""
+          placeholder={i18n.t("queues.searchPlaceholder")}
           size="small"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           fullWidth
-          // Aplicando a classe personalizada
-          className={classes.searchField}
+          InputProps={{
+            style: {
+              borderRadius: "3px",
+              width: "100%",
+              display: 'flex',
+              alignSelf: 'center',
+              backgroundColor: 'white',
+              marginTop: "10px",
+              marginBottom: "20px"
+            }
+          }}
         />
-      </Box>
 
       <Paper className={classes.mainPaper} variant="outlined">
         <Table size="small">
@@ -234,71 +245,79 @@ const Queues = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <>
-              {queues
-                .filter((queue) =>
-                  queue.name.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((queue) => (
-                  <TableRow key={queue.id}>
-                    <TableCell align="center">{queue.id}</TableCell>
-                    <TableCell align="center">{queue.name}</TableCell>
-                    <TableCell align="center">
-                      <div className={classes.customTableCell}>
-                        <span
-                          style={{
-                            backgroundColor: queue.color,
-                            width: 60,
-                            height: 20,
-                            alignSelf: "center",
-                          }}
-                        />
-                      </div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <div className={classes.customTableCell}>
-                        <Typography
-                          style={{ width: 300, align: "center" }}
-                          noWrap
-                          variant="body2"
+            {queues.length === 0 && !loading ? (
+              <TableRow>
+                <TableCell colSpan={6} align='center'>
+                  Nenhum elemento foi encontrado
+                </TableCell>
+              </TableRow>
+            ) : (
+              <>
+                {queues
+                  .filter((queue) =>
+                    queue.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  )
+                  .map((queue) => (
+                    <TableRow key={queue.id}>
+                      <TableCell align="center">{queue.id}</TableCell>
+                      <TableCell align="center">{queue.name}</TableCell>
+                      <TableCell align="center">
+                        <div className={classes.customTableCell}>
+                          <span
+                            style={{
+                              backgroundColor: queue.color,
+                              width: 60,
+                              height: 20,
+                              alignSelf: "center",
+                            }}
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div className={classes.customTableCell}>
+                          <Typography
+                            style={{ width: 300, align: "center" }}
+                            noWrap
+                            variant="body2"
+                          >
+                            {queue.orderQueue}
+                          </Typography>
+                        </div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <div className={classes.customTableCell}>
+                          <Typography
+                            style={{ width: 300, align: "center" }}
+                            noWrap
+                            variant="body2"
+                          >
+                            {queue.greetingMessage}
+                          </Typography>
+                        </div>
+                      </TableCell>
+                      <TableCell align="center">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditQueue(queue)}
                         >
-                          {queue.orderQueue}
-                        </Typography>
-                      </div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <div className={classes.customTableCell}>
-                        <Typography
-                          style={{ width: 300, align: "center" }}
-                          noWrap
-                          variant="body2"
-                        >
-                          {queue.greetingMessage}
-                        </Typography>
-                      </div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <IconButton
-                        size="small"
-                        onClick={() => handleEditQueue(queue)}
-                      >
-                        <Edit />
-                      </IconButton>
+                          <Edit />
+                        </IconButton>
 
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setSelectedQueue(queue);
-                          setConfirmModalOpen(true);
-                        }}
-                      >
-                        <DeleteOutline />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              {loading && <TableRowSkeleton columns={4} />}
-            </>
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            setSelectedQueue(queue);
+                            setConfirmModalOpen(true);
+                          }}
+                        >
+                          <DeleteOutline />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                {loading && <TableRowSkeleton columns={4} />}
+              </>
+            )}
           </TableBody>
         </Table>
       </Paper>

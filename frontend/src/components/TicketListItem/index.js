@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-
 import { useHistory, useParams } from "react-router-dom";
 import { parseISO, format, isSameDay } from "date-fns";
 import clsx from "clsx";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import ListItem from "@material-ui/core/ListItem";
@@ -13,9 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import Badge from "@material-ui/core/Badge";
-
 import { i18n } from "../../translate/i18n";
-
 import api from "../../services/api";
 import ButtonWithSpinner from "../ButtonWithSpinner";
 import MarkdownWrapper from "../MarkdownWrapper";
@@ -27,11 +23,9 @@ const useStyles = makeStyles((theme) => ({
   ticket: {
     position: "relative",
   },
-
   pendingTicket: {
     cursor: "unset",
   },
-
   noTicketsDiv: {
     display: "flex",
     height: "100px",
@@ -40,57 +34,47 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-
   noTicketsText: {
     textAlign: "center",
     color: "rgb(104, 121, 146)",
     fontSize: "14px",
     lineHeight: "1.4",
   },
-
   noTicketsTitle: {
     textAlign: "center",
     fontSize: "16px",
     fontWeight: "600",
     margin: "0px",
   },
-
   contactNameWrapper: {
     display: "flex",
     justifyContent: "space-between",
   },
-
   lastMessageTime: {
     justifySelf: "flex-end",
   },
-
   closedBadge: {
     alignSelf: "center",
     justifySelf: "flex-end",
     marginRight: 32,
     marginLeft: "auto",
   },
-
   contactLastMessage: {
     paddingRight: 20,
   },
-
   newMessagesCount: {
     alignSelf: "center",
     marginRight: 8,
     marginLeft: "auto",
   },
-
   badgeStyle: {
     color: "white",
     backgroundColor: green[500],
   },
-
   acceptButton: {
     position: "absolute",
     left: "50%",
   },
-
   ticketQueueColor: {
     flex: "none",
     width: "8px",
@@ -98,6 +82,13 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: "0%",
     left: "0%",
+  },
+  avatarCircular: {
+    borderRadius: "50%",
+    marginTop: "-20px",
+    marginLeft: "-3px",
+    width: "55px",
+    height: "55px",
   },
 }));
 
@@ -131,7 +122,6 @@ const TicketListItem = ({ ticket }) => {
     }
     history.push(`/tickets/${ticket.uuid}`);
   };
-  console.log("🚀 Console Log : ticket.lastMessage", ticket.lastMessage);
 
   const handleSelectTicket = (ticket) => {
     history.push(`/tickets/${ticket.uuid}`);
@@ -162,7 +152,10 @@ const TicketListItem = ({ ticket }) => {
           ></span>
         </Tooltip>
         <ListItemAvatar>
-          <Avatar src={ticket?.contact?.profilePicUrl} />
+          <Avatar
+            src={ticket?.contact?.profilePicUrl}
+            className={classes.avatarCircular}
+          />
         </ListItemAvatar>
         <ListItemText
           disableTypography
@@ -183,47 +176,8 @@ const TicketListItem = ({ ticket }) => {
                   color="primary"
                 />
               )}
-{/*               {ticket.lastMessage && (
-                <Typography
-                  className={classes.lastMessageTime}
-                  component="span"
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  {isSameDay(parseISO(ticket.updatedAt), new Date()) ? (
-                    <>{format(parseISO(ticket.updatedAt), "HH:mm")}</>
-                  ) : (
-                    <>{format(parseISO(ticket.updatedAt), "dd/MM/yyyy")}</>
-                  )}
-                </Typography>
-              )} */}
             </span>
           }
-/*           secondary={
-            <span className={classes.contactNameWrapper}>
-              <Typography
-                className={classes.contactLastMessage}
-                noWrap
-                component="span"
-                variant="body2"
-                color="textSecondary"
-              >
-                {ticket.lastMessage ? (
-                  <MarkdownWrapper>{ticket.lastMessage}</MarkdownWrapper>
-                ) : (
-                  <MarkdownWrapper></MarkdownWrapper>
-                )}
-              </Typography>
-
-              <Badge
-                className={classes.newMessagesCount}
-                badgeContent={ticket.unreadMessages}
-                classes={{
-                  badge: classes.badgeStyle,
-                }}
-              />
-            </span>
-          } */
         />
         {ticket.status === "pending" && (
           <ButtonWithSpinner
