@@ -36,8 +36,8 @@ const Kanban = () => {
   const fetchTags = async () => {
     try {
       const response = await api.get("/tags/kanban");
-      const fetchedTags = response.data.lista || [];
 
+      const fetchedTags = response.data.lista || []; 
       setTags(fetchedTags);
 
       // Fetch tickets after fetching tags
@@ -80,6 +80,10 @@ const Kanban = () => {
 
   const popularCards = (jsonString) => {
     const filteredTickets = tickets.filter(ticket => ticket.tags.length === 0);
+    const emAtendimentoTickets = tickets.filter(ticket => ticket.status === "em_atendimento");
+    const finalizadoTickets = tickets.filter(ticket => ticket.status === "finalizado");
+    const impedidoTickets = tickets.filter(ticket => ticket.status === "impedido");
+    const aguardandoFornecedorTickets = tickets.filter(ticket => ticket.status === "aguardandoFornecedor");
 
     const lanes = [
       {
@@ -109,30 +113,35 @@ const Kanban = () => {
           draggable: true,
           href: "/tickets/" + ticket.uuid,
         })),
+        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane1",
         title: "Em atendimento",  
-        label: tickets.length,
+        label: emAtendimentoTickets.length,
         cards: [],
+        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane2",
         title: "Aguardando Fornecedor",  
-        label: tickets.length,
+        label: aguardandoFornecedorTickets.length,
         cards: [],
+        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane3",
         title: "Impedido",  
-        label: tickets.length,
+        label: impedidoTickets.length,
         cards: [],
+        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane4",
         title: "Finalizado",  
-        label: tickets.length,
+        label: finalizadoTickets.length,
         cards: [],
+        style: { backgroundColor: "#364865", color: "white" }
       },
       ...tags.map(tag => {
         const filteredTickets = tickets.filter(ticket => {
@@ -168,7 +177,7 @@ const Kanban = () => {
             draggable: true,
             href: "/tickets/" + ticket.uuid,
           })),
-          style: { backgroundColor: tag.color, color: "white" }
+          style: { backgroundColor: "#364865", color: "white" }
         };
       }),
     ];
