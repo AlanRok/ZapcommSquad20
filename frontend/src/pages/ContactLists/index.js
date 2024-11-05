@@ -225,20 +225,7 @@ const ContactLists = () => {
           <Grid xs={12} sm={4} item>
             <Grid spacing={2} container>
               <Grid xs={7} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contacts.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                {/* Para o botão ficar na direita */}
               </Grid>
               <Grid xs={5} sm={6} item>
                 <Button
@@ -254,6 +241,26 @@ const ContactLists = () => {
           </Grid>
         </Grid>
       </MainHeader>
+      <TextField
+      fullWidth
+      id="outlined-basic" label="" variant="outlined"
+      size="small"
+      placeholder={i18n.t("contacts.searchPlaceholder")}
+      type="search"
+      value={searchParam}
+      onChange={handleSearch}
+      InputProps={{
+        style: {
+          borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+        },
+      }}
+    />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -275,7 +282,14 @@ const ContactLists = () => {
           </TableHead>
           <TableBody>
             <>
-              {contactLists.map((contactList) => (
+            {contactLists.length === 0 && !loading ? (
+                <TableRow>
+                  <TableCell colSpan={10} align="center">
+                    Nenhuma lista de campanha foi encontrada    
+                  </TableCell>
+                </TableRow>
+              ) : (
+              contactLists.map((contactList) => (
                 <TableRow key={contactList.id}>
                   <TableCell align="center">{contactList.name}</TableCell>
                   <TableCell align="center">
@@ -313,7 +327,8 @@ const ContactLists = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
+            ))
+          )}
               {loading && <TableRowSkeleton columns={3} />}
             </>
           </TableBody>

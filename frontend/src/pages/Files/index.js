@@ -88,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
         overflowY: "scroll",
         ...theme.scrollbarStyles,
     },
+
+    pesquisa :{
+        backgroundColor: "white",
+        marginBottom: theme.spacing(1),
+    },
 }));
 
 const FileLists = () => {
@@ -218,19 +223,6 @@ const FileLists = () => {
             <MainHeader>
                 <Title>{i18n.t("files.title")} ({files.length})</Title>
                 <MainHeaderButtonsWrapper>
-                    <TextField
-                        placeholder={i18n.t("contacts.searchPlaceholder")}
-                        type="search"
-                        value={searchParam}
-                        onChange={handleSearch}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon style={{ color: "gray" }} />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
                     <Button
                         variant="contained"
                         color="primary"
@@ -240,6 +232,26 @@ const FileLists = () => {
                     </Button>
                 </MainHeaderButtonsWrapper>
             </MainHeader>
+            {/* BARRA DE PESQUISA  */}
+            <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
+            }}
+          />
             <Paper
                 className={classes.mainPaper}
                 variant="outlined"

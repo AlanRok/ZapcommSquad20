@@ -262,28 +262,27 @@ const QueueIntegration = () => {
         </MainHeaderButtonsWrapper>
       </MainHeader>
 
-      <Box mb={2}>
-        <TextField
-          placeholder={i18n.t("queueIntegration.searchPlaceholder")}
-          type="search"
-          variant="outlined"
-          size="small"
-          value={searchParam}
-          onChange={handleSearch}
-          fullWidth
-          className={classes.searchField}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon color="grey" />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "15px"
+              }
+            }}
+          />
       <Paper
-        className={classes.mainPaper}
+        // className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
       >
@@ -322,7 +321,7 @@ const QueueIntegration = () => {
                       size="small"
                       onClick={() => handleEditIntegration(integration)}
                     >
-                      <Edit color="secondary" />
+                      <Edit color="#000" />
                     </IconButton>
 
                     <IconButton
@@ -332,7 +331,7 @@ const QueueIntegration = () => {
                         setDeletingUser(integration);
                       }}
                     >
-                      <DeleteOutline color="secondary" />
+                      <DeleteOutline color="#000" />
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -340,10 +339,6 @@ const QueueIntegration = () => {
               {loading && <TableRowSkeleton columns={7} />}
             </>
           </TableBody>
-
-
-
-
         </Table>
       </Paper>
     </MainContainer>

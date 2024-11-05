@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { toast } from "react-toastify";
-
+import Grid from '@mui/material/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -187,107 +187,108 @@ const Users = () => {
 
   return (
     <MainContainer>
-      <ConfirmationModal
-        title={
-          deletingUser &&
-          `${i18n.t("users.confirmationModal.deleteTitle")} ${
-            deletingUser.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteUser(deletingUser.id)}
-      >
-        {i18n.t("users.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <UserModal
-        open={userModalOpen}
-        onClose={handleCloseUserModal}
-        aria-labelledby="form-dialog-title"
-        userId={selectedUser && selectedUser.id}
-      />
-      <MainHeader>
+  <ConfirmationModal
+    title={
+      deletingUser &&
+      `${i18n.t("users.confirmationModal.deleteTitle")} ${deletingUser.name}?`
+    }
+    open={confirmModalOpen}
+    onClose={setConfirmModalOpen}
+    onConfirm={() => handleDeleteUser(deletingUser.id)}
+  >
+    {i18n.t("users.confirmationModal.deleteMessage")}
+  </ConfirmationModal>
+  <UserModal
+    open={userModalOpen}
+    onClose={handleCloseUserModal}
+    aria-labelledby="form-dialog-title"
+    userId={selectedUser && selectedUser.id}
+  />
+  
+  <MainHeader>
+    <Grid container style={{ width: "100%" }}>
+      {/* Título e Botão */}
+      <Grid item xs={12} sm={12} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px'}}>
         <Title>{i18n.t("users.title")}</Title>
-        <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenUserModal}
-          >
-            {i18n.t("users.buttons.add")}
-          </Button>
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-			<TableCell align="center">
-                {i18n.t("users.table.id")}
-              </TableCell>
-              <TableCell align="center">{i18n.t("users.table.name")}</TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.email")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.profile")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {users.map((user) => (
-                <TableRow key={user.id}>
-				  <TableCell align="center">{user.id}</TableCell>
-                  <TableCell align="center">{user.name}</TableCell>
-                  <TableCell align="center">{user.email}</TableCell>
-                  <TableCell align="center">{user.profile}</TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditUser(user)}
-                    >
-                      <EditIcon />
-                    </IconButton>
+        <Button variant="contained" color="primary" onClick={handleOpenUserModal}>
+          {i18n.t("users.buttons.add")}
+        </Button>
+      </Grid>
 
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingUser(user);
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={4} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+      
+    </Grid>
+  </MainHeader>
+  {/* Barra de Pesquisa */}
+        <TextField
+          placeholder={i18n.t("contacts.searchPlaceholder")}
+          type="search"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={searchParam}
+          onChange={handleSearch}
+          InputProps={{
+            style: {
+              borderRadius: "3px",
+              width: "100%",
+              display: 'flex',
+              alignSelf: 'center',
+              backgroundColor: 'white',
+              marginTop: "10px",
+              marginBottom: "20px"
+            },
+          }}
+        />
+
+  {/* Tabela e conteúdo abaixo */}
+  <Grid item xs={12} sm={12} style={{ marginBottom: '16px',width: "100%" }}>
+    <Paper
+      className={classes.mainPaper}
+      variant="outlined"
+      onScroll={handleScroll}
+      style={{ width: '100%', height: '500px', overflowY: 'auto' }}  // Largura ajustada
+    >
+      <Table size="small" style={{ width: '100%' }}>
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">{i18n.t("users.table.id")}</TableCell>
+            <TableCell align="center">{i18n.t("users.table.name")}</TableCell>
+            <TableCell align="center">{i18n.t("users.table.email")}</TableCell>
+            <TableCell align="center">{i18n.t("users.table.profile")}</TableCell>
+            <TableCell align="center">{i18n.t("users.table.actions")}</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell align="center">{user.id}</TableCell>
+                <TableCell align="center">{user.name}</TableCell>
+                <TableCell align="center">{user.email}</TableCell>
+                <TableCell align="center">{user.profile}</TableCell>
+                <TableCell align="center">
+                  <IconButton size="small" onClick={() => handleEditUser(user)}>
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      setConfirmModalOpen(true);
+                      setDeletingUser(user);
+                    }}
+                  >
+                    <DeleteOutlineIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+            {loading && <TableRowSkeleton columns={4} />}
+          </>
+        </TableBody>
+      </Table>
+    </Paper>
+  </Grid>
+</MainContainer>
   );
 };
 

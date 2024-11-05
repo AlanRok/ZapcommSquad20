@@ -352,7 +352,7 @@ const LoggedInLayout = ({ children, themeToggle }) => {
       >
         <div className={classes.toolbarIcon}>
           <img src={logobranca} className={classes.logo} alt="logo" />
-          <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
+          <IconButton style={{color:"white"}} onClick={() => setDrawerOpen(!drawerOpen)}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -406,9 +406,9 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             )}
           </Typography>
 
-          {/*<IconButton edge="start" onClick={toggleColorMode}>
+          {<IconButton edge="start" onClick={toggleColorMode}>
             {theme.mode === 'dark' ? <Brightness7Icon style={{ color: "white" }} /> : <Brightness4Icon style={{ color: "white" }} />}
-          </IconButton>*/}
+          </IconButton>}
 
           {/*<NotificationsVolume
             setVolume={setVolume}

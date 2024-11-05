@@ -487,11 +487,11 @@ const MainListItems = (props) => {
                 />
               </>
             )}
-            <ListItemLink className={classes.background}
+            {/* <ListItemLink className={classes.background}
               to="/financeiro"
               primary={i18n.t("mainDrawer.listItems.financeiro")}
               icon={<LocalAtmIcon style={{ color: 'white' }}/>}
-            />
+            /> */}
 
             <ListItemLink className={classes.background}
               to="/settings"

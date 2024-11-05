@@ -258,20 +258,6 @@ const Announcements = () => {
           <Grid xs={12} sm={4} item>
             <Grid spacing={2} container>
               <Grid xs={6} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("announcements.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
               </Grid>
               <Grid xs={6} sm={6} item>
                 <Button
@@ -287,6 +273,26 @@ const Announcements = () => {
           </Grid>
         </Grid>
       </MainHeader>
+      {/* BARRA DE PESQUISA  */}
+      <TextField
+          id="outlined-basic" label="" variant="outlined"
+            size="small"
+            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+            type="search"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              style: {
+                borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+              }
+            }}
+          />
       <Paper
         className={classes.mainPaper}
         variant="outlined"

@@ -9,7 +9,7 @@ import Signup from "../pages/Signup/";
 import Login from "../pages/Login/";
 import Connections from "../pages/Connections/";
 import SettingsCustom from "../pages/SettingsCustom/";
-import Financeiro from "../pages/Financeiro/";
+// import Financeiro from "../pages/Financeiro/";
 import Users from "../pages/Users";
 import Contacts from "../pages/Contacts/";
 import Queues from "../pages/Queues/";
@@ -116,12 +116,12 @@ const Routes = () => {
                   component={Kanban}
                   isPrivate
                 />
-                <Route
+                {/* <Route
                   exact
                   path="/financeiro"
                   component={Financeiro}
                   isPrivate
-                />
+                /> */}
                 <Route exact path="/queues" component={Queues} isPrivate />
                 <Route
                   exact
