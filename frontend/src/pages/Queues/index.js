@@ -40,14 +40,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-<<<<<<< HEAD
 
   searchField: {
     backgroundColor: "rgba(255, 255, 255, 0.7)",
     borderRadius: theme.shape.borderRadius,
   },
-=======
->>>>>>> 86aa235d5c1e73d08b798fa9550ba94a3b39c418
 }));
 
 const reducer = (state, action) => {
