@@ -6,6 +6,7 @@ import Board from 'react-trello';
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
+import "./responsive.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -86,6 +87,8 @@ const Kanban = () => {
         id: "lane0",
         title: i18n.t("Em aberto"),
         label: tickets.length,
+        // PARA ESTILIZAR A LANE 
+        style: { backgroundColor: "#364865", color: "white" },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -108,30 +111,35 @@ const Kanban = () => {
           title: ticket.contact.name,
           draggable: true,
           href: "/tickets/" + ticket.uuid,
+          // style: { backgroundColor: "#FFF", color: "white" } para estilização do card (caso precise)
         })),
       },
       {
         id: "lane1",
         title: "Em atendimento",  
         label: tickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane2",
         title: "Aguardando Fornecedor",  
         label: tickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane3",
         title: "Impedido",  
         label: tickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane4",
         title: "Finalizado",  
         label: tickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       ...tags.map(tag => {
