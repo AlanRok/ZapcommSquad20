@@ -42,13 +42,18 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     padding: theme.spacing(1),
     cursor: "pointer",
+    marginBottom: "0.6em",
     "&:hover": {
-      backgroundColor: "#E0E0E0",
+      border: "0.1em solid #AFACAC",
+      borderRadius: "10px",
       fontWeight: 'bold',
     },
   },
   active: {
     backgroundColor: "#E0E0E0",
+    border: "0.1em solid #AFACAC",
+    borderRadius: "10px",
+    fontWeight: "bold"
   },
   content: {
     flexGrow: 1,
