@@ -6,6 +6,7 @@ import Board from 'react-trello';
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
+import "./responsive.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -80,58 +81,86 @@ const Kanban = () => {
 
   const popularCards = (jsonString) => {
     const filteredTickets = tickets.filter(ticket => ticket.tags.length === 0);
+    const emAtendimentoTickets = tickets.filter(ticket => ticket.status === "em_atendimento");
+    const finalizadoTickets = tickets.filter(ticket => ticket.status === "finalizado");
+    const impedidoTickets = tickets.filter(ticket => ticket.status === "impedido");
+    const aguardandoFornecedorTickets = tickets.filter(ticket => ticket.status === "aguardandoFornecedor");
+    
 
     const lanes = [
       {
         id: "lane0",
         title: i18n.t("Em aberto"),
         label: tickets.length,
+        // PARA ESTILIZAR A LANE 
+        style: { backgroundColor: "#364865", color: "white" },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
-          label: "Ticket nº " + ticket.id.toString(),
+          label: (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  backgroundColor: "#364865",
+                  width: "20px",
+                  height: "9px",
+                  borderRadius: "3px",
+                  marginRight: "5px",
+                }}
+              />
+              <span>Ticket nº {ticket.id.toString()}</span>
+            </div>
+          ),
           description: (
             <div>
-              <p>
+              <p style={{ wordWrap: "break-word", overflow: "hidden", maxHeight: "40px" }}>
                 {ticket.contact.number}
                 <br />
                 {ticket.lastMessage}
               </p>
-              <button
-                className={classes.button}
-                onClick={() => {
-                  handleCardClick(ticket.uuid)
-                }}>
-                Ver Ticket
-              </button>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <button
+                  className={classes.button}
+                  onClick={() => {
+                    handleCardClick(ticket.uuid);
+                  }}
+                >
+                  Ver Ticket
+                </button>
+              </div>
             </div>
           ),
           title: ticket.contact.name,
           draggable: true,
           href: "/tickets/" + ticket.uuid,
+          // style: { backgroundColor: "#FFF", color: "white" } para estilização do card (caso precise)
         })),
       },
       {
         id: "lane1",
         title: "Em atendimento",  
-        label: tickets.length,
+        label: emAtendimentoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane2",
         title: "Aguardando Fornecedor",  
-        label: tickets.length,
+        label: aguardandoFornecedorTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane3",
         title: "Impedido",  
-        label: tickets.length,
+        label: impedidoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       {
         id: "lane4",
         title: "Finalizado",  
-        label: tickets.length,
+        label: finalizadoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
       },
       ...tags.map(tag => {
@@ -144,31 +173,47 @@ const Kanban = () => {
           id: tag.id.toString(),
           title: tag.name,
           label: tag.id.toString(),
+          style: { backgroundColor: tag.color, color: "white" },
           cards: filteredTickets.map(ticket => ({
             id: ticket.id.toString(),
-            label: "Ticket nº " + ticket.id.toString(),
+            label: (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    backgroundColor: tag.color,
+                    width: "20px",
+                    height: "9px",
+                    borderRadius: "3px",
+                    marginRight: "5px",
+                  }}
+                />
+                <span>Ticket nº {ticket.id.toString()}</span>
+              </div>
+            ),
             description: (
               <div>
-                <p>
+                <p style={{ wordWrap: "break-word", overflow: "hidden", maxHeight: "40px" }}>
                   {ticket.contact.number}
                   <br />
                   {ticket.lastMessage}
                 </p>
-                <button
-                  className={classes.button}
-                  onClick={() => {
-
-                    handleCardClick(ticket.uuid)
-                  }}>
-                  Ver Ticket
-                </button>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <button
+                    className={classes.button}
+                    onClick={() => {
+                      handleCardClick(ticket.uuid);
+                    }}
+                  >
+                    Ver Ticket
+                  </button>
+                </div>
               </div>
             ),
             title: ticket.contact.name,
             draggable: true,
             href: "/tickets/" + ticket.uuid,
           })),
-          style: { backgroundColor: tag.color, color: "white" }
+          
         };
       }),
     ];
