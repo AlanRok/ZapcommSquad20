@@ -6,6 +6,7 @@ import Board from 'react-trello';
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
+import "./responsive.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +21,6 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     fontWeight: "bold",
     borderRadius: "5px",
-    display: 'flex'
   },
 
 }));
@@ -37,8 +37,8 @@ const Kanban = () => {
   const fetchTags = async () => {
     try {
       const response = await api.get("/tags/kanban");
-
       const fetchedTags = response.data.lista || [];
+
       setTags(fetchedTags);
 
       // Fetch tickets after fetching tags
@@ -85,71 +85,83 @@ const Kanban = () => {
     const finalizadoTickets = tickets.filter(ticket => ticket.status === "finalizado");
     const impedidoTickets = tickets.filter(ticket => ticket.status === "impedido");
     const aguardandoFornecedorTickets = tickets.filter(ticket => ticket.status === "aguardandoFornecedor");
+    
 
     const lanes = [
       {
         id: "lane0",
         title: i18n.t("Em aberto"),
         label: tickets.length,
+        // PARA ESTILIZAR A LANE 
+        style: { backgroundColor: "#364865", color: "white" },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
-          label: "Ticket nº " + ticket.id.toString(),
+          label: (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <div
+                style={{
+                  backgroundColor: "#364865",
+                  width: "20px",
+                  height: "9px",
+                  borderRadius: "3px",
+                  marginRight: "5px",
+                }}
+              />
+              <span>Ticket nº {ticket.id.toString()}</span>
+            </div>
+          ),
           description: (
-            <div
-              style={{
-                backgroundColor: tags.color,
-                width: "7px",
-                height: "70px",
-                borderRadius: "3px",
-                marginRight: "10px",
-              }}>
-              <p>
+            <div>
+              <p style={{ wordWrap: "break-word", overflow: "hidden", maxHeight: "40px" }}>
                 {ticket.contact.number}
                 <br />
                 {ticket.lastMessage}
               </p>
-              <button
-                className={classes.button}
-                onClick={() => {
-                  handleCardClick(ticket.uuid)
-                }}>
-                Ver Ticket
-              </button>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <button
+                  className={classes.button}
+                  onClick={() => {
+                    handleCardClick(ticket.uuid);
+                  }}
+                >
+                  Ver Ticket
+                </button>
+              </div>
             </div>
           ),
           title: ticket.contact.name,
           draggable: true,
           href: "/tickets/" + ticket.uuid,
+          // style: { backgroundColor: "#FFF", color: "white" } para estilização do card (caso precise)
         })),
-        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane1",
-        title: "Em atendimento",
+        title: "Em atendimento",  
         label: emAtendimentoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
-        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane2",
-        title: "Aguardando Fornecedor",
+        title: "Aguardando Fornecedor",  
         label: aguardandoFornecedorTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
-        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane3",
-        title: "Impedido",
+        title: "Impedido",  
         label: impedidoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
-        style: { backgroundColor: "#364865", color: "white" }
       },
       {
         id: "lane4",
-        title: "Finalizado",
+        title: "Finalizado",  
         label: finalizadoTickets.length,
+        style: { backgroundColor: "#364865", color: "white" },
         cards: [],
-        style: { backgroundColor: "#364865", color: "white" }
       },
       ...tags.map(tag => {
         const filteredTickets = tickets.filter(ticket => {
@@ -161,72 +173,39 @@ const Kanban = () => {
           id: tag.id.toString(),
           title: tag.name,
           label: tag.id.toString(),
+          style: { backgroundColor: tag.color, color: "white" },
           cards: filteredTickets.map(ticket => ({
             id: ticket.id.toString(),
-            label: "Ticket nº " + ticket.id.toString(),
-            description:(
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "#E3E3E3",
-                  borderRadius: "5px",
-                  padding: "10px",
-                  marginBottom: "10px",
-                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                  justifyContent: "space-between",
-                  maxWidth: "100%",
-                }}>
+            label: (
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <div
                   style={{
-                    backgroundColor: tag.color ,
-                    width: "7px",
-                    height: "70px",
+                    backgroundColor: tag.color,
+                    width: "20px",
+                    height: "9px",
                     borderRadius: "3px",
-                    marginRight: "10px",
-                  }}>
-                </div>
-                <div style={{ flex: 1, maxWidth: "70%" }}>
-                  <p
-                    style={{
-                      color: "#000000",
-                      margin: "0 0 5px 0",
-                      fontWeight: "bold",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}>{ticket.contact.name}</p>
-                  <p
-                    style={{
-                      color: "#000000",
-                      margin: "0",
-                      wordWrap: "break-word",
-                      overflow: "hidden",
-                      maxHeight: "40px",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",}}>
-                    {ticket.contact.number}
-                    <br/>
-                    {ticket.lastMessage}
-                  </p>
-                </div>
-                <div style={{ display: "flex", alignItems: "flex-end" }}>
+                    marginRight: "5px",
+                  }}
+                />
+                <span>Ticket nº {ticket.id.toString()}</span>
+              </div>
+            ),
+            description: (
+              <div>
+                <p style={{ wordWrap: "break-word", overflow: "hidden", maxHeight: "40px" }}>
+                  {ticket.contact.number}
+                  <br />
+                  {ticket.lastMessage}
+                </p>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <button
-                    style={{
-                      backgroundColor: "#0C2C54",
-                      color: "#FFFFFF",
-                      border: "none",
-                      borderRadius: "5px",
-                      padding: "5px 15px",
-                      cursor: "pointer",
-                      fontSize: "12px",
-                      maxWidth: "50px",
-                      textAlign: "center",}}
                     className={classes.button}
                     onClick={() => {
-                      handleCardClick(ticket.uuid);}}>Ver</button>
+                      handleCardClick(ticket.uuid);
+                    }}
+                  >
+                    Ver Ticket
+                  </button>
                 </div>
               </div>
             ),
@@ -234,7 +213,7 @@ const Kanban = () => {
             draggable: true,
             href: "/tickets/" + ticket.uuid,
           })),
-          style: { backgroundColor: "#364865", color: "white" }
+          
         };
       }),
     ];
