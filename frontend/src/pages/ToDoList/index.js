@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -12,7 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import MainContainer from '../../components/MainContainer';
 import Title from '../../components/Title';
 import { TableRow } from '@material-ui/core';
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -25,16 +25,18 @@ const useStyles = makeStyles({
   inputContainer: {
     display: 'flex',
     width: '100%',
+    alignItems: "center",
+    gap: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   input: {
     flexGrow: 1,
-    marginRight: '1rem',
     backgroundColor: "white",
+    margin: 0,
   },
   listContainer: {
     width: '100%',
     height: '100%',
-    marginTop: '1rem',
     backgroundColor: "white",
     border: "solid, #E0E0E0, 1px",
     borderRadius: '5px',
@@ -42,7 +44,7 @@ const useStyles = makeStyles({
   list: {
     borderBottom: "1px solid #ddd",
   }
-});
+}));
 
 const ToDoList = () => {
   const classes = useStyles();
@@ -104,12 +106,14 @@ const ToDoList = () => {
         <div className={classes.inputContainer}>
           <TextField
             className={classes.input}
+            fullWidth
+            margin="dense"
             label="Nova tarefa"
             value={task}
             onChange={handleTaskChange}
             variant="outlined"
           />
-          <Button variant="contained" color="primary" onClick={handleAddTask}>
+          <Button size="medium" variant="contained" color="primary" onClick={handleAddTask}>
             {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
           </Button>
         </div>
