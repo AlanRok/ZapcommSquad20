@@ -20,6 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from '@mui/material/Checkbox';
+import HelpIcon from '@material-ui/icons/Help';
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -38,6 +39,9 @@ import { Chip } from "@material-ui/core";
 import { Tooltip } from "@material-ui/core";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
+
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 const reducer = (state, action) => {
   if (action.type === "LOAD_TAGS") {
@@ -91,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.scrollbarStyles,
   },
 
-  pesquisa :{
+  pesquisa: {
     backgroundColor: "white",
     marginBottom: theme.spacing(1),
   }
@@ -205,6 +209,29 @@ const Tags = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas as tags disponíveis.' } },
+      
+      { element: '#botaoNovo', 
+      popover: { title: 'Botão Adicionar Tag', 
+      description: 'Clique para criar uma nova tag.' } },
+      
+      { element: '#barraPesquisa', 
+      popover: { title: 'Barra de Pesquisa', 
+      description: 'Use para filtrar as tags pela palavra-chave.' } },
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
 return (
     <MainContainer>
       <ConfirmationModal
@@ -225,8 +252,14 @@ return (
       <MainHeader>
         <Title>{i18n.t("tags.title")} ({tags.length})</Title>
         <MainHeaderButtonsWrapper>
+                  {/* BOTAO QUE RETORNA O DRIVEJS */}
+          <IconButton color="primary" onClick={inciaGuia}>
+            <HelpIcon />
+          </IconButton>
+
           <Button
             variant="contained"
+            id="botaoNovo"
             color="primary"
             onClick={handleOpenTagModal}
           >
@@ -236,7 +269,7 @@ return (
       </MainHeader>
         {/* BARRA DE PESQUISA  */}
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("quickMessages.searchPlaceholder")}
             type="search"
@@ -258,6 +291,7 @@ return (
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
