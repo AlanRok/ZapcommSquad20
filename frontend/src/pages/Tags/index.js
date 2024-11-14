@@ -213,17 +213,30 @@ const Tags = () => {
   const driverObj = driver({
     showProgress: true,
     steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Content', 
+        description: 'Clique para adicionar uma nova tag.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar as tags pela palavra-chave.' } 
+      },
       { element: '#tabela', 
         popover: { title: 'Tabela', 
-        description: 'Aqui você encontra todas as tags disponíveis.' } },
-      
-      { element: '#botaoNovo', 
-      popover: { title: 'Botão Adicionar Tag', 
-      description: 'Clique para criar uma nova tag.' } },
-      
-      { element: '#barraPesquisa', 
-      popover: { title: 'Barra de Pesquisa', 
-      description: 'Use para filtrar as tags pela palavra-chave.' } },
+        description: 'Aqui você encontra todas as tags disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações na tag.'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar a tag'
+        }
+      }
     ],
   });
     
@@ -252,11 +265,6 @@ return (
       <MainHeader>
         <Title>{i18n.t("tags.title")} ({tags.length})</Title>
         <MainHeaderButtonsWrapper>
-                  {/* BOTAO QUE RETORNA O DRIVEJS */}
-          <IconButton color="primary" onClick={inciaGuia}>
-            <HelpIcon />
-          </IconButton>
-
           <Button
             variant="contained"
             id="botaoNovo"
@@ -321,12 +329,13 @@ return (
                   </TableCell>
                   <TableCell align="center">{tag.ticketsCount}</TableCell>
                   <TableCell align="center">
-                    <IconButton size="small" onClick={() => handleEditTag(tag)}>
+                    <IconButton size="small" onClick={() => handleEditTag(tag)} id="botaoEdit">
                       <EditIcon />
                     </IconButton>
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingTag(tag);
@@ -341,6 +350,16 @@ return (
             </>
           </TableBody>
         </Table>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );
