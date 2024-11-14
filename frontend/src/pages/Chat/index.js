@@ -21,13 +21,19 @@ import { UsersFilter } from "../../components/UsersFilter";
 import api from "../../services/api";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { i18n } from "../../translate/i18n";
+import IconButton from "@material-ui/core/IconButton";
+
 import Title from "../../components/Title";
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 import { has, isObject } from "lodash";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 import { VerticalAlignCenter } from "@material-ui/icons";
+import HelpIcon from '@material-ui/icons/Help';
+
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -334,6 +340,38 @@ function Chat(props) {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar uma nova xxxxx.' 
+        } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas xxxxx disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+
+  // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   const renderGrid = () => {
     return (
       <Grid className={classes.gridContainer} container>
@@ -347,10 +385,21 @@ function Chat(props) {
                   setShowDialog(true);
                 }}
                 color="primary"
+                id="botaoNovo"
                 variant="contained"
               >
                 Novo chat
               </Button>
+              {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
             </div>
           
           <ChatList
