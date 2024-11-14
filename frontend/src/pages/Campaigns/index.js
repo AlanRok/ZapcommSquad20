@@ -40,6 +40,10 @@ import { isArray } from "lodash";
 import { useDate } from "../../hooks/useDate";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 const reducer = (state, action) => {
   if (action.type === "LOAD_CAMPAIGNS") {
     const campaigns = action.payload;
@@ -240,6 +244,48 @@ const Campaigns = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Nova Campanha', 
+        description: 'Clique para adicionar uma nova campanha.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar uma campanha pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas as campanhas disponíveis.' 
+        } 
+      },
+      { element: '#botaoRelatorio',
+        popover: {title: 'Botão de Relatório',
+        description: 'Clique aqui para ver o relatório da campanha.'
+        }
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações.'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar.'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
+
   return (
     <MainContainer>
       <ConfirmationModal
@@ -278,6 +324,7 @@ const Campaigns = () => {
               <Grid xs={6} sm={6} item>
                 <Button
                   fullWidth
+                  id="botaoNovo"
                   variant="contained"
                   onClick={handleOpenCampaignModal}
                   color="primary"
@@ -292,18 +339,13 @@ const Campaigns = () => {
       {/* BARRA DE PESQUISA DE CAMPANHA */}
       <TextField
         fullWidth
-        id="outlined-basic" label="" variant="outlined"
+        id="barraPesquisa" label="" variant="outlined"
         size="small"
         placeholder={i18n.t("campaigns.searchPlaceholder")}
         type="search"
         value={searchParam}
         onChange={handleSearch}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon style={{ color: "gray" }} />
-            </InputAdornment>
-          ),
           style: {
             borderRadius: "3px",
             width: "100%",
@@ -319,6 +361,7 @@ const Campaigns = () => {
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
@@ -407,6 +450,7 @@ const Campaigns = () => {
                       </IconButton>
                     )}
                     <IconButton
+                      id="botaoRelatorio"
                       onClick={() =>
                         history.push(`/campaign/${campaign.id}/report`)
                       }
@@ -416,6 +460,7 @@ const Campaigns = () => {
                     </IconButton>
                     <IconButton
                       size="small"
+                      id="botaoEdit"
                       onClick={() => handleEditCampaign(campaign)}
                     >
                       <EditIcon />
@@ -423,6 +468,7 @@ const Campaigns = () => {
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingCampaign(campaign);
@@ -438,6 +484,16 @@ const Campaigns = () => {
             </>
           </TableBody>
         </Table>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );
