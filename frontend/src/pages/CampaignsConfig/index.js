@@ -30,6 +30,10 @@ import {
 } from "@material-ui/core";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
@@ -112,6 +116,32 @@ const CampaignsConfig = () => {
     toast.success("Configurações salvas");
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoIntRandom', 
+        popover: { title: 'Definir Intervalo Aleatório', 
+        description: 'Clique para adicionar uma nova xxxxx.' 
+        } 
+      },
+      { element: '#longerIntervalAfter', 
+        popover: { title: 'Definir intervalo maior', 
+        description: 'Use para filtrar xxxxx pela palavra-chave.' } 
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+    // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer>
       <ConfirmationModal
@@ -137,7 +167,7 @@ const CampaignsConfig = () => {
             </Grid>
             <Grid xs={12} md={4} item>
               <FormControl
-                id="outlined-basic" label="" variant="outlined"
+                id="botaoIntRandom" label="" variant="outlined"
 
                 className={classes.formControl}
                 fullWidth
@@ -283,7 +313,7 @@ const CampaignsConfig = () => {
             )}
             {settings.variables.length > 0 && (
               <Grid xs={12} className={classes.textRight} item>
-                <Table size="small">
+                <Table size="small" >
                   <TableHead>
                     <TableRow>
                       <TableCell style={{ width: "1%" }}></TableCell>
@@ -298,6 +328,7 @@ const CampaignsConfig = () => {
                           <TableCell>
                             <IconButton
                               size="small"
+                              id="botaoDel"
                               onClick={() => {
                                 setSelectedKey(v.key);
                                 setConfirmationOpen(true);
@@ -316,6 +347,16 @@ const CampaignsConfig = () => {
             )}
           </Grid>
         </Box>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );
