@@ -14,6 +14,10 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
@@ -187,6 +191,39 @@ const Prompts = () => {
     setSelectedPrompt(null);
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar Prompt', 
+        description: 'Clique para adicionar um novo prompt.' 
+        } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todos os prompts disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
+
   return (
     <MainContainer>
    
@@ -213,6 +250,7 @@ const Prompts = () => {
         <MainHeaderButtonsWrapper>
           <Button
             variant="contained"
+            id="botaoNovo"
             color="primary"
             onClick={handleOpenPromptModal}
           >
@@ -220,7 +258,7 @@ const Prompts = () => {
           </Button>
         </MainHeaderButtonsWrapper>
       </MainHeader>
-      <Paper className={classes.mainPaper} variant="outlined">
+      <Paper className={classes.mainPaper} variant="outlined" id="tabela">
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -240,7 +278,14 @@ const Prompts = () => {
           </TableHead>
           <TableBody>
             <>
-              {prompts.map((prompt) => (
+            {prompts.length === 0 && !loading ? (
+								<TableRow>
+								<TableCell colSpan={10} align="center">
+									Nenhum prompt foi encontrado.    
+								</TableCell>
+								</TableRow>
+							) : (
+              prompts.map((prompt) => (
                 <TableRow key={prompt.id}>
                   <TableCell align="center">{prompt.name}</TableCell>
                   <TableCell align="center">{prompt.queue.name}</TableCell>
@@ -248,6 +293,7 @@ const Prompts = () => {
                   <TableCell align="center">
                     <IconButton
                       size="small"
+                      id="botaoEdit"
                       onClick={() => handleEditPrompt(prompt)}
                     >
                       <Edit />
@@ -255,6 +301,7 @@ const Prompts = () => {
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={() => {
                         setSelectedPrompt(prompt);
                         setConfirmModalOpen(true);
@@ -264,11 +311,22 @@ const Prompts = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            )}
               {loading && <TableRowSkeleton columns={4} />}
             </>
           </TableBody>
         </Table>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );
