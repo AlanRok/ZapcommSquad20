@@ -17,10 +17,14 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
+import HelpIcon from '@material-ui/icons/Help';
+
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 import api from "../../services/api";
 import { i18n } from "../../translate/i18n";
@@ -209,7 +213,44 @@ const Quickemessages = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar uma nova resposta.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar respostas pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas respostas rápidas disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+
+  // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
+    
     <MainContainer>
       <ConfirmationModal
         title={deletingQuickemessage && `${i18n.t("quickMessages.confirmationModal.deleteTitle")} ${deletingQuickemessage.shortcode}?`}
@@ -236,8 +277,10 @@ const Quickemessages = () => {
               <Grid item>
                 <Title style={{ marginTop: "5px" }}>{i18n.t("quickMessages.title")}</Title>
               </Grid>
+              
               <Grid item>
                 <Button
+                  id="botaoNovo"
                   variant="contained"
                   onClick={handleOpenQuickMessageDialog}
                   color="primary"
@@ -256,7 +299,7 @@ const Quickemessages = () => {
       </MainHeader>
               {/* BARRA DE PESQUISA  */}
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("quickMessages.searchPlaceholder")}
             type="search"
@@ -278,6 +321,7 @@ const Quickemessages = () => {
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
@@ -296,7 +340,14 @@ const Quickemessages = () => {
           </TableHead>
           <TableBody>
             <>
-              {quickemessages.map((quickemessage) => (
+            {quickemessages.length === 0 && !loading ? (
+                <TableRow>
+                  <TableCell colSpan={10} align="center">
+                    Nenhuma resposta foi encontrada    
+                  </TableCell>
+                </TableRow>
+              ) : (
+              quickemessages.map((quickemessage) => (
                 <TableRow key={quickemessage.id}>
                   <TableCell align="center">{quickemessage.shortcode}</TableCell>
 
@@ -306,6 +357,7 @@ const Quickemessages = () => {
                   <TableCell align="center">
                     <IconButton
                       size="small"
+                      id="botaoEdit"
                       onClick={() => handleEditQuickemessage(quickemessage)}
                     >
                       <EditIcon />
@@ -314,6 +366,7 @@ const Quickemessages = () => {
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingQuickemessage(quickemessage);
@@ -323,11 +376,22 @@ const Quickemessages = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={5} />}
+              ))
+            )}
+            {loading && <TableRowSkeleton columns={5} />}
             </>
           </TableBody>
         </Table>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+        <IconButton color="primary" onClick={inciaGuia} clas 
+        style={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+        }}
+        >
+                <HelpIcon />
+              </IconButton>
       </Paper>
     </MainContainer>
   );
