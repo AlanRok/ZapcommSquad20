@@ -32,6 +32,10 @@ import ContactListDialog from "../../components/ContactListDialog";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import toastError from "../../errors/toastError";
 import { Grid } from "@material-ui/core";
+import HelpIcon from '@material-ui/icons/Help';
+
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 import planilhaExemplo from "../../assets/planilha.xlsx";
 import { SocketContext } from "../../context/Socket/SocketContext";
@@ -196,6 +200,52 @@ const ContactLists = () => {
     history.push(`/contact-lists/${id}/contacts`);
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Nova Lista', 
+        description: 'Clique para adicionar uma nova lista de contatos.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar listas de contatos pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas as listas de contatos disponíveis.' 
+        } 
+      },
+      { element: '#botaoBaixarPlan',
+        popover: {title: 'Botão de Baixar Planilha da Lista',
+        description: 'Clique aqui para fazer download da planilha de uma lista.'
+        }
+      },
+      { element: '#botaoAbrirLista',
+        popover: {title: 'Botão de Abrir Lista',
+        description: 'Clique aqui para abrir a lista de contatos.'
+        }
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer>
       <ConfirmationModal
@@ -285,7 +335,7 @@ const ContactLists = () => {
             {contactLists.length === 0 && !loading ? (
                 <TableRow>
                   <TableCell colSpan={10} align="center">
-                    Nenhuma lista de campanha foi encontrada    
+                    Nenhuma lista de contatos foi encontrada.    
                   </TableCell>
                 </TableRow>
               ) : (
@@ -297,13 +347,14 @@ const ContactLists = () => {
                   </TableCell>
                   <TableCell align="center">
                     <a href={planilhaExemplo} download="planilha.xlsx">
-                      <IconButton size="small" title="Baixar Planilha Exemplo">
+                      <IconButton size="small" title="Baixar Planilha Exemplo" id="botaoBaixarPlan">
                         <DownloadIcon />
                       </IconButton>
                     </a>
 
                     <IconButton
                       size="small"
+                      id="botaoAbrirLista"
                       onClick={() => goToContacts(contactList.id)}
                     >
                       <PeopleIcon />
@@ -333,6 +384,16 @@ const ContactLists = () => {
             </>
           </TableBody>
         </Table>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );
