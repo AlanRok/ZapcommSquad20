@@ -5,18 +5,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    padding: 3px;
+    color: #192F64; /*cor do texto*/
+    height: 100%;
+    max-width: 100%;
+    padding-right: 4px;
   }
+.delet-editContainer{
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
   
+}
   .delete-icon,
   .edit-icon {
     opacity: 0;
     transition: opacity 0.3s;
-    margin-left: 5px; /* Adicione margem à esquerda */
-    z-index: 1; /* Garante que os ícones apareçam sobre o evento */
+    margin-right: 2px;
+    z-index: 1; 
   }
-  
   .event-container:hover .delete-icon,
   .event-container:hover .edit-icon {
     opacity: 1;
   }
-  
+  .rbc-month-view{
+    border: 0px;
+  }
+  .rbc-time-view{
+    border: 0px;
+  }
+ 
+
+
