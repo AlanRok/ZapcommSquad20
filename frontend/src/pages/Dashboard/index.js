@@ -594,7 +594,7 @@ const Dashboard = () => {
 
           
           {/* T.M. DE ATENDIMENTO */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={6} sm={6} md={4}>
             <Paper
               className={classes.card8}
               style={{ overflow: "hidden" }}
@@ -631,7 +631,7 @@ const Dashboard = () => {
           </Grid>
 
           {/* T.M. DE ESPERA */}
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={6} sm={6} md={4}>
             <Paper
               className={classes.card9}
               style={{ overflow: "hidden" }}
@@ -708,14 +708,14 @@ const Dashboard = () => {
           </Grid> */}
 
           {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Paper className={classes.fixedHeightPaper2}>
               <ChatsUser />
             </Paper>
           </Grid>
 
           {/* TOTAL DE ATENDIMENTOS */}
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Paper className={classes.fixedHeightPaper2}>
               <ChartsDate />
             </Paper>

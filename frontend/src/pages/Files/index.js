@@ -37,6 +37,10 @@ import toastError from "../../errors/toastError";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 const reducer = (state, action) => {
     if (action.type === "LOAD_FILES") {
         const files = action.payload;
@@ -203,6 +207,42 @@ const FileLists = () => {
         }
     };
 
+    // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar um novo arquivo.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar arquivos pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todos os arquivos disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
     return (
         <MainContainer>
             <ConfirmationModal
@@ -225,6 +265,7 @@ const FileLists = () => {
                 <MainHeaderButtonsWrapper>
                     <Button
                         variant="contained"
+                        id="botaoNovo"
                         color="primary"
                         onClick={handleOpenFileListModal}
                     >
@@ -234,7 +275,7 @@ const FileLists = () => {
             </MainHeader>
             {/* BARRA DE PESQUISA  */}
             <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("queueIntegration.searchPlaceholder")}
             type="search"
@@ -256,6 +297,7 @@ const FileLists = () => {
                 className={classes.mainPaper}
                 variant="outlined"
                 onScroll={handleScroll}
+                id="tabela"
             >
                 <Table size="small">
                     <TableHead>
@@ -268,18 +310,26 @@ const FileLists = () => {
                     </TableHead>
                     <TableBody>
                         <>
-                            {files.map((fileList) => (
+                        {files.length === 0 && !loading ? (
+                            <TableRow>
+                            <TableCell colSpan={10} align="center">
+                                Nenhum arquivo foi encontrado.    
+                            </TableCell>
+                            </TableRow>
+                        ) : (
+                            files.map((fileList) => (
                                 <TableRow key={fileList.id}>
                                     <TableCell align="center">
                                         {fileList.name}
                                     </TableCell>
                                     <TableCell align="center">
-                                        <IconButton size="small" onClick={() => handleEditFileList(fileList)}>
+                                        <IconButton size="small" onClick={() => handleEditFileList(fileList)} id="botaoEdit">
                                             <EditIcon />
                                         </IconButton>
 
                                         <IconButton
                                             size="small"
+                                            id="botaoDel"
                                             onClick={(e) => {
                                                 setConfirmModalOpen(true);
                                                 setDeletingFileList(fileList);
@@ -289,11 +339,22 @@ const FileLists = () => {
                                         </IconButton>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            ))
+                        )}
                             {loading && <TableRowSkeleton columns={4} />}
                         </>
                     </TableBody>
                 </Table>
+                  {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
             </Paper>
         </MainContainer>
     );

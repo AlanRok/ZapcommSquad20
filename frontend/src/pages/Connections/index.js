@@ -27,6 +27,8 @@ import {
 	CropFree,
 	DeleteOutline,
 } from "@material-ui/icons";
+import HelpIcon from '@material-ui/icons/Help';
+
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -41,6 +43,8 @@ import QrcodeModal from "../../components/QrcodeModal";
 import { i18n } from "../../translate/i18n";
 import { WhatsAppsContext } from "../../context/WhatsApp/WhatsAppsContext";
 import toastError from "../../errors/toastError";
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Can } from "../../components/Can";
@@ -294,6 +298,43 @@ const Connections = () => {
 		);
 	};
 
+	// varivel com elementos do guia 
+	const driverObj = driver({
+		showProgress: true,
+		steps: [
+		  { element: '#botaoNovo', 
+			popover: { title: 'Botão Adicionar', 
+			description: 'Clique para adicionar uma nova conexão.' 
+			} 
+		  },
+		  { element: '#tabela', 
+			popover: { title: 'Tabela', 
+			description: 'Aqui você encontra todas as conexões disponíveis.' 
+			} 
+		  },
+		  { element: '#botaoSessao',
+			popover: {title: 'Botão Qr Code',
+			description: 'Clique aqui para conectar o seu whatsapp .'
+			}
+		  },
+
+		  { element: '#botaoEdit',
+			popover: {title: 'Botão de Editar',
+			description: 'Clique aqui para fazer alterações .'
+			}
+		  },
+		  { element: '#botaoDel',
+			popover: {title: 'Botão de Deletar',
+			description: 'Clique aqui para apagar .'
+			}
+		  }
+		],
+	  });
+
+	  // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
 	return (
 		<MainContainer>
 			<ConfirmationModal
@@ -323,6 +364,7 @@ const Connections = () => {
 						yes={() => (
 							<Button
 								variant="contained"
+								id="botaoNovo"
 								color="primary"
 								onClick={handleOpenWhatsAppModal}
 							>
@@ -332,7 +374,7 @@ const Connections = () => {
 					/>
 				</MainHeaderButtonsWrapper>
 			</MainHeader>
-			<Paper className={classes.mainPaper} variant="outlined">
+			<Paper className={classes.mainPaper} variant="outlined" id="tabela">
 				<Table size="small">
 					<TableHead>
 						<TableRow>
@@ -373,7 +415,14 @@ const Connections = () => {
 							<TableRowSkeleton />
 						) : (
 							<>
-								{whatsApps?.length > 0 &&
+							{whatsApps.length === 0 && !loading ? (
+								<TableRow>
+								<TableCell colSpan={10} align="center">
+									Nenhuma conexão foi encontrada.    
+								</TableCell>
+								</TableRow>
+							) : (
+								whatsApps?.length > 0 &&
 									whatsApps.map(whatsApp => (
 										<TableRow key={whatsApp.id}>
 											<TableCell align="center">{whatsApp.name}</TableCell>
@@ -384,7 +433,7 @@ const Connections = () => {
 												role={user.profile}
 												perform="connections-page:actionButtons"
 												yes={() => (
-													<TableCell align="center">
+													<TableCell align="center" id="botaoSessao">
 														{renderActionButtons(whatsApp)}
 													</TableCell>
 												)}
@@ -406,6 +455,7 @@ const Connections = () => {
 													<TableCell align="center">
 														<IconButton
 															size="small"
+															id="botaoEdit"
 															onClick={() => handleEditWhatsApp(whatsApp)}
 														>
 															<Edit />
@@ -413,6 +463,7 @@ const Connections = () => {
 
 														<IconButton
 															size="small"
+															id="botaoDel"
 															onClick={e => {
 																handleOpenConfirmationModal("delete", whatsApp.id);
 															}}
@@ -423,11 +474,22 @@ const Connections = () => {
 												)}
 											/>
 										</TableRow>
-									))}
+									))
+								)}
 							</>
 						)}
 					</TableBody>
 				</Table>
+				{/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
 			</Paper>
 		</MainContainer>
 	);

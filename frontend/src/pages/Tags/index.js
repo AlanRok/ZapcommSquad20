@@ -20,6 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from '@mui/material/Checkbox';
+import HelpIcon from '@material-ui/icons/Help';
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -38,6 +39,9 @@ import { Chip } from "@material-ui/core";
 import { Tooltip } from "@material-ui/core";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
+
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 const reducer = (state, action) => {
   if (action.type === "LOAD_TAGS") {
@@ -91,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.scrollbarStyles,
   },
 
-  pesquisa :{
+  pesquisa: {
     backgroundColor: "white",
     marginBottom: theme.spacing(1),
   }
@@ -205,6 +209,42 @@ const Tags = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Content', 
+        description: 'Clique para adicionar uma nova tag.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar as tags pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas as tags disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações na tag.'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar a tag'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
 return (
     <MainContainer>
       <ConfirmationModal
@@ -227,6 +267,7 @@ return (
         <MainHeaderButtonsWrapper>
           <Button
             variant="contained"
+            id="botaoNovo"
             color="primary"
             onClick={handleOpenTagModal}
           >
@@ -236,7 +277,7 @@ return (
       </MainHeader>
         {/* BARRA DE PESQUISA  */}
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("quickMessages.searchPlaceholder")}
             type="search"
@@ -258,6 +299,7 @@ return (
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
@@ -287,12 +329,13 @@ return (
                   </TableCell>
                   <TableCell align="center">{tag.ticketsCount}</TableCell>
                   <TableCell align="center">
-                    <IconButton size="small" onClick={() => handleEditTag(tag)}>
+                    <IconButton size="small" onClick={() => handleEditTag(tag)} id="botaoEdit">
                       <EditIcon />
                     </IconButton>
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingTag(tag);
@@ -307,6 +350,16 @@ return (
             </>
           </TableBody>
         </Table>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );

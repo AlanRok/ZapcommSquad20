@@ -36,6 +36,10 @@ import { Can } from "../../components/Can";
 import NewTicketModal from "../../components/NewTicketModal";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 import {CSVLink} from "react-csv";
 
 const reducer = (state, action) => {
@@ -230,6 +234,57 @@ const Contacts = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoImport', 
+        popover: { title: 'Botão Importar Contatos', 
+        description: 'Clique para importar contatos do seu telefone (precisa estar conectado com o whatsapp).' 
+        } 
+      },
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar um novo contato.' 
+        } 
+      },
+      { element: '#botaoExport', 
+        popover: { title: 'Botão Exportar Contato', 
+        description: 'Clique para exportar os contatos adicionados (via download de arquivo .csv).' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar contatos pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todos os contatos disponíveis.' 
+        } 
+      },
+      { element: '#botaoZap',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer className={classes.mainContainer}>
       <NewTicketModal
@@ -270,6 +325,7 @@ const Contacts = () => {
         <MainHeaderButtonsWrapper>
           <Button
             variant="contained"
+            id="botaoImport"
             color="primary"
             onClick={(e) => setConfirmOpen(true)}
             style={{backgroundColor: "#192F64"}}
@@ -278,6 +334,7 @@ const Contacts = () => {
           </Button>
           <Button
             variant="contained"
+            id="botaoNovo"
             color="primary"
             onClick={handleOpenContactModal}
             style={{backgroundColor: "#192F64"}}
@@ -286,7 +343,9 @@ const Contacts = () => {
           </Button>
 
          <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-          <Button	variant="contained" color="primary" style={{backgroundColor: "#192F64"}}> 
+          <Button	variant="contained" color="primary" style={{backgroundColor: "#192F64"}}
+          id="botaoExport"
+          > 
           EXPORTAR CONTATOS 
           </Button>
           </CSVLink>		  
@@ -295,7 +354,7 @@ const Contacts = () => {
       </MainHeader>
           {/* BARRA DE PESQUISA DE CONTATO */}
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("contacts.searchPlaceholder")}
             type="search"
@@ -317,6 +376,7 @@ const Contacts = () => {
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
@@ -355,6 +415,7 @@ const Contacts = () => {
                     <TableCell align="center">
                       <IconButton
                         size="small"
+                        id="botaoZap"
                         onClick={() => {
                           setContactTicket(contact);
                           setNewTicketModalOpen(true);
@@ -363,6 +424,7 @@ const Contacts = () => {
                         <WhatsAppIcon />
                       </IconButton>
                       <IconButton
+                        id="botaoEdit"
                         size="small"
                         onClick={() => hadleEditContact(contact.id)}
                       >
@@ -373,6 +435,7 @@ const Contacts = () => {
                         perform="contacts-page:deleteContact"
                         yes={() => (
                           <IconButton
+                          id="botaoDel"
                             size="small"
                             onClick={(e) => {
                               setConfirmOpen(true);
@@ -391,7 +454,16 @@ const Contacts = () => {
             </>
           </TableBody>
         </Table>
-
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );

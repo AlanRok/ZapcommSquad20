@@ -8,6 +8,10 @@ import typebot from "../../assets/typebot.jpg";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 import {
   Avatar,
   Button,
@@ -93,8 +97,8 @@ const reducer = (state, action) => {
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
-    padding: theme.spacing(2),
-    margin: theme.spacing(1),
+    // padding: theme.spacing(2),
+    // margin: theme.spacing(1),
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
@@ -229,6 +233,42 @@ const QueueIntegration = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar Projeto', 
+        description: 'Clique para adicionar uma nova integração.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar integrações pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas integrações disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer>
       <ConfirmationModal
@@ -253,6 +293,7 @@ const QueueIntegration = () => {
         <Title>{i18n.t("queueIntegration.title")} ({queueIntegration.length})</Title>
         <MainHeaderButtonsWrapper>
           <Button
+            id="botaoNovo"
             variant="contained"
             color="primary"
             onClick={handleOpenUserModal}
@@ -263,7 +304,7 @@ const QueueIntegration = () => {
       </MainHeader>
 
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("queueIntegration.searchPlaceholder")}
             type="search"
@@ -282,9 +323,13 @@ const QueueIntegration = () => {
             }}
           />
       <Paper
-        // className={classes.mainPaper}
+        className={classes.mainPaper}
         variant="outlined"
+        id="tabela"
         onScroll={handleScroll}
+        style={{
+          width: "100%"
+        }}
       >
         <Table size="small">
           <TableHead>
@@ -319,6 +364,7 @@ const QueueIntegration = () => {
                   <TableCell align="center">
                     <IconButton
                       size="small"
+                      id="botaoEdit"
                       onClick={() => handleEditIntegration(integration)}
                     >
                       <Edit color="#000" />
@@ -326,6 +372,7 @@ const QueueIntegration = () => {
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingUser(integration);
@@ -340,6 +387,16 @@ const QueueIntegration = () => {
             </>
           </TableBody>
         </Table>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer>
   );

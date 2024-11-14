@@ -27,6 +27,10 @@ import { toast } from "react-toastify";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
@@ -167,6 +171,42 @@ const Queues = () => {
     setSelectedQueue(null);
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar Fila', 
+        description: 'Clique para adicionar uma nova fila.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar as filas pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas filas disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer>
       <ConfirmationModal
@@ -191,6 +231,7 @@ const Queues = () => {
         <MainHeaderButtonsWrapper>
           <Button
             variant="contained"
+            id="botaoNovo"
             color="primary"
             onClick={handleOpenQueueModal}
           >
@@ -200,7 +241,7 @@ const Queues = () => {
       </MainHeader>
         {/* BARRA DE PESQUISA  */}
         <TextField
-          id="outlined-basic"
+          id="barraPesquisa"
           variant="outlined"
           label=""
           placeholder={i18n.t("queues.searchPlaceholder")}
@@ -221,7 +262,7 @@ const Queues = () => {
           }}
         />
 
-      <Paper className={classes.mainPaper} variant="outlined">
+      <Paper className={classes.mainPaper} variant="outlined" id="tabela">
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -295,6 +336,7 @@ const Queues = () => {
                       <TableCell align="center">
                         <IconButton
                           size="small"
+                          id="botaoEdit"
                           onClick={() => handleEditQueue(queue)}
                         >
                           <Edit />
@@ -302,6 +344,7 @@ const Queues = () => {
 
                         <IconButton
                           size="small"
+                          id="botaoDel"
                           onClick={() => {
                             setSelectedQueue(queue);
                             setConfirmModalOpen(true);
@@ -317,6 +360,16 @@ const Queues = () => {
             )}
           </TableBody>
         </Table>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+          <IconButton color="primary" onClick={inciaGuia}
+        style={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+          }}
+        >
+        <HelpIcon />
+        </IconButton>
       </Paper>
     </MainContainer>
   );

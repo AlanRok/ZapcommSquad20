@@ -406,9 +406,9 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             )}
           </Typography>
 
-          {<IconButton edge="start" onClick={toggleColorMode}>
+          {/* {<IconButton edge="start" onClick={toggleColorMode}>
             {theme.mode === 'dark' ? <Brightness7Icon style={{ color: "white" }} /> : <Brightness4Icon style={{ color: "white" }} />}
-          </IconButton>}
+          </IconButton>} */}
 
           {/*<NotificationsVolume
             setVolume={setVolume}

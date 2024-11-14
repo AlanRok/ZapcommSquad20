@@ -14,6 +14,8 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import HelpIcon from '@material-ui/icons/Help';
+
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -21,6 +23,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 import api from "../../services/api";
 import { i18n } from "../../translate/i18n";
@@ -226,6 +230,42 @@ const Announcements = () => {
     }
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Novo Informativo', 
+        description: 'Clique para adicionar um novo informativo.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar um informativo pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todos os informativos disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar.'
+        }
+      }
+    ],
+  });
+
+  // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   return (
     <MainContainer >
       <ConfirmationModal
@@ -263,6 +303,7 @@ const Announcements = () => {
                 <Button
                   fullWidth
                   variant="contained"
+                  id="botaoNovo"
                   onClick={handleOpenAnnouncementModal}
                   color="primary"
                 >
@@ -275,7 +316,7 @@ const Announcements = () => {
       </MainHeader>
       {/* BARRA DE PESQUISA  */}
       <TextField
-          id="outlined-basic" label="" variant="outlined"
+          id="barraPesquisa" label="" variant="outlined"
             size="small"
             placeholder={i18n.t("queueIntegration.searchPlaceholder")}
             type="search"
@@ -297,6 +338,7 @@ const Announcements = () => {
         className={classes.mainPaper}
         variant="outlined"
         onScroll={handleScroll}
+        id="tabela"
       >
         <Table size="small">
           <TableHead>
@@ -320,7 +362,14 @@ const Announcements = () => {
           </TableHead>
           <TableBody>
             <>
-              {announcements.map((announcement) => (
+            {announcements.length === 0 && !loading ? (
+                <TableRow>
+                  <TableCell colSpan={10} align="center">
+                    Nenhum informativo foi encontrado.    
+                  </TableCell>
+                </TableRow>
+              ) : (
+              announcements.map((announcement) => (
                 <TableRow key={announcement.id}>
                   <TableCell align="center">{announcement.title}</TableCell>
                   <TableCell align="center">
@@ -335,6 +384,7 @@ const Announcements = () => {
                   <TableCell align="center">
                     <IconButton
                       size="small"
+                      id="botaoEdit"
                       onClick={() => handleEditAnnouncement(announcement)}
                     >
                       <EditIcon />
@@ -342,6 +392,7 @@ const Announcements = () => {
 
                     <IconButton
                       size="small"
+                      id="botaoDel"
                       onClick={(e) => {
                         setConfirmModalOpen(true);
                         setDeletingAnnouncement(announcement);
@@ -351,11 +402,22 @@ const Announcements = () => {
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            )}
               {loading && <TableRowSkeleton columns={5} />}
             </>
           </TableBody>
         </Table>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </Paper>
     </MainContainer >
   )

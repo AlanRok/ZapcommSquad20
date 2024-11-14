@@ -148,6 +148,7 @@ export default function ChatList({
                   {chat.ownerId === user.id && (
                     <ListItemSecondaryAction>
                       <IconButton
+                      id="botaoEdit"
                         onClick={() => {
                           goToMessages(chat).then(() => {
                             handleEditChat(chat);
@@ -161,6 +162,7 @@ export default function ChatList({
                         <EditIcon />
                       </IconButton>
                       <IconButton
+                      id="botaoDel"
                         onClick={() => {
                           setSelectedChat(chat);
                           setConfirmModalOpen(true);
