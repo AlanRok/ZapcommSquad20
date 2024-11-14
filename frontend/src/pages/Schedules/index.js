@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useReducer, useCallback, useContext } from "react";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
@@ -25,21 +26,25 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
-
-import "./Schedules.css"; // Importe o arquivo CSS
+import { Container, Grid, Grow } from "@material-ui/core";
+import "./Schedules.css";
+import CustomToolbar from '../../components/Schedulebar/CustomToolbar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
   const searchParams = new URLSearchParams(window.location.search);
   return searchParams.get(paramName);
 }
-
 const eventTitleStyle = {
-  fontSize: "14px", // Defina um tamanho de fonte menor
+  fontSize: "14px",
   overflow: "hidden", // Oculte qualquer conteúdo excedente
-  whiteSpace: "nowrap", // Evite a quebra de linha do texto
-  textOverflow: "ellipsis", // Exiba "..." se o texto for muito longo
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+  flexGrow: 1,
+  textAlign:'center',
 };
+
 
 const localizer = momentLocalizer(moment);
 var defaultMessages = {
@@ -51,11 +56,11 @@ var defaultMessages = {
   work_week: "Agendamentos",
   day: "Dia",
   month: "Mês",
-  previous: "Anterior",
-  next: "Próximo",
+  previous: "<",
+  today: "Hoje",
+  next: ">",
   yesterday: "Ontem",
   tomorrow: "Amanhã",
-  today: "Hoje",
   agenda: "Agenda",
   noEventsInRange: "Não há agendamentos no período.",
   showMore: function showMore(total) {
@@ -94,7 +99,7 @@ const reducer = (state, action) => {
 
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
-    flex: 1,
+    //flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
     ...theme.scrollbarStyles,
@@ -118,7 +123,10 @@ const Schedules = () => {
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
   const [contactId, setContactId] = useState(+getUrlParam("contactId"));
 
-
+  const handleViewChange = (view) => {
+    setView(view);
+  };
+  const [view, setView] = useState("month"); // visualização inicial
   const fetchSchedules = useCallback(async () => {
     try {
       const { data } = await api.get("/schedules/", {
@@ -260,21 +268,8 @@ const Schedules = () => {
         cleanContact={cleanContact}
       />
       <MainHeader>
-        <Title>{i18n.t("schedules.title")} ({schedules.length})</Title>
-        <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
+        <Grid item xs={12} sm={12} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+          <Title>{i18n.t("schedules.title")} ({schedules.length})</Title>
           <Button
             variant="contained"
             color="primary"
@@ -282,31 +277,88 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
+        </Grid>
+        <MainHeaderButtonsWrapper>
+
         </MainHeaderButtonsWrapper>
       </MainHeader>
+      <Grid xs={1} sm={1} item style={{ width: '100%' }}>
+        <TextField
+          variant="outlined"
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                border: 'none',
+              },
+              '&:hover fieldset': {
+                border: 'none',
+              },
+              '&.Mui-focused fieldset': {
+                border: 'none',
+              },
+            },
+          }}
+          fullWidth
+          placeholder={i18n.t("contacts.searchPlaceholder")}
+          type="search"
+          value={searchParam}
+          onChange={handleSearch}
+          InputProps={{
+            style: {
+              backgroundColor: '#FFFFFF',
+              border: '2px solid #808080',
+              borderRadius: '5px',
+              width: '1248px',
+              height: '42px',
+              borderWidth: '0px'
+            },
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon style={{ color: "gray" }} />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Grid>
       <Paper className={classes.mainPaper} variant="outlined" onScroll={handleScroll}>
         <Calendar
+         fullWidth
+          views={['month', 'week', 'day', 'agenda']}
+          view={view}
+          onView={handleViewChange}
           messages={defaultMessages}
           formats={{
-          agendaDateFormat: "DD/MM ddd",
-          weekdayFormat: "dddd"
-      }}
+            agendaDateFormat: "DD/MM ddd",
+            weekdayFormat: (date, culture, localizer) => {
+              const day = localizer.format(date, "ddd", culture);
+              return day.charAt(0).toUpperCase() + day.slice(1);
+            },
+          }}
+
           localizer={localizer}
           events={schedules.map((schedule) => ({
             title: (
               <div className="event-container">
                 <div style={eventTitleStyle}>{schedule.contact.name}</div>
-                <DeleteOutlineIcon
-                  onClick={() => handleDeleteSchedule(schedule.id)}
-                  className="delete-icon"
-                />
-                <EditIcon
-                  onClick={() => {
-                    handleEditSchedule(schedule);
-                    setScheduleModalOpen(true);
-                  }}
-                  className="edit-icon"
-                />
+                <div className="delet-editContainer">
+                  <DeleteOutlineIcon
+                    onClick={() => handleDeleteSchedule(schedule.id)}
+                    className="delete-icon"
+                    style = {{
+                      fontSize: '120%',
+                    }}
+                  />
+                  <EditIcon
+                    onClick={() => {
+                      handleEditSchedule(schedule);
+                      setScheduleModalOpen(true);
+                    }}
+                    className="edit-icon"
+                    style = {{
+                      fontSize: '120%',
+                    }}
+                  />
+                </div>
               </div>
             ),
             start: new Date(schedule.sendAt),
@@ -315,10 +367,56 @@ const Schedules = () => {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 500 }}
+          //Estilização do evento
+          eventPropGetter={(event) => {
+            const backgroundColor = event.colorEvento ? event.colorEvento : "#b3e5fc"; //Cor de fundo 
+            const color = event.color ? event.color : 'white';
+            return {
+              style: {
+                backgroundColor,
+                color,
+                borderRadius: '5px',
+                margin:'1 ',
+                borderLeft: '10px solid  #03a9f4',
+                height:'100%',
+              },
+            };
+          }}
+          components={{
+            toolbar: (props) => (
+              <CustomToolbar
+                date={props.date}
+                onNavigate={props.onNavigate}
+                onViewChange={handleViewChange}
+                view={view}
+
+              />
+            ),
+          }}
         />
       </Paper>
     </MainContainer>
   );
 };
-
 export default Schedules;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
