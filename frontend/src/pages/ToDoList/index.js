@@ -39,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     margin: 0,
   },
+
+  texto: {
+    flexGrow: 1,
+    flexWrap: "wrap",
+    marginRight: "7em", 
+    overflow: "hidden",
+  },
+
   listContainer: {
     width: '100%',
     height: '100%',
@@ -164,7 +172,7 @@ const ToDoList = () => {
           <List>
             {tasks.map((task, index) => (
               <ListItem key={index} className={classes.list}>
-                <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
+                <ListItemText className={classes.texto} primary={task.text} secondary={task.updatedAt.toLocaleString()} />
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleEditTask(index)} id='botaoEdit'>
                     <EditIcon />
