@@ -12,6 +12,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import MainContainer from '../../components/MainContainer';
 import Title from '../../components/Title';
 import { TableRow } from '@material-ui/core';
+import HelpIcon from '@material-ui/icons/Help';
+
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -100,12 +105,50 @@ const ToDoList = () => {
     setTasks(newTasks);
   };
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar tarefas pela palavra-chave.' } 
+      },
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar uma nova tarefa.' 
+        } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas as tarefas disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
+
   return (
       <MainContainer className={classes.root}>
         <h1 className={classes.title}>Tarefas ({tasks.length})</h1>
         <div className={classes.inputContainer}>
           <TextField
             className={classes.input}
+            id='barraPesquisa'
             fullWidth
             margin="dense"
             label="Nova tarefa"
@@ -113,26 +156,36 @@ const ToDoList = () => {
             onChange={handleTaskChange}
             variant="outlined"
           />
-          <Button size="medium" variant="contained" color="primary" onClick={handleAddTask}>
+          <Button size="medium" variant="contained" color="primary" onClick={handleAddTask} id='botaoNovo'>
             {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
           </Button>
         </div>
-        <div className={classes.listContainer}>
+        <div className={classes.listContainer} id='tabela'>
           <List>
             {tasks.map((task, index) => (
               <ListItem key={index} className={classes.list}>
                 <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
                 <ListItemSecondaryAction>
-                  <IconButton onClick={() => handleEditTask(index)}>
+                  <IconButton onClick={() => handleEditTask(index)} id='botaoEdit'>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDeleteTask(index)}>
+                  <IconButton onClick={() => handleDeleteTask(index)} id='botaoDel'>
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
             ))}
           </List>
+          {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 16,
+					right: 16,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
         </div>
     </MainContainer>
   );
