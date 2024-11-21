@@ -28,7 +28,7 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
 import { Container, Grid, Grow } from "@material-ui/core";
 import "./Schedules.css";
-import CustomToolbar from '../../components/Schedulebar/CustomToolbar';
+import CustomToolbar from '../../components/CustomToolbar/CustomToolbar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 // Defina a função getUrlParam antes de usá-la
@@ -42,10 +42,8 @@ const eventTitleStyle = {
   whiteSpace: "nowrap",
   textOverflow: "ellipsis",
   flexGrow: 1,
-  textAlign:'center',
+  textAlign: 'center',
 };
-
-
 const localizer = momentLocalizer(moment);
 var defaultMessages = {
   date: "Data",
@@ -67,12 +65,11 @@ var defaultMessages = {
     return "+" + total + " mais";
   }
 };
-
 const reducer = (state, action) => {
+
   if (action.type === "LOAD_SCHEDULES") {
     return [...state, ...action.payload];
   }
-
   if (action.type === "UPDATE_SCHEDULES") {
     const schedule = action.payload;
     const scheduleIndex = state.findIndex((s) => s.id === schedule.id);
@@ -322,7 +319,7 @@ const Schedules = () => {
       </Grid>
       <Paper className={classes.mainPaper} variant="outlined" onScroll={handleScroll}>
         <Calendar
-         fullWidth
+          fullWidth
           views={['month', 'week', 'day', 'agenda']}
           view={view}
           onView={handleViewChange}
@@ -344,7 +341,7 @@ const Schedules = () => {
                   <DeleteOutlineIcon
                     onClick={() => handleDeleteSchedule(schedule.id)}
                     className="delete-icon"
-                    style = {{
+                    style={{
                       fontSize: '120%',
                     }}
                   />
@@ -354,7 +351,7 @@ const Schedules = () => {
                       setScheduleModalOpen(true);
                     }}
                     className="edit-icon"
-                    style = {{
+                    style={{
                       fontSize: '120%',
                     }}
                   />
@@ -376,9 +373,9 @@ const Schedules = () => {
                 backgroundColor,
                 color,
                 borderRadius: '5px',
-                margin:'1 ',
+                margin: '1 ',
                 borderLeft: '10px solid  #03a9f4',
-                height:'100%',
+                height: '100%',
               },
             };
           }}
@@ -390,6 +387,7 @@ const Schedules = () => {
                 onViewChange={handleViewChange}
                 view={view}
 
+
               />
             ),
           }}
@@ -399,7 +397,6 @@ const Schedules = () => {
   );
 };
 export default Schedules;
-
 
 
 

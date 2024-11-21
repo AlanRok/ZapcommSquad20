@@ -17,6 +17,13 @@ const messages = {
 					login: "Already have an account? Log in!",
 				},
 			},
+			Toolbaroptions: {
+				day: "Day",
+				week: "Week",
+				month: "Month",
+				agenda: "Agenda",
+				today: "Today"
+			},
 			login: {
 				title: "Login",
 				form: {
