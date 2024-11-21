@@ -31,6 +31,7 @@ import "./Schedules.css";
 import CustomToolbar from '../../components/CustomToolbar/CustomToolbar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
+
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
   const searchParams = new URLSearchParams(window.location.search);
