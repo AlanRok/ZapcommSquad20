@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { i18n } from "../../translate/i18n"; //não esta com uma tradução no translate
-
+import { i18n } from "../../translate/i18n";
 const styles = {
   toolbar: {
     display: "flex",
@@ -150,7 +149,7 @@ const CustomToolbar = ({ date, onNavigate, onViewChange, view }) => {
           onMouseEnter={() => setHoveredNavButton("today")}
           onMouseLeave={() => setHoveredNavButton(null)}
         >
-          Hoje
+          {i18n.t(`Toolbaroptions.today`)}
         </button>
         <button
           type="button"
@@ -169,7 +168,7 @@ const CustomToolbar = ({ date, onNavigate, onViewChange, view }) => {
       <div style={styles.currentMonth}> {currentDateDisplay.charAt(0).toUpperCase() + currentDateDisplay.slice(1)}</div>
 
       <div style={styles.viewButtons}>
-        {["day", "week", "month", "agenda"].map((view) => (
+        {['day' , "week", "month", "agenda"].map((view) => (
           <button
             key={view}
             type="button"
@@ -181,9 +180,8 @@ const CustomToolbar = ({ date, onNavigate, onViewChange, view }) => {
             }}
             onMouseEnter={() => setHoveredButton(view)}
             onMouseLeave={() => setHoveredButton(null)}
-          >
-
-            {view.charAt(0).toUpperCase() + view.slice(1)}
+          > 
+            {i18n.t(`Toolbaroptions.${view}`)}
           </button>
         ))}
       </div>
@@ -192,10 +190,6 @@ const CustomToolbar = ({ date, onNavigate, onViewChange, view }) => {
 };
 
 export default CustomToolbar;
-
-
-
-
 
 
 
