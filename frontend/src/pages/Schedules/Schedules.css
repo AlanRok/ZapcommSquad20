@@ -35,6 +35,11 @@
   .rbc-time-view{
     border: 0px;
   }
- 
+ .rbc-agenda-date-cell{
+  color: black;
+ }
+ .rbc-agenda-time-cell{
+  color: black;
+ }
 
 
