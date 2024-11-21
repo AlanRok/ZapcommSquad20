@@ -77,6 +77,7 @@ const Filters = ({
                     <Grid item xs={12} sm={6} md={5}>
                         <TextField
                             fullWidth
+                            size="small"
                             name="dateEnd"
                             label="Até"
                             InputLabelProps={{
@@ -91,7 +92,7 @@ const Filters = ({
                         <Button
                             fullWidth
                             variant="contained"
-                            color="#20587C"
+                            color="primary"
                             onClick={() => {
                                 setQueueTicket(queues);
                                 setDateStartTicket(dateStart);

@@ -247,6 +247,8 @@ const ContactListItems = () => {
     history.push("/contact-lists");
   };
 
+  
+
   return (
     <MainContainer className={classes.mainContainer}>
       <ContactListItemModal
@@ -290,20 +292,7 @@ const ContactListItems = () => {
           <Grid xs={12} sm={7} item>
             <Grid spacing={2} container>
               <Grid xs={12} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contactListItems.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                
               </Grid>
               <Grid xs={4} sm={2} item>
                 <Button
@@ -342,6 +331,26 @@ const ContactListItems = () => {
           </Grid>
         </Grid>
       </MainHeader>
+      <TextField
+      fullWidth
+      id="outlined-basic" label="" variant="outlined"
+      size="small"
+      placeholder={i18n.t("contactListItems.searchPlaceholder")}
+      type="search"
+      value={searchParam}
+      onChange={handleSearch}
+      InputProps={{
+        style: {
+          borderRadius: "3px",
+                width: "100%",
+                display: 'flex',
+                alignSelf: 'center',
+                backgroundColor: 'white',
+                marginTop: "10px",
+                marginBottom: "20px"
+        },
+      }}
+    />
       <Paper
         className={classes.mainPaper}
         variant="outlined"
@@ -364,7 +373,7 @@ const ContactListItems = () => {
           <TableHead>
             <TableRow>
               <TableCell align="center" style={{ width: "0%" }}>
-                #
+                Status
               </TableCell>
               <TableCell>{i18n.t("contactListItems.table.name")}</TableCell>
               <TableCell align="center">

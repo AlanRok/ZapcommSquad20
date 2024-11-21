@@ -6,6 +6,10 @@ import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper"
 import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
 import useHelps from "../../hooks/useHelps";
+import HelpIcon from '@material-ui/icons/Help';
+
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
 
 const useStyles = makeStyles(theme => ({
   mainPaperContainer: {
@@ -19,13 +23,14 @@ const useStyles = makeStyles(theme => ({
     gap: theme.spacing(3),
     padding: theme.spacing(2),
     marginBottom: theme.spacing(3),
+    backgroundColor: "#FFF"
   },
   helpPaper: {
     position: 'relative',
     width: '100%',
     minHeight: '340px',
     padding: theme.spacing(2),
-    boxShadow: theme.shadows[3],
+    // boxShadow: theme.shadows[3],
     borderRadius: theme.spacing(1),
     cursor: 'pointer',
     display: 'flex',
@@ -107,6 +112,42 @@ const Helps = () => {
     }
   }, []);
 
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar uma nova xxxxx.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar xxxxx pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas xxxxx disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
   useEffect(() => {
     document.addEventListener("keydown", handleModalClose);
     return () => {
@@ -174,6 +215,16 @@ const Helps = () => {
       </MainHeader>
       <div className={classes.mainPaper}>
         {renderHelps()}
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+				<IconButton color="primary" onClick={inciaGuia}
+				style={{
+					position: "fixed",
+					bottom: 10,
+					right: 12,
+				  }}
+				>
+				<HelpIcon />
+				</IconButton>
       </div>
       {renderVideoModal()}
     </MainContainer>

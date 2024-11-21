@@ -12,6 +12,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import usePlans from "../../hooks/usePlans";
 
+import IconButton from "@material-ui/core/IconButton";
+import HelpIcon from '@material-ui/icons/Help';
+import { driver } from 'driver.js';
+import "driver.js/dist/driver.css";
+
+
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
@@ -101,6 +107,43 @@ const MessagesAPI = () => {
       toastError(err);
     }
   }
+
+  // varivel com elementos do guia 
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#botaoNovo', 
+        popover: { title: 'Botão Adicionar', 
+        description: 'Clique para adicionar uma nova xxxxx.' 
+        } 
+      },
+      { element: '#barraPesquisa', 
+        popover: { title: 'Barra de Pesquisa', 
+        description: 'Use para filtrar xxxxx pela palavra-chave.' } 
+      },
+      { element: '#tabela', 
+        popover: { title: 'Tabela', 
+        description: 'Aqui você encontra todas xxxxx disponíveis.' 
+        } 
+      },
+      { element: '#botaoEdit',
+        popover: {title: 'Botão de Editar',
+        description: 'Clique aqui para fazer alterações .'
+        }
+      },
+      { element: '#botaoDel',
+        popover: {title: 'Botão de Deletar',
+        description: 'Clique aqui para apagar .'
+        }
+      }
+    ],
+  });
+    
+      // Função para iniciar o guia 
+  function inciaGuia() {
+    driverObj.drive();
+  }
+
 
   const renderFormMessageText = () => {
     return (
@@ -334,6 +377,16 @@ const MessagesAPI = () => {
           {renderFormMessageMedia()}
         </Grid>
       </Grid>
+        {/* BOTAO QUE RETORNA O DRIVEJS */}
+        <IconButton color="primary" onClick={inciaGuia}
+        style={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+          }}
+        >
+        <HelpIcon />
+        </IconButton>
     </Paper>
   );
 };
