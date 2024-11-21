@@ -1,5 +1,4 @@
 Todos os direitos reservados a https://baasic.com.br
-1234
 # Pré Requisitos
 1. > Armazenamento não deve estar cheio
 2. > Deve possuir no mínimo 8gb de ram para a virtualizalção do Docker ocorrer corretamente. Abaixo disso talvez não dê certo.
