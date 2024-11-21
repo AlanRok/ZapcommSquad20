@@ -39,6 +39,7 @@ import { toast } from "react-toastify";
 import Chart from "./Chart";
 import ButtonWithSpinner from "../../components/ButtonWithSpinner";
 
+
 import CardCounter from "../../components/Dashboard/CardCounter";
 import TableAttendantsStatus from "../../components/Dashboard/TableAttendantsStatus";
 import { isArray } from "lodash";
@@ -136,6 +137,8 @@ const useStyles = makeStyles((theme) => ({
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card 
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card2: {
     padding: theme.spacing(2),
@@ -146,6 +149,8 @@ const useStyles = makeStyles((theme) => ({
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card3: {
     padding: theme.spacing(2),
@@ -155,6 +160,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card4: {
     padding: theme.spacing(2),
@@ -164,6 +171,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card5: {
     padding: theme.spacing(2),
@@ -173,6 +182,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card6: {
     padding: theme.spacing(2),
@@ -182,6 +193,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card7: {
     padding: theme.spacing(2),
@@ -191,6 +204,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card8: {
     padding: theme.spacing(2),
@@ -200,6 +215,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   card9: {
     padding: theme.spacing(2),
@@ -209,12 +226,16 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: '#ffffff', //cor de fundo do card
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
   fixedHeightPaper2: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+    boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
   },
 }));
 
@@ -468,7 +489,7 @@ const Dashboard = () => {
                   <PhoneCallbackIcon
                     style={{
                       fontSize: 100,
-                      color: "#000",
+                      color: "#151b23",
                     }}
                   />
                 </Grid>
@@ -517,81 +538,6 @@ const Dashboard = () => {
               </Grid>
             </Paper>
 </Grid>*/}
-
-          {/* FINALIZADOS */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Paper
-              className={classes.card3}
-              style={{ overflow: "hidden" }}
-              elevation={6}
-            >
-              <Grid container spacing={3}>
-                <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Finalizados
-                  </Typography>
-                  <Grid item>
-                    <Typography
-                      component="h1"
-                      variant="h4"
-                    >
-                      {counters.supportFinished}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item xs={4}>
-                  <CallIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#000",
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-
-          {/* NOVOS CHAMADOS */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Paper
-              className={classes.card4}
-              style={{ overflow: "hidden" }}
-              elevation={6}
-            >
-              <Grid container spacing={3}>
-                <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Novos
-                  </Typography>
-                  <Grid item>
-                    <Typography
-                      component="h1"
-                      variant="h4"
-                    >
-                      {GetContacts(true)}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item xs={4}>
-                  <AddIcCallIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#000",
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-
           
           {/* T.M. DE ATENDIMENTO */}
           <Grid item xs={6} sm={6} md={4}>
@@ -629,6 +575,82 @@ const Dashboard = () => {
               </Grid>
             </Paper>
           </Grid>
+          
+          {/* NOVOS CHAMADOS */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper
+              className={classes.card4}
+              style={{ overflow: "hidden" }}
+              elevation={6}
+            >
+              <Grid container spacing={3}>
+                <Grid item xs={8}>
+                  <Typography
+                    component="h3"
+                    variant="h6"
+                    paragraph
+                  >
+                    Novos
+                  </Typography>
+                  <Grid item>
+                    <Typography
+                      component="h1"
+                      variant="h4"
+                    >
+                      {GetContacts(true)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item xs={4}>
+                  <AddIcCallIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#000",
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+
+          {/* FINALIZADOS */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper
+              className={classes.card3}
+              style={{ overflow: "hidden" }}
+              elevation={6}
+            >
+              <Grid container spacing={3}>
+                <Grid item xs={8}>
+                  <Typography
+                    component="h3"
+                    variant="h6"
+                    paragraph
+                  >
+                    Finalizados
+                  </Typography>
+                  <Grid item>
+                    <Typography
+                      component="h1"
+                      variant="h4"
+                    >
+                      {counters.supportFinished}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid item xs={4}>
+                  <CallIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#0d1117",
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+
+
 
           {/* T.M. DE ESPERA */}
           <Grid item xs={6} sm={6} md={4}>

@@ -3,12 +3,13 @@ import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
-    BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import brLocale from 'date-fns/locale/pt-BR';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -22,7 +23,8 @@ import './button.css';
 ChartJS.register(
     CategoryScale,
     LinearScale,
-    BarElement,
+    PointElement,
+    LineElement,
     Title,
     Tooltip,
     Legend
@@ -35,33 +37,42 @@ export const options = {
             position: 'top',
             display: false,
         },
-        title: {
-            display: true,
-            position: 'left',
+        tooltip: {
+            enabled: true,
         },
         datalabels: {
             display: true,
-            anchor: 'start',
-            offset: -30,
-            align: "start",
-            color: "#fff",
-            textStrokeColor: "#000",
-            textStrokeWidth: 2,
+            color: "#000",
+            anchor: 'end',
+            align: 'bottom',
             font: {
-                size: 20,
-                weight: "bold"
-
+                weight: "bold",
+                size: 12,
             },
-        }
+            formatter: (value) => value, // Exibe o valor acima de cada ponto
+        },
+    },
+    scales: {
+        x: {
+            title: {
+                display: true,
+                text: 'Datas',
+            },
+        },
+        y: {
+            title: {
+                display: true,
+                text: 'Total de Chamados',
+            },
+            beginAtZero: true,
+        },
     },
 };
 
 export const ChartsDate = () => {
-
     const [initialDate, setInitialDate] = useState(new Date());
     const [finalDate, setFinalDate] = useState(new Date());
     const [ticketsData, setTicketsData] = useState({ data: [], count: 0 });
-
     const companyId = localStorage.getItem("companyId");
 
     useEffect(() => {
@@ -69,15 +80,21 @@ export const ChartsDate = () => {
     }, []);
 
     const dataCharts = {
-
-        labels: ticketsData && ticketsData?.data.length > 0 && ticketsData?.data.map((item) => (item.hasOwnProperty('horario') ? `Das ${item.horario}:00 as ${item.horario}:59` : item.data)),
+        labels: ticketsData?.data.map((item) =>
+            item.hasOwnProperty('horario') ? `Das ${item.horario}:00 às ${item.horario}:59` : item.data
+        ),
         datasets: [
             {
-                // label: 'Dataset 1',
-                data: ticketsData?.data.length > 0 && ticketsData?.data.map((item, index) => {
-                    return item.total
-                }),
-                backgroundColor: '#2DDD7F',
+                label: 'Total de Chamados',
+                data: ticketsData?.data.map((item) => item.total),
+                borderColor: '#33d0a1',
+                backgroundColor: 'rgba(45, 221, 127, 0.2)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#33d0a1',
+                pointBorderColor: '#33d0a1',
+                pointHoverRadius: 6,
+                pointRadius: 5,
             },
         ],
     };
@@ -89,7 +106,7 @@ export const ChartsDate = () => {
         } catch (error) {
             toast.error('Erro ao buscar informações dos tickets');
         }
-    }
+    };
 
     return (
         <>
@@ -97,31 +114,31 @@ export const ChartsDate = () => {
                 Total de Chamados ({ticketsData?.count})
             </Typography>
 
-            <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ my: 2, }} >
-
+            <Stack direction="row" spacing={2} alignItems="center" sx={{ my: 2 }}>
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
                     <DatePicker
                         value={initialDate}
-                        onChange={(newValue) => { setInitialDate(newValue) }}
-                        label="Inicio"
+                        onChange={(newValue) => setInitialDate(newValue)}
+                        label="Início"
                         renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
-
                     />
                 </LocalizationProvider>
 
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
                     <DatePicker
                         value={finalDate}
-                        onChange={(newValue) => { setFinalDate(newValue) }}
+                        onChange={(newValue) => setFinalDate(newValue)}
                         label="Fim"
                         renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
                     />
                 </LocalizationProvider>
 
-                <Button className="buttonHover" onClick={handleGetTicketsInformation} variant='contained' >Filtrar</Button>
-
+                <Button className="buttonHover" onClick={handleGetTicketsInformation} variant="contained">
+                    Filtrar
+                </Button>
             </Stack>
-            <Bar options={options} data={dataCharts} style={{ maxWidth: '100%', maxHeight: '280px', }} />
+
+            <Line options={options} data={dataCharts} style={{ maxWidth: '100%', maxHeight: '280px' }} />
         </>
     );
-}
+};
