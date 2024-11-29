@@ -1,8 +1,10 @@
 Todos os direitos reservados a https://baasic.com.br
-1234
+
 # Pré Requisitos
 1. > Armazenamento não deve estar cheio
 2. > Deve possuir no mínimo 8gb de ram para a virtualizalção do Docker ocorrer corretamente. Abaixo disso talvez não dê certo.
+3. > Deve possuir Linux ou em caso de Windows ativar o WSL (Subsistema Linux para Windows)
+4. > Ter o Docker instalado na máquina  
 
 # No Backend
 1. > Entrar na pasta:
